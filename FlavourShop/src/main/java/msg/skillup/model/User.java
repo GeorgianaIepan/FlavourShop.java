@@ -6,13 +6,13 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "employee")
+@Table(name = "users")
 @Data
-public class Employee {
+public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "emp_Sequence")
-    @SequenceGenerator(name = "emp_Sequence", sequenceName = "EMP_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_Sequence")
+    @SequenceGenerator(name = "user_Sequence", sequenceName = "USER_SEQ")
     private long id;
 
     @Column(name = "name")
