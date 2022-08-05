@@ -34,4 +34,6 @@ public class User {
     @JoinColumn(name = "ID_ROLE")
     private Role role;
 
+
+
 }
