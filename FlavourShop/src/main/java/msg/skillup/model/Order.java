@@ -16,6 +16,6 @@ public class Order {
     @JoinColumn(name = "ID_USER")
     private User user;
 
-    @Column(name = "ADDRESS")
+    @Column(name = "ADDRESS", nullable = false)
     private String address;
 }
