@@ -6,19 +6,32 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "USER_TABLE")
 @Data
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_Sequence")
-    @SequenceGenerator(name = "user_Sequence", sequenceName = "USER_SEQ")
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID_USER")
+    private Long idUser;
 
-    @Column(name = "name")
+    @Column(name = "USERNAME", nullable = false)
+    private String username;
+
+    @Column(name = "NAME", nullable = false)
     private String name;
 
-    @Column(name = "city")
-    private String city;
+    @Column(name = "PASSWORD", length = 64, nullable = false)
+    private String password;
+
+    @Column(name = "EMAIL")
+    private String email;
+
+    @Column(name = "PHONE_NUMBER",length = 10)
+    private String phoneNumber;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_ROLE")
+    private Role role;
 
 }
