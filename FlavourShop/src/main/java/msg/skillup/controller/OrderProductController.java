@@ -1,6 +1,6 @@
 package msg.skillup.controller;
 
-import msg.skillup.dto.OrderProductDTO;
+import msg.skillup.dto.OrderDTO;
 import msg.skillup.service.OrderProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,13 @@ public class OrderProductController {
     //e.g /orders/user/10
     @GetMapping("{orderId}/user/{userId}")
     @Transactional
-    public ResponseEntity<OrderProductDTO> getAll(@PathVariable Long orderId, @PathVariable Long userId){
+    public ResponseEntity<OrderDTO> getByUser(@PathVariable Long orderId, @PathVariable Long userId){
         return ResponseEntity.ok( orderProductService.getOrderByUser(orderId, userId));
+    }
+
+    @GetMapping("/user/{userId}")
+    @Transactional
+    public ResponseEntity<List<OrderDTO>> getAllByUser(@PathVariable Long userId){
+        return ResponseEntity.ok( orderProductService.getAllOrdersByUser(userId));
     }
 }

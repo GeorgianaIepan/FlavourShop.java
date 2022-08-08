@@ -1,8 +1,6 @@
 package msg.skillup.converter;
 
-import msg.skillup.dto.OrderProductDTO;
 import msg.skillup.dto.ProductDTO;
-import msg.skillup.model.OrderProduct;
 import msg.skillup.model.Product;
 
 import java.util.List;
