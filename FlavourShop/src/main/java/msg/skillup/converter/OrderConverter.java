@@ -1,6 +1,7 @@
 package msg.skillup.converter;
 
 import msg.skillup.dto.OrderDTO;
+import msg.skillup.model.Order;
 import msg.skillup.model.OrderProduct;
 
 public class OrderConverter {
@@ -11,4 +12,9 @@ public class OrderConverter {
         return orderDTO;
     }
 
+    public static Order convertFromDTOToEntity(OrderDTO orderDTO){
+       Order order = new Order();
+       order.setAddress(orderDTO.getDeliveryAddress());
+       return order;
+    }
 }
