@@ -1,7 +1,9 @@
 package msg.skillup.model;
 import lombok.Data;
+import msg.skillup.dto.OrderProductDTO;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "ORDER_TABLE")
