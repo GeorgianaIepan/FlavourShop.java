@@ -7,3 +7,4 @@ public class RoleDTO {
     private Integer idRole;
     private String name;
 }
+

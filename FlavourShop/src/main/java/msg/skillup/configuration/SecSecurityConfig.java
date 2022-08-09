@@ -27,3 +27,4 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 }
+

@@ -29,3 +29,4 @@ public class Ingredient {
     @Column(name = "ORIGIN_INGREDIENT")
     private String originIngredient;
 }
+
