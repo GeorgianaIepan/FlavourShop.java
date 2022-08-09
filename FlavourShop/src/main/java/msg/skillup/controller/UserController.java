@@ -4,6 +4,7 @@ import java.util.List;
 
 import msg.skillup.dto.OrderDTO;
 import msg.skillup.dto.UserDTO;
+import msg.skillup.exception.BusinessException;
 import msg.skillup.model.User;
 import msg.skillup.repository.UserRepository;
 import msg.skillup.repository.UserRepository;
@@ -13,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/")
@@ -21,9 +25,14 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/user")
-    public void save(@RequestBody UserDTO userDTO){
-        userService.saveUser(userDTO);
-        ResponseEntity.ok();
+    public void save(@RequestBody @Valid UserDTO userDTO){
+        try{
+            userService.saveUser(userDTO);
+            ResponseEntity.ok();
+        } catch(BusinessException businessException){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, businessException.getMessage());
+        }
+
     }
 
    /* @GetMapping("/findall")
