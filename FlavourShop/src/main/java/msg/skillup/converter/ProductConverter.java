@@ -19,3 +19,4 @@ public class ProductConverter {
         return products.stream().map(ProductConverter::convertFromEntityToDTO).collect(Collectors.toList());
     }
 }
+

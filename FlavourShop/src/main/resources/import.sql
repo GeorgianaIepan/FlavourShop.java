@@ -19,7 +19,3 @@ insert into REVIEW(ID_USER, ID_PRODUCT, TEXT_REVIEW) values (1, 1, 'Best Product
 
 
 
-
-
-
-

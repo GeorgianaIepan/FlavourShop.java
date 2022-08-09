@@ -24,3 +24,4 @@ public class OrderProduct {
     @Column(name = "QUANTITY_ORDER_PRODUCT", nullable = false)
     private Integer quantity;
 }
+

@@ -24,3 +24,4 @@ public class ProductIngredient {
     private Integer quantity;
 
 }
+

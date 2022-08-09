@@ -19,3 +19,4 @@ public class Order {
     @Column(name = "ADDRESS", nullable = false)
     private String address;
 }
+
