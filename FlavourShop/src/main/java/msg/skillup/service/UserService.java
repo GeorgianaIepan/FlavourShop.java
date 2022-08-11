@@ -36,7 +36,7 @@ public class UserService {
         UserValidator.errorList.clear();
         userValidator.validate(user);
         if(UserValidator.errorList.isEmpty()){
-            Role role = roleRepository.getById(userDTO.getRole().getIdRole());
+            Role role = roleRepository.getById(2);
             user.setRole(role);
             User savedUser = userRepository.save(user);
             return savedUser;
