@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { UserRoutingModule } from './user-routing.module';
-import {UserService} from "./services/user.service";
+import {UserService} from "./services/user/user.service";
 import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
@@ -12,12 +12,14 @@ import {MatButtonModule} from "@angular/material/button";
 import { RegistrationContainerComponent } from './containers/registration-container/registration-container.component';
 import {HttpClientModule} from "@angular/common/http";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import { ProductListComponent } from './components/product-list/product-list.component';
 
 
 @NgModule({
   declarations: [
     RegistrationFormComponent,
-    RegistrationContainerComponent
+    RegistrationContainerComponent,
+    ProductListComponent
   ],
   imports: [
     CommonModule,

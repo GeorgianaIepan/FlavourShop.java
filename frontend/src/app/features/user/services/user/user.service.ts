@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {BackendService} from "../../../core/backend/backend.service";
-import {User} from "../models/user.model";
+import {BackendService} from "../../../../core/backend/backend.service";
+import {User} from "../../models/user.model";
 import {Observable} from "rxjs";
 
 @Injectable({
