@@ -10,5 +10,6 @@ public class ProductDTO {
     private Double priceProduct;
     private String nameProduct;
     private Integer quantity;
+
 }
 
