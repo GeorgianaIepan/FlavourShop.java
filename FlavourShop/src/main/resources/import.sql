@@ -15,7 +15,7 @@ insert into ORDER_TABLE(ID_USER, ADDRESS) values (1, 'Str BlaBla 1');
 insert into ORDER_PRODUCT(ID_ORDER, ID_PRODUCT, QUANTITY_ORDER_PRODUCT) values (1, 1, 1);
 insert into ORDER_PRODUCT(ID_ORDER, ID_PRODUCT, QUANTITY_ORDER_PRODUCT) values (1, 2, 1);
 insert into ORDER_PRODUCT(ID_ORDER, ID_PRODUCT, QUANTITY_ORDER_PRODUCT) values (2, 2, 5);
-insert into REVIEW(ID_USER, ID_PRODUCT, TEXT_REVIEW) values (1, 1, 'Best Product');
+insert into REVIEW(ID_USER, ID_PRODUCT, TEXT_REVIEW, RATING) values (1, 1, 'Best Product', 5);
 
 
 
