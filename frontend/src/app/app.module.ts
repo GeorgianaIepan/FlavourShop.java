@@ -7,10 +7,12 @@ import {CoreModule} from "./core/core.module";
 import {UserModule} from "./features/user/user.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
+import { HeaderComponent } from './features/header/header.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
