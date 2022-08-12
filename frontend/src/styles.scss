@@ -3,3 +3,15 @@
 html, body {
   height: 100%;
 }
+
+.success-snackbar {
+  background: purple!important;
+  color: white!important;
+  white-space: pre-wrap!important;
+}
+
+.fail-snackbar {
+  background: darkred;
+  color: white;
+  white-space: pre-wrap;
+}

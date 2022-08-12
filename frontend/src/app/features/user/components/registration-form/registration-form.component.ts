@@ -15,7 +15,7 @@ export class RegistrationFormComponent implements OnInit {
   }
 
   matchPasswordValidator(password: string, passwordConfirmation: string){
-    return password && passwordConfirmation && passwordConfirmation === password;
+    return passwordConfirmation === password;
   }
 
   registrationForm = new FormGroup({

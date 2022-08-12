@@ -7,7 +7,7 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class UserService {
-  registrationURL = 'http://localhost:8080/account/signup';
+  registrationURL = 'http://localhost:8080/user';
   constructor(private service: BackendService) { }
 
   registration(user: User): Observable<void>{
