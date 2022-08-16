@@ -31,6 +31,9 @@ public class UserService {
     @Autowired
     private UserValidator userValidator;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public User saveUser(UserDTO userDTO) throws BusinessException { //userDTO
         User user = UserConverter.convertFromDTOToEntity(userDTO);
         UserValidator.errorList.clear();
@@ -43,6 +46,16 @@ public class UserService {
         }
         else{
             throw new BusinessException(UserValidator.errorList.toString());
+        }
+    }
+
+    public void matchUser(String username, String password) throws BusinessException {
+        User user = userRepository.matchUser(username);
+        if(user == null){
+            throw new BusinessException("Userul nu a fost gasit");
+        }
+        else if(!passwordEncoder.matches(password, user.getPassword())){
+            throw new BusinessException("Parola incorecta");
         }
     }
 }

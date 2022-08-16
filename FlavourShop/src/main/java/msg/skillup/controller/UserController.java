@@ -32,7 +32,16 @@ public class UserController {
         } catch(BusinessException businessException){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, businessException.getMessage());
         }
+    }
 
+    @PostMapping("/login")
+    public void loginUser(@RequestBody UserDTO userDTO){
+        try{
+            userService.matchUser(userDTO.getUsername(), userDTO.getPassword());
+            ResponseEntity.ok();
+        } catch(BusinessException businessException){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, businessException.getMessage());
+        }
     }
 
    /* @GetMapping("/findall")
