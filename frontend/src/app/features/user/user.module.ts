@@ -13,6 +13,7 @@ import { RegistrationContainerComponent } from './containers/registration-contai
 import {HttpClientModule} from "@angular/common/http";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { ProductListComponent } from './components/product-list/product-list.component';
+import {MatCardModule} from "@angular/material/card";
 
 
 @NgModule({
@@ -21,17 +22,18 @@ import { ProductListComponent } from './components/product-list/product-list.com
     RegistrationContainerComponent,
     ProductListComponent
   ],
-  imports: [
-    CommonModule,
-    UserRoutingModule,
-    MatFormFieldModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatButtonModule,
-    HttpClientModule,
-    MatSnackBarModule
-  ],
+    imports: [
+        CommonModule,
+        UserRoutingModule,
+        MatFormFieldModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatButtonModule,
+        HttpClientModule,
+        MatSnackBarModule,
+        MatCardModule
+    ],
   providers: [UserService]
 })
 export class UserModule { }
