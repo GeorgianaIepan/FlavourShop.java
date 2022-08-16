@@ -1,7 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {RegistrationContainerComponent} from "./containers/registration-container/registration-container.component";
-import {ProductListComponent} from "./components/product-list/product-list.component";
+import {RegistrationContainerComponent} from "../containers/registration-container/registration-container.component";
+import {ProductListComponent} from "../components/product-list/product-list.component";
+import {LoginContainerComponent} from "../containers/login-container/login-container.component";
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   }, {
     path: 'products',
     component: ProductListComponent,
+    pathMatch: 'full'
+  }, {
+    path: 'login',
+    component: LoginContainerComponent,
     pathMatch: 'full'
   }
 ];

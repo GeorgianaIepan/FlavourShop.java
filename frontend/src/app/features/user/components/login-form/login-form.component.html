@@ -1,0 +1,35 @@
+<div class="container">
+  <form [formGroup]="loginForm" #formDirective="ngForm" (ngSubmit)="onSubmit(formDirective)">
+    <div class="row">
+      <mat-form-field appearance="standard">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username">
+        <mat-icon matSuffix>account_circle</mat-icon>
+
+      </mat-form-field>
+    </div>
+
+    <!--<div class="row">
+      <mat-form-field appearance="standard">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email">
+        <mat-icon matSuffix> alternate_email</mat-icon>
+        <mat-error *ngIf="registrationForm.controls['email'].invalid">Not a valid email</mat-error>
+      </mat-form-field>
+    </div>-->
+
+    <div class="row">
+      <mat-form-field appearance="standard">
+        <mat-label>Parola</mat-label>
+        <input [type]="'password'" matInput formControlName="password">
+        <mat-icon matSuffix> lock</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <button [disabled]="!loginForm.valid" mat-raised-button mat-button color="primary" type="submit">
+        Login
+      </button>
+    </div>
+  </form>
+</div>
