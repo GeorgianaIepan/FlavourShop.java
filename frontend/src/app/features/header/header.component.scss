@@ -1,6 +1,5 @@
 nav {
-  background-color: #ead5d6;
-  opacity: 0.8;
+  opacity: 1;
 }
 
 nav img {
@@ -9,20 +8,41 @@ nav img {
 }
 
 .button {
-  float: right;
-  margin-right: 15px;
-  margin-top: 30px;
-  border: lightpink;
-  color: deeppink;
+  background-color: #ffeaf7;
+  color: #6e0940;
+
+  border: none;
+  padding: 10px 25px;
+
+  text-align: center;
   text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+
   display: inline-block;
-  font-size: 15px;
+  cursor: pointer;
+  float: right;
+  line-height: 70px;
+  margin: 0 auto;
+}
+
+.button:hover{
+  color: #a9547e;
+}
+
+a {
+  text-decoration: none;
+  color: #6e0940;
+}
+
+a:hover{
+  color: #a9547e;
 }
 
 .header {
   position: fixed;
   top: 0;
-  background-color: #ead5d6;
+  background-color: #ffeaf7;
   opacity: 0.8;
   margin: 0px;
   width:100%;

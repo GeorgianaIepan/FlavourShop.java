@@ -1,0 +1,146 @@
+body {
+  background-color: #ffffff;
+  color: #777;
+  font: normal 15px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+p {
+  line-height: 20px;
+  margin-bottom: 20px;
+
+}
+h1 {
+  font-family: 'Crete Round', serif;
+  font-weight: bold;
+  color: #444;
+  font-size: 45px;
+  margin-bottom: 20px;
+
+}
+h2 {
+  font-weight: 300;
+  color: #444;
+  font-size: 55px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 20px;
+}
+h3 {
+  font-size: 30px;
+  color: #444;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 20px;
+}
+h4 {
+  font-size: 24px;
+  color: #444;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+h5 {
+  font-size: 15px;
+  color: #444;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+a {
+  text-decoration: none;
+  color: #444;
+}
+
+strong {
+  font-weight: bold;
+}
+small {
+  font-size: 13px;
+  color: #777;
+  font-style: italic;
+}
+.clear {
+  clear: both;
+}
+.wrapper {
+  margin: 0 auto;
+  padding: 0 10px;
+  width: 940px;
+}
+
+
+header {
+  margin-top: 100px;
+  height: 120px;
+}
+header h1 {
+  text-align: center;
+  margin-top: 32px;
+}
+header h1 .color {
+  color: #ef81c3;
+}
+
+#flavour-image {
+  height: 580px;
+  padding-top: 1px;
+  background:  url('../../../../../assets/images/flavourImage.png')no-repeat center;
+}
+#hero-image h2 {
+  margin: 180px 0 40px 0;
+}
+.button-1 {
+  display: block;
+  text-align: center;
+  background: lightpink;
+  border-radius: 3px;
+  color: #ffffff;
+  width: 180px;
+  height: 50px;
+  font-size: 20px;
+  line-height: 50px;
+  margin: 0 auto;
+}
+.button-1:hover {
+  background-color: #ef2796;
+  color: #ffffff;
+}
+
+#features ul {
+  margin: 80px 0;
+}
+#features ul li {
+  width: 275px;
+  padding-top: 140px;
+  float: left;
+  margin-right: 10px;
+  text-align: center;
+}
+#features ul li.feature-1 {
+  background: url('../../../../../assets/images/flavour.jpeg') no-repeat top center;
+}
+#features ul li.feature-2 {
+  background: url('../../../../../assets/images/smell.jpeg') no-repeat top center;
+}
+#features ul li.feature-3 {
+  background: url('../../../../../assets/images/texture.jpeg') no-repeat top center;
+}
+
+#primary-content {
+  background-color: #ffffff;
+  padding: 60px 0;
+  text-align: center;
+}
+
+#primary-content a img {
+  margin: 20px 0;
+}
+
+footer {
+  padding: 60px 0;
+  background-color: #ead5d6;
+}
+#footer-info p {
+  margin-top: 10px;
+  text-align: center;
+}
+
