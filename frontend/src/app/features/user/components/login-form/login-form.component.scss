@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+form {
+  outline: 3px solid #6e0940;
+  padding: 4.5%;
+  text-align: center;
+}
+
+.row:last-child {
+  margin-top: 15%;
+}
+
+.password-not-match {
+  color: red;
+  text-align: left;
+}

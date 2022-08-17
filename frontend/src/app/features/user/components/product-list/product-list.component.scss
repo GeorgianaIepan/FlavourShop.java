@@ -1,0 +1,31 @@
+.products {
+  margin-top: 100px;
+}
+
+.example-card {
+  padding: 50px;
+  height: 150px;
+  margin-left: 300px;
+  margin-right: 300px;
+  background-color: #ffeaf7;
+  color: #6e0940;
+  margin-top: 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.product-name {
+  color: #6e0940;
+  font-size: 30px;
+  text-align: center;
+}
+
+.product-image {
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+
+}
