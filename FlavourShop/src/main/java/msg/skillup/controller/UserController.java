@@ -44,12 +44,4 @@ public class UserController {
         }
     }
 
-   /* @GetMapping("/findall")
-    public ResponseEntity<List<User>> findAll() {
-        try {
-            return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }*/
 }
