@@ -7,7 +7,7 @@
 
 .example-card {
   padding: 50px;
-  height: 200px;
+  height: 400px;
   background-color: #ffeaf7;
   opacity: 0.6;
   color: #6e0940;
@@ -23,14 +23,31 @@
   text-align: center;
 }
 
-.product-description {
-
+.product-price {
+  color: #6e0940;
+  font-size: 14px;
+  text-align: center;
 }
 
-.product-image {
+.product-description {
+  color: #6e0940;
+  font-size: 14px;
+  text-align: center;
+  padding: 100px 200px;
 }
 
 .example-header-image {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
+}
+
+.example-card.button {
+  display: block;
+  text-align: center;
+  background: #6e0940;
+  border-radius: 3px;
+  width: 200px;
+  height: 50px;
+  font-size: 20px;
+  line-height: 50px;
 }
