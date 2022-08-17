@@ -8,20 +8,25 @@ import {UserModule} from "./features/user/services/user.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
 import { HeaderComponent } from './features/header/header.component';
+import { HomeComponent } from './features/user/components/home/home.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    CoreModule,
-    UserModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        HomeComponent
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        CoreModule,
+        UserModule
+    ],
+    providers: [],
+    exports: [
+        HeaderComponent
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
