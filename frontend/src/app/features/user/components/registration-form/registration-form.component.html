@@ -10,7 +10,7 @@
 
     <div class="row">
       <mat-form-field appearance="standard">
-        <mat-label>Nume</mat-label>
+        <mat-label>Name</mat-label>
         <input matInput formControlName="name">
         <mat-icon matSuffix>face</mat-icon>
       </mat-form-field>
@@ -27,7 +27,7 @@
 
     <div class="row">
       <mat-form-field appearance="standard">
-        <mat-label>Numar de telefon</mat-label>
+        <mat-label>Phone number</mat-label>
         <input matInput formControlName="phoneNumber">
         <mat-icon matSuffix> call</mat-icon>
       </mat-form-field>
@@ -35,7 +35,7 @@
 
     <div class="row">
       <mat-form-field appearance="standard">
-        <mat-label>Parola</mat-label>
+        <mat-label>Password</mat-label>
         <input [type]="'password'" matInput formControlName="password">
         <mat-icon matSuffix> lock</mat-icon>
       </mat-form-field>
@@ -43,7 +43,7 @@
 
     <div class="row">
       <mat-form-field appearance="standard">
-        <mat-label>Confirma parola</mat-label>
+        <mat-label>Confirm password</mat-label>
         <input [type]="'password'" matInput formControlName="confirmationPassword">
         <mat-icon matSuffix> lock</mat-icon>
       </mat-form-field>
@@ -51,7 +51,7 @@
 
     <div class="password-not-match"
          *ngIf="!matchPasswordValidator(registrationForm.controls.password.value!, registrationForm.controls.confirmationPassword.value!) && (registrationForm.touched || registrationForm.dirty)">
-      Parolele nu se potrivesc
+      Passwords do not match
     </div>
 
     <div class="row">
