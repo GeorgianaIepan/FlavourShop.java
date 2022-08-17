@@ -16,6 +16,8 @@ import { ProductListComponent } from '../components/product-list/product-list.co
 import {MatCardModule} from "@angular/material/card";
 import { LoginFormComponent } from '../components/login-form/login-form.component';
 import { LoginContainerComponent } from '../containers/login-container/login-container.component';
+import {AuthenticateService} from "./authenticate/authenticate.service";
+import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
 
 
 @NgModule({
@@ -38,6 +40,6 @@ import { LoginContainerComponent } from '../containers/login-container/login-con
         MatSnackBarModule,
         MatCardModule
     ],
-  providers: [UserService]
+  providers: [{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, UserService, AuthenticateService, JwtHelperService]
 })
 export class UserModule { }
