@@ -35,10 +35,10 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public void loginUser(@RequestBody UserDTO userDTO){
+    public ResponseEntity<String> loginUser(@RequestBody UserDTO userDTO){
         try{
-            userService.matchUser(userDTO.getUsername(), userDTO.getPassword());
-            ResponseEntity.ok();
+            String token = userService.matchUser(userDTO.getUsername(), userDTO.getPassword());
+            return ResponseEntity.ok(token);
         } catch(BusinessException businessException){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, businessException.getMessage());
         }
