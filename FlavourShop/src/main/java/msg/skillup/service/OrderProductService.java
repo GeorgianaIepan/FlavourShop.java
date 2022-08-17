@@ -82,6 +82,7 @@ public class OrderProductService {
             orderProduct.setOrder(savedOrder);
             orderProduct.setProduct(product);
             orderProduct.setQuantity(p.getQuantity());
+
             OrderProduct savedOrderProduct = orderProductRepository.save(orderProduct);
         });
 
