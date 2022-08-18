@@ -9,19 +9,23 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
 import { HeaderComponent } from './features/header/header.component';
 import { HomeComponent } from './features/user/components/home/home.component';
+import {MatIconModule} from "@angular/material/icon";
+import { ShoppingCartComponent } from './features/user/components/shopping-cart/shopping-cart.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HeaderComponent,
-        HomeComponent
+        HomeComponent,
+        ShoppingCartComponent
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
         CoreModule,
-        UserModule
+        UserModule,
+        MatIconModule
     ],
     providers: [],
     exports: [

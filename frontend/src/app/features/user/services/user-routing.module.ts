@@ -4,7 +4,8 @@ import {RegistrationContainerComponent} from "../containers/registration-contain
 import {ProductListComponent} from "../components/product-list/product-list.component";
 import {LoginContainerComponent} from "../containers/login-container/login-container.component";
 import {HomeComponent} from "../components/home/home.component";
-import {EmailConfirmationComponent} from "../components/email-confirmation/emailconfirmation";
+import {VerifySuccessComponent} from "../components/verify-success/verify-success.component";
+import {VerifyFailedComponent} from "../components/verify-failed/verify-failed.component";
 
 const routes: Routes = [
   {
@@ -23,10 +24,13 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     pathMatch: 'full'
-  },
-  {
-    path: 'emailconfirmation',
-    component: EmailConfirmationComponent,
+  }, {
+    path: 'verify-success',
+    component: VerifySuccessComponent,
+    pathMatch: 'full'
+  }, {
+    path: 'verify-failed',
+    component: VerifyFailedComponent,
     pathMatch: 'full'
   }
 ];
