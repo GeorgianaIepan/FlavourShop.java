@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../services/user/user.service";
 import {User} from "../../models/user.model";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {AuthenticateService} from "../../services/authenticate/authenticate.service";
-import {JwtHelperService} from "@auth0/angular-jwt";
+import {LoginFormComponent} from "../../components/login-form/login-form.component";
+import {FormGroup} from "@angular/forms";
+import {LoginService} from "../../services/login/login.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login-container',
@@ -12,16 +14,14 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 })
 export class LoginContainerComponent implements OnInit {
 
-  constructor(
-    private jwtHelper :JwtHelperService, private loginService: AuthenticateService, private _snackBar: MatSnackBar) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
   }
-
   loginUser(user: User) {
-    this.loginService.login(user).subscribe(res => {
-      console.log(typeof res, res);
-      console.log(this.jwtHelper.decodeToken(JSON.stringify(res)));
+    this.loginService.login(user).subscribe(result =>{
+    console.log(result);
+    localStorage.setItem('token', JSON.stringify(result));
     });
   }
 

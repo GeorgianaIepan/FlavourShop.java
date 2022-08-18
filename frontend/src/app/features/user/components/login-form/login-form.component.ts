@@ -21,7 +21,7 @@ export class LoginFormComponent implements OnInit {
   })
 
   onSubmit(formDirective: FormGroupDirective){
-    this.submitForm.emit(this.loginForm.value as User)
+    this.submitForm.emit(formDirective.value)
     this.loginForm.reset()
     formDirective.resetForm()
   }

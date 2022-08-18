@@ -10,14 +10,13 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import { RegistrationContainerComponent } from '../containers/registration-container/registration-container.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { ProductListComponent } from '../components/product-list/product-list.component';
 import {MatCardModule} from "@angular/material/card";
 import { LoginFormComponent } from '../components/login-form/login-form.component';
 import { LoginContainerComponent } from '../containers/login-container/login-container.component';
-import {AuthenticateService} from "./authenticate/authenticate.service";
-import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
+import {TokenInterceptor} from "./interceptor/token.interceptor";
 
 
 @NgModule({
@@ -40,6 +39,11 @@ import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
         MatSnackBarModule,
         MatCardModule
     ],
-  providers: [{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, UserService, AuthenticateService, JwtHelperService]
+  providers: [UserService,TokenInterceptor,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi:true
+    }]
 })
 export class UserModule { }

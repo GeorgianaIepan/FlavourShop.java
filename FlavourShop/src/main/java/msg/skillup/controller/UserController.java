@@ -1,6 +1,5 @@
 package msg.skillup.controller;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import msg.skillup.dto.OrderDTO;
@@ -13,13 +12,11 @@ import msg.skillup.repository.UserRepository;
 import msg.skillup.service.OrderProductService;
 import msg.skillup.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 @RestController
@@ -29,10 +26,8 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/user")
-    public void save(@RequestBody @Valid UserDTO userDTO)
-        throws UnsupportedEncodingException, MessagingException{
+    public void save(@RequestBody @Valid UserDTO userDTO){
         try{
-
             userService.saveUser(userDTO);
             ResponseEntity.ok();
         } catch(BusinessException businessException){
@@ -50,21 +45,4 @@ public class UserController {
         }
     }
 
-    @GetMapping("/verify")
-    public String verifyUser(@Param("code") String code) {
-        if (userService.verify(code)) {
-            return "/verify-success";
-        } else {
-            return "/verify-failed";
-        }
-    }
-
-   /* @GetMapping("/findall")
-    public ResponseEntity<List<User>> findAll() {
-        try {
-            return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }*/
 }

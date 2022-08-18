@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import {BackendService} from "../../../../core/backend/backend.service";
 import {User} from "../../models/user.model";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  loginURL = 'http://localhost:8080/user';
+  loginURL = 'http://localhost:8080/login';
 
   constructor(private service: BackendService) { }
 
