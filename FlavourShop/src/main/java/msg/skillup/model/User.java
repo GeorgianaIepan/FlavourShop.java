@@ -45,4 +45,10 @@ public class User {
     @JoinColumn(name = "ID_ROLE")
     private Role role;
 
+    @Column(name = "verification_code", length = 64)
+    private String verificationCode;
+
+    @Column(name = "enabled")
+    private boolean enabled;
+
 }
