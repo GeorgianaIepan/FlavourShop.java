@@ -17,6 +17,7 @@ import {MatCardModule} from "@angular/material/card";
 import { LoginFormComponent } from '../components/login-form/login-form.component';
 import { LoginContainerComponent } from '../containers/login-container/login-container.component';
 import {TokenInterceptor} from "./interceptor/token.interceptor";
+import {EmailConfirmationComponent} from "../components/email-confirmation/emailconfirmation";
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {TokenInterceptor} from "./interceptor/token.interceptor";
     RegistrationContainerComponent,
     ProductListComponent,
     LoginFormComponent,
-    LoginContainerComponent
+    LoginContainerComponent,
+    EmailConfirmationComponent
   ],
     imports: [
         CommonModule,

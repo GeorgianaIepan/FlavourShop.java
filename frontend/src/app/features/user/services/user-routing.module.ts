@@ -4,6 +4,7 @@ import {RegistrationContainerComponent} from "../containers/registration-contain
 import {ProductListComponent} from "../components/product-list/product-list.component";
 import {LoginContainerComponent} from "../containers/login-container/login-container.component";
 import {HomeComponent} from "../components/home/home.component";
+import {EmailConfirmationComponent} from "../components/email-confirmation/emailconfirmation";
 
 const routes: Routes = [
   {
@@ -21,6 +22,11 @@ const routes: Routes = [
   }, {
     path: 'home',
     component: HomeComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'emailconfirmation',
+    component: EmailConfirmationComponent,
     pathMatch: 'full'
   }
 ];
