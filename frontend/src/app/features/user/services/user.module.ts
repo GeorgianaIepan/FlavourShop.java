@@ -17,6 +17,7 @@ import {MatCardModule} from "@angular/material/card";
 import { LoginFormComponent } from '../components/login-form/login-form.component';
 import { LoginContainerComponent } from '../containers/login-container/login-container.component';
 import {TokenInterceptor} from "./interceptor/token.interceptor";
+import {VerifySuccessComponent} from "../components/verify-success/verify-success.component";
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {TokenInterceptor} from "./interceptor/token.interceptor";
     RegistrationContainerComponent,
     ProductListComponent,
     LoginFormComponent,
-    LoginContainerComponent
+    LoginContainerComponent,
+    VerifySuccessComponent
   ],
     imports: [
         CommonModule,
