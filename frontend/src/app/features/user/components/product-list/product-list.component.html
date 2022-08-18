@@ -2,10 +2,16 @@
   <mat-card class="example-card" *ngFor="let product of products">
     <mat-card-title-group>
       <mat-card-title class="product-name">{{product.nameProduct}}</mat-card-title>
-      <mat-card-subtitle class="product-image">{{product.priceProduct}}</mat-card-subtitle>
+      <mat-card-subtitle class="product-price">Price: {{product.priceProduct}} RON</mat-card-subtitle>
       <img mat-card-sm-image src="">
     </mat-card-title-group>
-    <mat-card-content>
-    </mat-card-content>
+
+    <mat-card-content class="product-description">{{product.description}}</mat-card-content>
+
+    <button class="button" mat-raised-button mat-button color="primary" type="submit">
+      Go to ingredients...
+      <a href="/ingredients"></a>
+    </button>
+
   </mat-card>
 </div>

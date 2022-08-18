@@ -20,14 +20,15 @@
 
     <div class="row">
       <mat-form-field appearance="standard">
-        <mat-label>Parola</mat-label>
+        <mat-label>Password</mat-label>
         <input [type]="'password'" matInput formControlName="password">
         <mat-icon matSuffix> lock</mat-icon>
       </mat-form-field>
     </div>
 
     <div class="row">
-      <button [disabled]="!loginForm.valid" mat-raised-button mat-button color="primary" type="submit">
+<!--      onclick="document.location='home'"-->
+      <button class="button" [disabled]="!loginForm.valid" mat-raised-button mat-button color="primary" type="submit">
         Login
       </button>
     </div>

@@ -3,6 +3,7 @@ package msg.skillup.controller;
 import java.util.List;
 
 import msg.skillup.dto.OrderDTO;
+import msg.skillup.dto.TokenRespDTO;
 import msg.skillup.dto.UserDTO;
 import msg.skillup.exception.BusinessException;
 import msg.skillup.model.User;
@@ -35,10 +36,10 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody UserDTO userDTO){
+    public ResponseEntity<TokenRespDTO> loginUser(@RequestBody UserDTO userDTO){
         try{
             String token = userService.matchUser(userDTO.getUsername(), userDTO.getPassword());
-            return ResponseEntity.ok(token);
+            return ResponseEntity.ok(new TokenRespDTO(token));
         } catch(BusinessException businessException){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, businessException.getMessage());
         }

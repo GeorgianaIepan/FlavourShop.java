@@ -5,17 +5,17 @@
         <mat-label>Username</mat-label>
         <input matInput formControlName="username">
         <mat-icon matSuffix>account_circle</mat-icon>
-
       </mat-form-field>
     </div>
 
     <div class="row">
       <mat-form-field appearance="standard">
-        <mat-label>Nume</mat-label>
+        <mat-label>Name</mat-label>
         <input matInput formControlName="name">
         <mat-icon matSuffix>face</mat-icon>
       </mat-form-field>
     </div>
+
     <div class="row">
       <mat-form-field appearance="standard">
         <mat-label>Email</mat-label>
@@ -24,35 +24,39 @@
         <mat-error *ngIf="registrationForm.controls['email'].invalid">Not a valid email</mat-error>
       </mat-form-field>
     </div>
+
     <div class="row">
       <mat-form-field appearance="standard">
-        <mat-label>Numar de telefon</mat-label>
+        <mat-label>Phone number</mat-label>
         <input matInput formControlName="phoneNumber">
         <mat-icon matSuffix> call</mat-icon>
       </mat-form-field>
     </div>
+
     <div class="row">
       <mat-form-field appearance="standard">
-        <mat-label>Parola</mat-label>
+        <mat-label>Password</mat-label>
         <input [type]="'password'" matInput formControlName="password">
         <mat-icon matSuffix> lock</mat-icon>
       </mat-form-field>
     </div>
+
     <div class="row">
       <mat-form-field appearance="standard">
-        <mat-label>Confirma parola</mat-label>
+        <mat-label>Confirm password</mat-label>
         <input [type]="'password'" matInput formControlName="confirmationPassword">
         <mat-icon matSuffix> lock</mat-icon>
       </mat-form-field>
     </div>
 
     <div class="password-not-match"
-      *ngIf="!matchPasswordValidator(registrationForm.controls.password.value!, registrationForm.controls.confirmationPassword.value!) && (registrationForm.touched || registrationForm.dirty)">
-      Parolele nu se potrivesc
+         *ngIf="!matchPasswordValidator(registrationForm.controls.password.value!, registrationForm.controls.confirmationPassword.value!) && (registrationForm.touched || registrationForm.dirty)">
+      Passwords do not match
     </div>
 
     <div class="row">
-      <button [disabled]="!registrationForm.valid" mat-raised-button mat-button color="primary" type="submit">
+      <button class="button" [disabled]="!registrationForm.valid" mat-raised-button mat-button color="primary"
+              type="submit">
         Registration
       </button>
     </div>

@@ -3,12 +3,16 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+  background-color: #ffeaf7;
+  opacity: 0.5;
+  max-width:100%;
 }
 
 form {
   outline: 3px solid #6e0940;
   padding: 4.5%;
   text-align: center;
+  background: url('../../../../../assets/images/flavourImage.png') no-repeat center;
 }
 
 .row:last-child {
@@ -17,5 +21,18 @@ form {
 
 .password-not-match {
   color: red;
+  opacity: 1;
   text-align: left;
+  font-weight: bold;
 }
+
+mat-label, mat-icon, mat-error {
+  color: #6e0940;
+}
+
+.button {
+  background-color: #6e0940;
+}
+
+
+
