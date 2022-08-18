@@ -1,5 +1,6 @@
 package msg.skillup.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import msg.skillup.dto.OrderDTO;
@@ -17,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 @RestController
@@ -26,7 +28,8 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/user")
-    public void save(@RequestBody @Valid UserDTO userDTO){
+    public void save(@RequestBody @Valid UserDTO userDTO)
+        throws UnsupportedEncodingException, MessagingException {
         try{
             userService.saveUser(userDTO);
             ResponseEntity.ok();
