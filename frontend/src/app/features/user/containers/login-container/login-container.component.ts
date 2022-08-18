@@ -5,6 +5,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {LoginFormComponent} from "../../components/login-form/login-form.component";
 import {FormGroup} from "@angular/forms";
 import {LoginService} from "../../services/login/login.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login-container',
@@ -13,13 +14,15 @@ import {LoginService} from "../../services/login/login.service";
 })
 export class LoginContainerComponent implements OnInit {
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
   }
   loginUser(user: User) {
-    this.loginService.login(user).subscribe(result =>
-    console.log(result))
+    this.loginService.login(user).subscribe(result =>{
+    console.log(result);
+    localStorage.setItem('token', JSON.stringify(result));
+    });
   }
 
 }
