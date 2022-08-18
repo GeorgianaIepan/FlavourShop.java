@@ -9,12 +9,16 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
 import { HeaderComponent } from './features/header/header.component';
 import { HomeComponent } from './features/user/components/home/home.component';
+import { VerifySuccessComponent } from './features/user/components/verify-success/verify-success.component';
+import { VerifyFailedComponent } from './features/user/components/verify-failed/verify-failed.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HeaderComponent,
-        HomeComponent
+        HomeComponent,
+        VerifySuccessComponent,
+        VerifyFailedComponent
     ],
     imports: [
         BrowserModule,
