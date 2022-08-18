@@ -9,6 +9,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
 import { HeaderComponent } from './features/header/header.component';
 import { HomeComponent } from './features/user/components/home/home.component';
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import { HomeComponent } from './features/user/components/home/home.component';
         BrowserAnimationsModule,
         AppRoutingModule,
         CoreModule,
-        UserModule
+        UserModule,
+        MatIconModule
     ],
     providers: [],
     exports: [
