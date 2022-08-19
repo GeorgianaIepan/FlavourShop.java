@@ -9,15 +9,15 @@
       </button>
 
       <button class="button"
-              mat-raised-button color="Register"><a routerLink="/registration"> Register</a>
+              mat-raised-button color="Register" *ngIf="!logedin"><a routerLink="/registration"> Register</a>
       </button>
 
       <button class="button"
-              mat-raised-button color="Login"><a routerLink="/login">Login</a>
+              mat-raised-button color="Login" *ngIf="!logedin"><a routerLink="/login">Login</a>
       </button>
 
-      <button class="button"
-              mat-raised-button color="Logout" onclick="localStorage.removeItem('token');"><a routerLink="/home" >Logout</a>
+      <button class="button" id="logout"
+              mat-raised-button color="Logout" onclick="localStorage.removeItem('token'); location.href='/home'" *ngIf="logedin">Logout
       </button>
 
       <button class="button"
@@ -31,4 +31,12 @@
   </nav>
 </div>
 
+<script type="text/javascript">
+  console.log(localStorage.getItem('token'));
+  if(localStorage.getItem('token')){
+    document.getElementById("logout").removeAttribute("hidden");
+  }
+  else
+    document.getElementById("logout").setAttribute("hidden", "hidden");
+</script>
 

@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  logedin: boolean;
+
+  constructor() {
+    this.logedin = !!this.readLocalStorageValue('token');
+    // console.log(this.logedin);
+  }
+
+  readLocalStorageValue(key: string): string {
+    // console.log(localStorage.getItem(key));
+    // @ts-ignore
+    return localStorage.getItem(key);
+  }
 
   ngOnInit(): void {
   }
+
 
 }
