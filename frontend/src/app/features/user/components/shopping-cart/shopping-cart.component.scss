@@ -5,4 +5,143 @@
   margin-left: auto;
 }
 
+.row{
+ /* position: fixed;
+  margin: auto;
+  display: inline-block;*/
+}
+
+.col1 {
+  padding: 50px;
+  height: 150px;
+  background-color: #ffeaf7;
+  opacity: 0.6;
+  color: #6e0940;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  width: 25%;
+}
+
+.col2 {
+  padding-top: 60px;
+  padding-bottom: 40px;
+  height: 150px;
+  background-color: #ffeaf7;
+  opacity: 0.6;
+  color: #6e0940;
+  text-align: center;
+  text-decoration: none;
+  font-size: 10px;
+  width: 35%;
+}
+
+.col3 {
+  padding: 50px;
+  height: 150px;
+  background-color: #ffeaf7;
+  opacity: 0.6;
+  color: #6e0940;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+  width: 15%;
+}
+
+.col4{
+  padding: 50px;
+  height: 150px;
+  background-color: #ffeaf7;
+  opacity: 0.6;
+  color: #6e0940;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+  width: 25%;
+
+}
+
+mat-card:not([class*=mat-elevation-z]) {
+  box-shadow: unset !important;
+}
+
+.shopping-list-name {
+  color: #ef2796;
+  font-weight: bold;
+  font-size: 25px;
+  text-align: center;
+}
+
+.shopping-list-quantity {
+  color: #6e0940;
+  font-size: 17px;
+  text-align: center;
+}
+
+.shopping-list-price {
+  color: #6e0940;
+  font-size: 17px;
+  text-align: left;
+  width: 200px;
+}
+
+.button {
+  background-color: #ffeaf7;
+  color: #6e0940;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+
+}
+
+.button:hover {
+  color: #ef2796;
+}
+
+.order-option{
+  font-size: 15px;
+}
+
+.total-price{
+  float: right;
+  color: #6e0940;
+  font-weight: bold;
+  font-size: 25px;
+  text-align: center;
+}
+
+.address{
+  float: left;
+  color: #6e0940;
+  font-weight: bold;
+  font-size: 25px;
+  text-align: center;
+}
+
+.buttonSubmit {
+  display: block;
+  text-align: center;
+  border-radius: 3px;
+  font-size: 20px;
+  line-height: 50px;
+  color: #ffeaf7;
+  opacity: 0.6;
+  background-color: #6e0940;
+  margin-top: 20px;
+  text-decoration: none;
+  float: left;
+  width: 33.33%;
+}
+
+.buttonSubmit:hover {
+  background-color: #ef2796;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+
+
 

@@ -3,23 +3,59 @@
     <div class="row">
       <div class="col1">
         <mat-card-title-group>
-          <mat-card-title class="shopping-list-name">{{orderProduct.orderProduct.nameProduct}}</mat-card-title>
-          <mat-card-subtitle class="shopping-list-quantity">Quantity: {{orderProduct.quantity}} </mat-card-subtitle>
+          <mat-card-title class="shopping-list-name">{{orderProduct.product.nameProduct}}</mat-card-title>
         </mat-card-title-group>
       </div>
       <div class="col2">
+        <div class="order-option">Quantity: <span id="quantity-field">
+        <button id="up" (click)="incrementQuantity(orderProduct)">+</button>
+        <input type="text" id="quantity" [value]="orderProduct.quantity">
+        <button id="down" (click)="decrementQuantity(orderProduct)">-</button>
+    </span>
+
+        </div>
+      </div>
+      <div class="col3">
         <mat-card-actions>
-          <button class="button" mat-raised-button mat-button color="primary" type="submit" ><!--(click)="deleteProduct(product, product.quantity)-->
+          <button class="button" mat-raised-button mat-button color="primary" type="submit"
+                  (click)="deleteProductFromCart(orderProduct)">
             <mat-icon>delete</mat-icon>
           </button>
         </mat-card-actions>
 
       </div>
-      <div class="col3">
-        <mat-card-content class="shopping-list-price">Price: {{orderProduct.orderProduct.priceProduct}}</mat-card-content>
-        <mat-card-content class="shopping-list-price">Total price: {{orderProduct.quantity}} * {{orderProduct.orderProduct.priceProduct}}</mat-card-content>
+      <div class="col4">
+        <mat-card-content class="shopping-list-price">Price: {{orderProduct.product.priceProduct}}</mat-card-content>
+        <mat-card-content class="shopping-list-price">Total
+          price: {{orderProduct.quantity * orderProduct.product.priceProduct}}</mat-card-content>
       </div>
     </div>
   </mat-card>
+
+  <table style="width: 100%">
+    <div class="total-price">
+      <tr >
+        <td>
+          <p>Total price: {{getTotal()}} RON</p>
+        </td>
+      </tr>
+    </div>
+    <div class="address">
+      <tr>
+        <td>
+          <label for="adr">Address:</label>
+          <input type="text" id="adr" name="adr">
+        </td>
+      </tr>
+    </div>
+  </table>
+  <button class="buttonSubmit" mat-raised-button mat-button color="primary" type="submit">Submit<!--(click)="deleteProductFromCart(orderProduct)-->
+  </button>
+
+  <button class="buttonSubmit" mat-raised-button mat-button color="primary" type="submit">
+    <a routerLink="/products"> Continue shopping</a>
+  </button>
 </div>
+
+
 
