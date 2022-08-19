@@ -12,6 +12,7 @@ import { HomeComponent } from './features/user/components/home/home.component';
 import {MatIconModule} from "@angular/material/icon";
 import { ShoppingCartComponent } from './features/user/components/shopping-cart/shopping-cart.component';
 import {MatCardModule} from "@angular/material/card";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import {MatCardModule} from "@angular/material/card";
         CoreModule,
         UserModule,
         MatIconModule,
-        MatCardModule
+        MatCardModule,
+        ReactiveFormsModule
     ],
     providers: [],
     exports: [

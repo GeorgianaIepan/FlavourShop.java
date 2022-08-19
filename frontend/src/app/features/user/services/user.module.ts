@@ -6,7 +6,7 @@ import {UserService} from "./user/user.service";
 import { RegistrationFormComponent } from '../components/registration-form/registration-form.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
-import {ReactiveFormsModule} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import { RegistrationContainerComponent } from '../containers/registration-container/registration-container.component';
@@ -39,7 +39,8 @@ import {VerifySuccessComponent} from "../components/verify-success/verify-succes
         MatButtonModule,
         HttpClientModule,
         MatSnackBarModule,
-        MatCardModule
+        MatCardModule,
+      FormsModule
     ],
   providers: [UserService,TokenInterceptor,
     {
