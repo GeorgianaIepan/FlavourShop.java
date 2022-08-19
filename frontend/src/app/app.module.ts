@@ -12,6 +12,7 @@ import {HomeComponent} from './features/user/components/home/home.component';
 import {MatIconModule} from "@angular/material/icon";
 import {ShoppingCartComponent} from './features/user/components/shopping-cart/shopping-cart.component';
 import {VerifySuccessComponent} from "./features/user/components/verify-success/verify-success.component";
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {VerifySuccessComponent} from "./features/user/components/verify-success/
     AppRoutingModule,
     CoreModule,
     UserModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule
   ],
   providers: [],
   exports: [

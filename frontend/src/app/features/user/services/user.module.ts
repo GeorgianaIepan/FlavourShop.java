@@ -6,7 +6,7 @@ import {UserService} from "./user/user.service";
 import { RegistrationFormComponent } from '../components/registration-form/registration-form.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import { RegistrationContainerComponent } from '../containers/registration-container/registration-container.component';
@@ -31,18 +31,19 @@ import {VerifyFailedComponent} from "../components/verify-failed/verify-failed.c
     EmailConfirmationComponent,
     VerifyFailedComponent
   ],
-    imports: [
-        CommonModule,
-        UserRoutingModule,
-        MatFormFieldModule,
-        MatIconModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        MatButtonModule,
-        HttpClientModule,
-        MatSnackBarModule,
-        MatCardModule
-    ],
+  imports: [
+    CommonModule,
+    UserRoutingModule,
+    MatFormFieldModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
+    HttpClientModule,
+    MatSnackBarModule,
+    MatCardModule,
+    FormsModule
+  ],
   providers: [UserService,TokenInterceptor,
     {
       provide: HTTP_INTERCEPTORS,
