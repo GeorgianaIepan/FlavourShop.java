@@ -9,10 +9,14 @@ import {Product} from "../../models/product.model";
 })
 export class ProductService {
   product: Product | undefined;
+
   productsURL = 'http://localhost:8080/products/findall';
   constructor(private service: BackendService) { }
 
   getAllProducts(): Observable<Product[]> {
     return this.service.get(this.productsURL);
   }
+
+
+
 }
