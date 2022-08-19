@@ -11,7 +11,6 @@ import { HeaderComponent } from './features/header/header.component';
 import { HomeComponent } from './features/user/components/home/home.component';
 import {MatIconModule} from "@angular/material/icon";
 import { ShoppingCartComponent } from './features/user/components/shopping-cart/shopping-cart.component';
-import { LogoutContainerComponent } from './features/user/containers/logout-container/logout-container.component';
 
 @NgModule({
     declarations: [
@@ -19,7 +18,6 @@ import { LogoutContainerComponent } from './features/user/containers/logout-cont
         HeaderComponent,
         HomeComponent,
         ShoppingCartComponent,
-        LogoutContainerComponent
     ],
     imports: [
         BrowserModule,
