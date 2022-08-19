@@ -1,12 +1,19 @@
 package msg.skillup.controller;
 
+import msg.skillup.configuration.JWTokenCreator;
 import msg.skillup.dto.OrderDTO;
+import msg.skillup.exception.BusinessException;
+import msg.skillup.model.User;
 import msg.skillup.service.OrderProductService;
+import msg.skillup.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.xml.ws.Response;
 import java.util.List;
 
 @RestController
@@ -27,10 +34,23 @@ public class OrderProductController {
         return ResponseEntity.ok( orderProductService.getAllOrdersByUser(userId));
     }
 
+    @Autowired
+    private JWTokenCreator jwTokenCreator;
+
+    @Autowired
+    private UserService userService;
+
     @PostMapping("/order")
-    public void save(@RequestBody OrderDTO orderDTO){
-        orderProductService.saveOrder(orderDTO);
-        ResponseEntity.ok();
+    public ResponseEntity.BodyBuilder save(@RequestBody OrderDTO orderDTO, @Valid String token){
+        String username = jwTokenCreator.getUsernameFromToken(token);
+        User user = userService.getUserFromUsername(username);
+        if(user != null){
+            orderProductService.saveOrder(orderDTO);
+            return ResponseEntity.ok();
+        }
+        else{
+            return ResponseEntity.badRequest();
+        }
     }
 }
 
