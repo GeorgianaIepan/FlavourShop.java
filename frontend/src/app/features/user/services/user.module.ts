@@ -18,6 +18,7 @@ import { LoginFormComponent } from '../components/login-form/login-form.componen
 import { LoginContainerComponent } from '../containers/login-container/login-container.component';
 import {TokenInterceptor} from "./interceptor/token.interceptor";
 import {EmailConfirmationComponent} from "../components/email-confirmation/emailconfirmation";
+import {VerifyFailedComponent} from "../components/verify-failed/verify-failed.component";
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {EmailConfirmationComponent} from "../components/email-confirmation/email
     ProductListComponent,
     LoginFormComponent,
     LoginContainerComponent,
-    EmailConfirmationComponent
+    EmailConfirmationComponent,
+    VerifyFailedComponent
   ],
     imports: [
         CommonModule,

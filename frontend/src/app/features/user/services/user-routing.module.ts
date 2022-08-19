@@ -6,6 +6,7 @@ import {LoginContainerComponent} from "../containers/login-container/login-conta
 import {HomeComponent} from "../components/home/home.component";
 import {VerifySuccessComponent} from "../components/verify-success/verify-success.component";
 import {VerifyFailedComponent} from "../components/verify-failed/verify-failed.component";
+import {EmailConfirmationComponent} from "../components/email-confirmation/emailconfirmation";
 
 const routes: Routes = [
   {
@@ -31,6 +32,11 @@ const routes: Routes = [
   }, {
     path: 'verify-failed',
     component: VerifyFailedComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'email-confirmation',
+    component: EmailConfirmationComponent,
     pathMatch: 'full'
   }
 ];

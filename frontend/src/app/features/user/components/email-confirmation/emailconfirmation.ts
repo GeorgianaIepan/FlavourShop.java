@@ -1,6 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {EmailVerificationService} from "../../services/email-verification/email-verification.service";
+import {logDeprecation} from "sweetalert/typings/modules/options/deprecations";
 @Component({
   selector: 'app-email-confirmation',
   templateUrl: './email-confirmation.component.html',
@@ -9,9 +11,9 @@ import { ActivatedRoute } from '@angular/router';
 export class EmailConfirmationComponent implements OnInit {
   showSuccess: boolean = false;
   showError: boolean = false;
-  errorMessage: string = "NOT GOOD ";
+  code: string = "NOT GOOD ";
 
-  constructor(private _route: ActivatedRoute) { }
+  constructor(private _route: ActivatedRoute, private emailVerificationService:EmailVerificationService, private router: Router) { }
 
   ngOnInit(): void {
     this.confirmEmail();
@@ -19,8 +21,15 @@ export class EmailConfirmationComponent implements OnInit {
 
   private confirmEmail = () => {
     this.showError = this.showSuccess = false;
-    const token = this._route.snapshot.queryParams['token'];
-
-    this.errorMessage = token;
+    const code = this._route.snapshot.queryParams['code'];
+    this.code = code;
+    this.emailVerificationService.sendCode(code).subscribe( res => {
+      console.log(res);
+      console.log(res.confirmed)
+      if (res.confirmed){
+        this.router.navigate(["/login"])
+      } else this.router.navigate(["/verify-failed"])
+        });
   }
+
 }
