@@ -20,12 +20,12 @@ public class JWTokenCreator {
         Map<String, Object> claims = new HashMap<>();
         return getJwtToken(claims, user.getUsername());
     }
+
     public String getJwtToken(Map<String, Object> claims, String subject){
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
                 .signWith(SignatureAlgorithm.HS512, secret).compact();
     }
-
 
     //retrieve username from jwt token
     public String getUsernameFromToken(String token) {
@@ -53,15 +53,11 @@ public class JWTokenCreator {
         return expiration.before(new Date());
     }
 
-    //generate token for user
-    public String generateToken(UserDetails userDetails) {
-        Map<String, Object> claims = new HashMap<>();
-        return getJwtToken(claims, userDetails.getUsername());
-    }
-
     //validate token
     public Boolean validateToken(String token, User user) {
         final String username = getUsernameFromToken(token);
         return (username.equals(user.getUsername()) && !isTokenExpired(token));
     }
+
+
 }
