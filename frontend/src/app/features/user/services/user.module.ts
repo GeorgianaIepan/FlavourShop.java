@@ -6,7 +6,7 @@ import {UserService} from "./user/user.service";
 import { RegistrationFormComponent } from '../components/registration-form/registration-form.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import { RegistrationContainerComponent } from '../containers/registration-container/registration-container.component';
@@ -17,7 +17,8 @@ import {MatCardModule} from "@angular/material/card";
 import { LoginFormComponent } from '../components/login-form/login-form.component';
 import { LoginContainerComponent } from '../containers/login-container/login-container.component';
 import {TokenInterceptor} from "./interceptor/token.interceptor";
-import {VerifySuccessComponent} from "../components/verify-success/verify-success.component";
+import {EmailConfirmationComponent} from "../components/email-confirmation/emailconfirmation";
+import {VerifyFailedComponent} from "../components/verify-failed/verify-failed.component";
 
 
 @NgModule({
@@ -27,21 +28,22 @@ import {VerifySuccessComponent} from "../components/verify-success/verify-succes
     ProductListComponent,
     LoginFormComponent,
     LoginContainerComponent,
-    VerifySuccessComponent
+    EmailConfirmationComponent,
+    VerifyFailedComponent
   ],
-    imports: [
-        CommonModule,
-        UserRoutingModule,
-        MatFormFieldModule,
-        MatIconModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        MatButtonModule,
-        HttpClientModule,
-        MatSnackBarModule,
-        MatCardModule,
-      FormsModule
-    ],
+  imports: [
+    CommonModule,
+    UserRoutingModule,
+    MatFormFieldModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
+    HttpClientModule,
+    MatSnackBarModule,
+    MatCardModule,
+    FormsModule
+  ],
   providers: [UserService,TokenInterceptor,
     {
       provide: HTTP_INTERCEPTORS,

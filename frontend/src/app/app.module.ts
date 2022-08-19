@@ -13,7 +13,6 @@ import {MatIconModule} from "@angular/material/icon";
 import { ShoppingCartComponent } from './features/user/components/shopping-cart/shopping-cart.component';
 import {MatCardModule} from "@angular/material/card";
 import {ReactiveFormsModule} from "@angular/forms";
-import { MatFormFieldModule } from "@angular/material/form-field";
 
 @NgModule({
     declarations: [
@@ -30,8 +29,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
         UserModule,
         MatIconModule,
         MatCardModule,
-        ReactiveFormsModule,
-        MatFormFieldModule
+        ReactiveFormsModule
     ],
     providers: [],
     exports: [

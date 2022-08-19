@@ -83,13 +83,14 @@ public class UserService {
         helper.setSubject(subject);
 
         content = content.replace("[[name]]", user.getName());
-        String verifyURL = "http:/localhost:8080" + "/verify?code=" + user.getVerificationCode();
+        String verifyURL = "http:/localhost:4200" + "/email-confirmation?code=" + user.getVerificationCode();
 
         content = content.replace("[[URL]]", verifyURL);
 
         helper.setText(content, true);
 
         mailSender.send(message);
+        System.out.printf("email send");
     }
 
     public boolean verify(String verificationCode) {
@@ -114,8 +115,15 @@ public class UserService {
         }
         else if(!passwordEncoder.matches(password, user.getPassword())){
             throw new BusinessException("Parola incorecta");
+        }else if(!user.isEnabled()){
+            throw new BusinessException("emailul nu a fost verificat!");
         }
         return token;
     }
+
+    public User getUserFromUsername(String username){
+        return userRepository.matchUser(username);
+    }
+
 }
 
