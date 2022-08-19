@@ -1,1 +1,10 @@
-<p>shopping-cart works!</p>
+<div class="shopping">
+  <p>shopping-cart works!</p>
+  <mat-card class="shopping-cart" *ngFor="let orderProduct of orderProducts">
+    <mat-card-title-group>
+      <mat-card-title class="shopping-list-name">{{orderProduct.orderProduct.nameProduct}}</mat-card-title>
+      <mat-card-subtitle class="shopping-list-price">Total Price: {{orderProduct.quantity}} RON</mat-card-subtitle>
+    </mat-card-title-group>
+  </mat-card>
+</div>
+
