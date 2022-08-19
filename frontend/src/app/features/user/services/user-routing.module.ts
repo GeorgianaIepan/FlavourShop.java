@@ -7,6 +7,7 @@ import {HomeComponent} from "../components/home/home.component";
 import {VerifySuccessComponent} from "../components/verify-success/verify-success.component";
 import {VerifyFailedComponent} from "../components/verify-failed/verify-failed.component";
 import {EmailConfirmationComponent} from "../components/email-confirmation/emailconfirmation";
+import { ShoppingCartComponent } from "../components/shopping-cart/shopping-cart.component";
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: 'email-confirmation',
     component: EmailConfirmationComponent,
+    pathMatch: 'full'
+  },{
+    path: 'shopping-cart',
+    component: ShoppingCartComponent,
     pathMatch: 'full'
   }
 ];
