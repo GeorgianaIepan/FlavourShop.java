@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { OrderProduct } from "../../models/order-product.model";
-import { BackendService } from "../../../../core/backend/backend.service";
-import { Observable } from "rxjs";
-import { Product } from "../../models/product.model";
+import {Injectable} from '@angular/core';
+import {OrderProduct} from "../../models/order-product.model";
+import {BackendService} from "../../../../core/backend/backend.service";
+import {Observable} from "rxjs";
+import {Product} from "../../models/product.model";
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +19,9 @@ export class OrderProductService {
   }
 
   addToCart(product: Product, quantity: number) {
-    const orderProduct1: OrderProduct = { quantity:quantity, orderProduct: { ...product /*, nameProduct: ''*/ } };
+    const orderProduct1: OrderProduct = {quantity: quantity, product: {...product /*, nameProduct: ''*/}};
     this.orderProduct.push(orderProduct1);
   }
 
-//Array(product.quantity).fill(product)
 }
 
