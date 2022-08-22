@@ -19,6 +19,8 @@ import { LoginContainerComponent } from '../containers/login-container/login-con
 import {TokenInterceptor} from "./interceptor/token.interceptor";
 import {EmailConfirmationComponent} from "../components/email-confirmation/emailconfirmation";
 import {VerifyFailedComponent} from "../components/verify-failed/verify-failed.component";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import {VerifyFailedComponent} from "../components/verify-failed/verify-failed.c
     HttpClientModule,
     MatSnackBarModule,
     MatCardModule,
-    FormsModule
+    FormsModule,
+    MatMenuModule,
+    MatPaginatorModule
   ],
   providers: [UserService,TokenInterceptor,
     {

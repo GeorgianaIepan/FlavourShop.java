@@ -1,5 +1,13 @@
 <div class="products">
-  <mat-card class="example-card" *ngFor="let product of products; index as idx">
+  <button mat-button [matMenuTriggerFor]="menu">Sort</button>
+  <mat-menu class="sort" #menu="matMenu">
+    <button mat-menu-item (click)="sortProduct('asc', 'price')">Ascending by Price</button>
+    <button mat-menu-item (click)="sortProduct('desc', 'price')">Descending by Price</button>
+    <button mat-menu-item (click)="sortProduct('asc', 'name')">Ascending by Name</button>
+    <button mat-menu-item (click)="sortProduct('desc', 'name')">Descending by Name</button>
+  </mat-menu>
+
+  <mat-card class="example-card" *ngFor="let product of pageSlice; index as idx">
     <div class="row">
       <div class="col1">
         <mat-card-title-group>
@@ -37,3 +45,11 @@
     </div>
   </mat-card>
 </div>
+
+<mat-paginator [length]=products.length
+               [pageSize]="4"
+               [pageSizeOptions]="[4, 8, 16]"
+               aria-label="Select page"
+               (page)="OnPageChange($event)"
+>
+</mat-paginator>
