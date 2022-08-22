@@ -22,6 +22,7 @@ import {VerifyFailedComponent} from "../components/verify-failed/verify-failed.c
 import { MatMenuModule } from "@angular/material/menu";
 import { MatSelectModule } from "@angular/material/select";
 import { IngredientComponent } from "../components/ingredient/ingredient.component";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { IngredientComponent } from "../components/ingredient/ingredient.compone
         MatCardModule,
         FormsModule,
         MatMenuModule,
-        MatSelectModule
+        MatSelectModule,
+      MatPaginatorModule
     ],
   providers: [UserService,TokenInterceptor,
     {

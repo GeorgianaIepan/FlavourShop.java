@@ -14,15 +14,22 @@ import {Router} from "@angular/router";
 })
 export class LoginContainerComponent implements OnInit {
 
-  constructor(private loginService: LoginService, private router: Router) { }
+  constructor(private loginService: LoginService, private router: Router, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
   loginUser(user: User) {
-    this.loginService.login(user).subscribe(result =>{
-    console.log(result);
-    localStorage.setItem('token', JSON.stringify(result));
-    });
+    this.loginService.login(user).subscribe(result => {
+      console.log(result);
+      localStorage.setItem('token', JSON.stringify(result));
+      this.loginService.loginState.next(true);
+    }, e => {
+      this._snackBar.open(e.error.message, 'OK', {
+        duration: 10000,
+        panelClass: 'fail-snackbar'
+      })
+      console.log(e);
+    })};
   }
 
-}
+

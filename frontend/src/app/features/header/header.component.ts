@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {LoginService} from "../user/services/login/login.service";
 
 @Component({
   selector: 'app-header',
@@ -7,20 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  logedin: boolean;
+  logedin: boolean = false;
 
-  constructor() {
-    this.logedin = !!this.readLocalStorageValue('token');
-    // console.log(this.logedin);
-  }
-
-  readLocalStorageValue(key: string): string {
-    // console.log(localStorage.getItem(key));
-    // @ts-ignore
-    return localStorage.getItem(key);
+  constructor(private loginService: LoginService) {
   }
 
   ngOnInit(): void {
+    this.loginService.currentLoginState.subscribe( result => this.logedin = result);
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    this.loginService.loginState.next(false);
+
   }
 
 

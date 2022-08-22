@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import io.jsonwebtoken.ExpiredJwtException;
+import msg.skillup.dto.TokenRespDTO;
 import msg.skillup.model.User;
 import msg.skillup.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,8 @@ public class JwtRequestFilter extends OncePerRequestFilter{
         // JWT Token is in the form "Bearer token". Remove Bearer word and get
         // only the Token
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
-            jwtToken = requestTokenHeader.substring(7);
+            jwtToken= requestTokenHeader.substring(17);
+            jwtToken = jwtToken.substring(0,jwtToken.length()-2);
             try {
                 username = jwTokenCreator.getUsernameFromToken(jwtToken);
             } catch (IllegalArgumentException e) {

@@ -6,11 +6,11 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class EmailVerificationService {
-  codeURL = 'http://localhost:8080/verify'
+  codeURL = 'http://localhost:8080/verify?code='
 
   constructor(private service: BackendService) { }
 
   sendCode(code: string): Observable<any> {
-    return this.service.get(this.codeURL, code);
+    return this.service.get(this.codeURL+code);
   }
 }

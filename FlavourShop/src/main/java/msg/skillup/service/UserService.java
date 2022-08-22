@@ -113,9 +113,10 @@ public class UserService {
         if(user == null){
             throw new BusinessException("Userul nu a fost gasit");
         }
-        else if(!passwordEncoder.matches(password, user.getPassword())){
+        else if(!passwordEncoder.matches(password, user.getPassword())) {
             throw new BusinessException("Parola incorecta");
-        }else if(!user.isEnabled()){
+        }
+        else if(!user.isEnabled()){
             throw new BusinessException("emailul nu a fost verificat!");
         }
         return token;
