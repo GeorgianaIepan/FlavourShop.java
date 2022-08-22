@@ -19,7 +19,7 @@
 
         <mat-card-actions>
           <div></div>
-          <button class="button" *ngIf="product.quantity > 0; " mat-raised-button mat-button color="primary"
+          <button class="button" *ngIf="product.quantity >= 0; " mat-raised-button mat-button color="primary"
                   type="submit" (click)="addProduct(product, product.quantity)">
             Add to cart
             <a href="/ingredients"></a>
@@ -44,9 +44,9 @@
           </mat-card-title-group>-->
 
           <mat-form-field appearance="fill">
-            <mat-label>Ingredients</mat-label>
-            <mat-select [(ngModel)]="selectedProductIngredients" multiple (selectionChange)="onSelectionChange()">
-              <mat-option *ngFor="let ingredient of ingredients" [value]="ingredient">{{ ingredient }}</mat-option>
+            <mat-label>Choose ingredients</mat-label>
+            <mat-select [(ngModel)]="product.ingredients" multiple (selectionChange)="onSelectionChange()">
+              <mat-option *ngFor="let ingredient of ingredients" [value]="ingredient">{{ ingredient.nameIngredient}}: {{ingredient.priceIngredient}} RON</mat-option>
             </mat-select>
           </mat-form-field>
 

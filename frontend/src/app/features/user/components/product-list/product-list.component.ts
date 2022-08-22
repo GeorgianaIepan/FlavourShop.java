@@ -39,17 +39,17 @@ export class ProductListComponent implements OnInit {
 
       console.log('result', result),
         this.products = result.map(product => {
-          return { ...product, quantity: 0 }
+          return { ...product, quantity: 1 }
         });
     })
     // TODO REPLACE WITH INGREDIENTS
-  /*  this.ingredientService.getAllIngredients().subscribe((result: Ingredient[]) => {
+    this.ingredientService.getAllIngredients().subscribe((result: Ingredient[]) => {
 
       console.log('result', result),
         this.ingredients = result.map(ingredient => {
           return { ...ingredient }
         });
-    })*/
+    })
     this.pageSlice = this.products.slice(0, 4);
   }
 
