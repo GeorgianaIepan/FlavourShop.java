@@ -1,5 +1,5 @@
 <div class="products">
-  <button mat-button [matMenuTriggerFor]="menu">Sort</button>
+  <button mat-button class="button" [matMenuTriggerFor]="menu">Sort    <mat-icon>keyboard_arrow_down</mat-icon></button>
   <mat-menu class="sort" #menu="matMenu">
     <button mat-menu-item (click)="sortProduct('asc', 'price')">Ascending by Price</button>
     <button mat-menu-item (click)="sortProduct('desc', 'price')">Descending by Price</button>
