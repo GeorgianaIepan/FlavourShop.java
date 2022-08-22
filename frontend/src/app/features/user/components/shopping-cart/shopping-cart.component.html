@@ -13,7 +13,11 @@
       <div class="col2">
         <div class="order-option">Quantity: <span id="quantity-field">
         <button id="up" (click)="incrementQuantity(orderProduct)">+</button>
-        <input type="text" id="quantity" [value]="orderProduct.quantity">
+        <input type="text" id="quantity" [(ngModel)]="orderProduct.quantity"
+               [value]="orderProduct.quantity"
+               [min]="0"
+               [max]="50"
+        >
         <button id="down" *ngIf="orderProduct.quantity > 1; " mat-raised-button mat-button color="primary" type="submit" (click)="decrementQuantity(orderProduct)">-</button>
     </span>
 

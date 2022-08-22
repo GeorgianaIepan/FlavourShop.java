@@ -108,10 +108,10 @@
 
 </div>
 
-<mat-paginator [length]=products.length
+<mat-paginator [length]="products.length"
                [pageSize]="4"
                [pageSizeOptions]="[4, 8, 16]"
                aria-label="Select page"
-               (page)="OnPageChange($event)"
+               (page)="onPageChange($event)"
 >
 </mat-paginator>

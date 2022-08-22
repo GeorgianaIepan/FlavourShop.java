@@ -12,7 +12,7 @@ import { HomeComponent } from './features/user/components/home/home.component';
 import {MatIconModule} from "@angular/material/icon";
 import { ShoppingCartComponent } from './features/user/components/shopping-cart/shopping-cart.component';
 import {MatCardModule} from "@angular/material/card";
-import {ReactiveFormsModule} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { IngredientComponent } from './features/user/components/ingredient/ingredient.component';
 
 @NgModule({
@@ -31,7 +31,8 @@ import { IngredientComponent } from './features/user/components/ingredient/ingre
         UserModule,
         MatIconModule,
         MatCardModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        FormsModule
     ],
     providers: [],
     exports: [
