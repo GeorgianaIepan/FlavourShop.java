@@ -41,7 +41,7 @@ public class User {
     @Column(name = "PHONE_NUMBER",length = 10)
     private String phoneNumber;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_ROLE")
     private Role role;
 
