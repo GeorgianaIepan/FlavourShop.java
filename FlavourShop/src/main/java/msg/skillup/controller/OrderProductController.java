@@ -41,16 +41,9 @@ public class OrderProductController {
     private UserService userService;
 
     @PostMapping("/order")
-    public ResponseEntity.BodyBuilder save(@RequestBody OrderDTO orderDTO, @Valid String token){
-        String username = jwTokenCreator.getUsernameFromToken(token);
-        User user = userService.getUserFromUsername(username);
-        if(user != null){
+    public ResponseEntity<String> save(@RequestBody OrderDTO orderDTO){
             orderProductService.saveOrder(orderDTO);
-            return ResponseEntity.ok();
-        }
-        else{
-            return ResponseEntity.badRequest();
-        }
+            return ResponseEntity.ok("order saved");
     }
 }
 
