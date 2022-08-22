@@ -5,7 +5,7 @@
       <img src="../../../assets/images/LogoFlavourShop.png" alt="Logo">
 
       <button class="button"
-              mat-raised-button color="Shopping_cart"><a routerLink="/shopping-cart"> <mat-icon>shopping_cart</mat-icon></a>
+              mat-raised-button color="Shopping_cart" *ngIf="logedin"><a routerLink="/shopping-cart"> <mat-icon>shopping_cart</mat-icon></a>
       </button>
 
       <button class="button"
@@ -25,7 +25,7 @@
       </button>
 
       <button class="button"
-              mat-raised-button color="Home"><a routerLink="/home" > Home</a>
+              mat-raised-button color="Home" ><a routerLink="/home" > Home</a>
       </button>
     </div>
   </nav>
