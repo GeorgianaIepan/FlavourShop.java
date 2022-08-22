@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from "../../services/product/product.service";
 import { Product } from "../../models/product.model";
 import { OrderProductService } from "../../services/orderProduct/order-product.service";
-import { OrderProduct } from "../../models/order-product.model";
+import { Ingredient } from "../../models/ingredient.model";
+import { IngredientService } from "../../services/ingredient/ingredient.service";
 
 @Component({
   selector: 'app-product-list',
@@ -10,11 +11,15 @@ import { OrderProduct } from "../../models/order-product.model";
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
+  ingredients: Ingredient[] = [];
+
   products: (Product & { quantity: number })[] = [];
 
- // orderProducts: OrderProduct[] = [];
-  // OrderProduct list!!!
+  selectedProductIngredients: Ingredient[] = [];
 
+
+  // orderProducts: OrderProduct[] = [];
+  // OrderProduct list!!!
 
   // angForm = new FormGroup({
   //   productsQuantity: new FormArray([
@@ -23,7 +28,7 @@ export class ProductListComponent implements OnInit {
   //   ])
   // });
 
-  constructor(private productService: ProductService, private orderProductService: OrderProductService) {
+  constructor(private productService: ProductService, private orderProductService: OrderProductService, private ingredientService: IngredientService) {
   }
 
   ngOnInit(): void {
@@ -34,10 +39,19 @@ export class ProductListComponent implements OnInit {
           return { ...product, quantity: 0 }
         });
     })
+    // TODO REPLACE WITH INGREDIENTS
+  /*  this.ingredientService.getAllIngredients().subscribe((result: Ingredient[]) => {
+
+      console.log('result', result),
+        this.ingredients = result.map(ingredient => {
+          return { ...ingredient }
+        });
+    })*/
   }
-   /* console.log('result', result),
-      return this.orderProducts = result;
-  }*/
+
+  /* console.log('result', result),
+     return this.orderProducts = result;
+ }*/
 
   addProduct(product: Product, quantity: number): void {
     console.log(product);
@@ -45,15 +59,18 @@ export class ProductListComponent implements OnInit {
     this.orderProductService.addToCart(product, quantity);
   }
 
-/*
-  incrementQuantity(product: OrderProduct): void {
-    product.quantity += 1;
+  /*
+    incrementQuantity(product: OrderProduct): void {
+      product.quantity += 1;
+    }
+
+    decrementQuantity(product: OrderProduct): void {
+      product.quantity -= 1;
+    }
+  */
+
+
+  onSelectionChange(): void {
+    console.log(this.selectedProductIngredients);
   }
-
-  decrementQuantity(product: OrderProduct): void {
-    product.quantity -= 1;
-  }
-*/
-
-
 }

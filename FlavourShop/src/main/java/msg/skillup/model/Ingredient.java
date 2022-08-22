@@ -22,11 +22,6 @@ public class Ingredient {
     @Column(name = "NAME_INGREDIENT", nullable = false)
     private String nameIngredient;
 
-    @Column(name = "IMG_INGREDIENT")
-    @Lob
-    private Blob imgIngredient;
 
-    @Column(name = "ORIGIN_INGREDIENT")
-    private String originIngredient;
 }
 

@@ -7,11 +7,10 @@
         </mat-card-title-group>
       </div>
       <div class="col2">
-        <!--<button class="button" *ngIf="product.quantity > 0; " mat-raised-button mat-button color="primary" type="submit" (click)="addProduct(product, product.quantity)">-->
         <div class="order-option">Quantity: <span id="quantity-field">
         <button id="up" (click)="incrementQuantity(orderProduct)">+</button>
         <input type="text" id="quantity" [value]="orderProduct.quantity">
-        <button id="down" (click)="decrementQuantity(orderProduct)">-</button>
+        <button id="down" *ngIf="orderProduct.quantity > 1; " mat-raised-button mat-button color="primary" type="submit" (click)="decrementQuantity(orderProduct)">-</button>
     </span>
 
         </div>

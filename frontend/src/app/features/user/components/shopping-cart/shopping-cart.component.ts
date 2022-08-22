@@ -19,14 +19,11 @@ export class ShoppingCartComponent implements OnInit {
 
 
   incrementQuantity(orderProduct: OrderProduct): void {
-    if(orderProduct.quantity > 0)
-      orderProduct.quantity += 1;
-    //else
-
+    orderProduct.quantity ++ ;
   }
 
   decrementQuantity(orderProduct: OrderProduct): void {
-    orderProduct.quantity -= 1;
+    orderProduct.quantity --;
   }
 
 

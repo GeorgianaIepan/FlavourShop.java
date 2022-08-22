@@ -10,30 +10,92 @@
         <mat-card-content class="product-description">{{product.description}}</mat-card-content>
 
         <mat-card-actions>
-          <div ></div>
-          <button class="button" *ngIf="product.quantity > 0; " mat-raised-button mat-button color="primary" type="submit" (click)="addProduct(product, product.quantity)">
+          <div></div>
+          <button class="button" *ngIf="product.quantity > 0; " mat-raised-button mat-button color="primary"
+                  type="submit" (click)="addProduct(product, product.quantity)">
             Add to cart
             <a href="/ingredients"></a>
           </button>
         </mat-card-actions>
       </div>
       <div class="col2">
-        <!--<form action="/action_page.php">
-          <label for="quantity">Quantity: </label>
-          <input type="number" id="quantity" name="quantity" min="1" max="5">
-          <input type="submit">
-        </form>-->
-<!--        <div formArrayName="productQuantity">-->
-<!--          <div *ngFor="let productQuantity of productsQuantity.controls">-->
-            <input placeholder="Enter a Quantity!" [(ngModel)]="product.quantity">
-            <label *ngIf="true" [ngClass] = "'error'"> Quantity is required. </label>
+        <input placeholder="Enter a Quantity!" [(ngModel)]="product.quantity">
+        <label *ngIf="true" [ngClass]="'error'"> </label>
+
+        <br><br>
+<!--        <div class="multi-selector">-->
+<!--          <div class="select-field">-->
+<!--            <input type="text" name="" placeholder="Choose ingredients" id="" class="input-selector">-->
+<!--            <span class="down-arrow">&blacktriangledown;</span>-->
+<!--          </div>-->
+
+        <!--<mat-card class="list" *ngFor="let ingredient of ingredients; index as idx">
+          <mat-card-title-group>
+            <mat-card-title class="product-name">{{ingredient.nameIngredient}}</mat-card-title>
+            <mat-card-subtitle class="product-price">Price: {{ingredient.priceIngredient}} RON</mat-card-subtitle>
+          </mat-card-title-group>-->
+
+          <mat-form-field appearance="fill">
+            <mat-label>Ingredients</mat-label>
+            <mat-select [(ngModel)]="selectedProductIngredients" multiple (selectionChange)="onSelectionChange()">
+              <mat-option *ngFor="let ingredient of ingredients" [value]="ingredient">{{ ingredient }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+<!--          <div class="list">-->
+<!--            <label for="ingredient1" class="ingredients">-->
+<!--              <input type="checkbox" name="" id="ingredient1">-->
+<!--              1.Ingredient-->
+<!--              <span> + 5 RON</span>-->
+<!--            </label>-->
+
+<!--            <label for="ingredient2" class="ingredients">-->
+<!--              <input type="checkbox" name="" id="ingredient2">-->
+<!--              2.Ingredient-->
+<!--              <span> + 5 RON</span>-->
+<!--            </label>-->
+
+<!--            <label for="ingredient3" class="ingredients">-->
+<!--              <input type="checkbox" name="" id="ingredient3">-->
+<!--              3.Ingredient-->
+<!--              <span> + 5 RON</span>-->
+<!--            </label>-->
+
+<!--            <label for="ingredient4" class="ingredients">-->
+<!--              <input type="checkbox" name="" id="ingredient4">-->
+<!--              4.Ingredient-->
+<!--              <span> + 5 RON</span>-->
+<!--            </label>-->
+
+<!--            <label for="ingredient5" class="ingredients">-->
+<!--              <input type="checkbox" name="" id="ingredient5">-->
+<!--              5.Ingredient-->
+<!--              <span> + 5 RON</span>-->
+<!--            </label>-->
+
+<!--            <label for="ingredient6" class="ingredients">-->
+<!--              <input type="checkbox" name="" id="ingredient6">-->
+<!--              6.Ingredient-->
+<!--              <span> + 5 RON</span>-->
+<!--            </label>-->
+
 <!--          </div>-->
 <!--        </div>-->
+
+        <script>
+          document.querySelector('.select-field').addEventListener('click', () => {
+            document.querySelector('.list').classList.toggle('show');
+            document.querySelector('.down-arrow').classList.toggle('rotate150');
+          });
+        </script>
+
 
       </div>
       <div class="col3">
         <img mat-card-sm-image src="">
       </div>
     </div>
+
   </mat-card>
+
 </div>
