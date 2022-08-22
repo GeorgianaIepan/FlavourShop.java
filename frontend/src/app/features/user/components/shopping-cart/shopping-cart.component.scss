@@ -142,6 +142,31 @@ a {
   color: white;
 }
 
+.order-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 
+  .user-details {
+    display: flex;
+    flex-direction: column;
+    *:not(:last-child):not(label) {
+      margin-bottom: 1rem;
+    }
+    .address {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+  }
+  .actions-footer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    button:not(:last-child) {
+      margin-right: .5rem;
+    }
+  }
+}
 
 

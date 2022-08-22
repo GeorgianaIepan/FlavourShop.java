@@ -10,7 +10,8 @@
         <mat-card-content class="product-description">{{product.description}}</mat-card-content>
 
         <mat-card-actions>
-          <button class="button" mat-raised-button mat-button color="primary" type="submit" (click)="addProduct(product, product.quantity)">
+          <div ></div>
+          <button class="button" *ngIf="product.quantity > 0; " mat-raised-button mat-button color="primary" type="submit" (click)="addProduct(product, product.quantity)">
             Add to cart
             <a href="/ingredients"></a>
           </button>
