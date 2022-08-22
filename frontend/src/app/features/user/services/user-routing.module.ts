@@ -8,6 +8,7 @@ import {VerifySuccessComponent} from "../components/verify-success/verify-succes
 import {VerifyFailedComponent} from "../components/verify-failed/verify-failed.component";
 import {EmailConfirmationComponent} from "../components/email-confirmation/emailconfirmation";
 import { ShoppingCartComponent } from "../components/shopping-cart/shopping-cart.component";
+import { IngredientComponent } from "../components/ingredient/ingredient.component";
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
   },{
     path: 'shopping-cart',
     component: ShoppingCartComponent,
+    pathMatch: 'full'
+  },{
+    path: 'ingredient',
+    component: IngredientComponent,
     pathMatch: 'full'
   }
 ];
