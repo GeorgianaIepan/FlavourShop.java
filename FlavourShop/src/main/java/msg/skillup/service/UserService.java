@@ -109,15 +109,17 @@ public class UserService {
 
     public String matchUser(String username, String password) throws BusinessException {
         User user = userRepository.matchUser(username);
-        String token = jwTokenCreator.generateToken(user);
         if(user == null){
+
             throw new BusinessException("Userul nu a fost gasit");
         }
         else if(!passwordEncoder.matches(password, user.getPassword())){
             throw new BusinessException("Parola incorecta");
-        }else if(!user.isEnabled()){
-            throw new BusinessException("emailul nu a fost verificat!");
+//        }else if(!user.isEnabled()){
+//            throw new BusinessException("emailul nu a fost verificat!");
         }
+
+        String token = jwTokenCreator.generateToken(user);
         return token;
     }
 
