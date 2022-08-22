@@ -121,5 +121,10 @@ public class UserService {
         }
         return token;
     }
+
+    public User getUserFromUsername(String username){
+        return userRepository.matchUser(username);
+    }
+
 }
 

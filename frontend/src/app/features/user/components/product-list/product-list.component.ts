@@ -45,4 +45,15 @@ export class ProductListComponent implements OnInit {
     this.orderProductService.addToCart(product, quantity);
   }
 
+/*
+  incrementQuantity(product: OrderProduct): void {
+    product.quantity += 1;
+  }
+
+  decrementQuantity(product: OrderProduct): void {
+    product.quantity -= 1;
+  }
+*/
+
+
 }
