@@ -23,6 +23,7 @@ export class LoginContainerComponent implements OnInit {
       console.log(result);
       localStorage.setItem('token', JSON.stringify(result));
       this.loginService.loginState.next(true);
+      setTimeout(() => this.router.navigate(["/home"]), 1000);
     }, e => {
       this._snackBar.open(e.error.message, 'OK', {
         duration: 10000,
