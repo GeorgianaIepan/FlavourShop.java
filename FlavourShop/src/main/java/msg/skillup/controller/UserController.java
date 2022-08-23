@@ -1,18 +1,10 @@
 package msg.skillup.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.util.List;
-
 import lombok.val;
 import msg.skillup.dto.EmailConfirmationDTO;
-import msg.skillup.dto.OrderDTO;
 import msg.skillup.dto.TokenRespDTO;
 import msg.skillup.dto.UserDTO;
 import msg.skillup.exception.BusinessException;
-import msg.skillup.model.User;
-import msg.skillup.repository.UserRepository;
-import msg.skillup.repository.UserRepository;
-import msg.skillup.service.OrderProductService;
 import msg.skillup.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -20,9 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
 import javax.mail.MessagingException;
 import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
 
 @RestController
 @RequestMapping("/")
@@ -52,10 +44,10 @@ public class UserController {
     }
 
     @GetMapping("/verify")
-    public  ResponseEntity<EmailConfirmationDTO> verifyUser(@Param("code") String code) {
+    public ResponseEntity<EmailConfirmationDTO> verifyUser(@Param("code") String code) {
         val emailConfirmationDTO = new EmailConfirmationDTO();
         emailConfirmationDTO.setConfirmed(userService.verify(code));
-        return  ResponseEntity.ok(emailConfirmationDTO);
+        return ResponseEntity.ok(emailConfirmationDTO);
     }
 
 }

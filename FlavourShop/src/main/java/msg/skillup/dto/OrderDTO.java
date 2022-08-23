@@ -1,7 +1,6 @@
 package msg.skillup.dto;
 
 import lombok.Data;
-
 import java.util.List;
 
 @Data

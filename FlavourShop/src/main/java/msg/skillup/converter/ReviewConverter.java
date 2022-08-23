@@ -1,10 +1,7 @@
 package msg.skillup.converter;
 
-import msg.skillup.dto.ProductDTO;
 import msg.skillup.dto.ReviewDTO;
-import msg.skillup.model.Product;
 import msg.skillup.model.Review;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,7 +13,8 @@ public class ReviewConverter {
         reviewDTO.setRating(review.getRating());
         return reviewDTO;
     }
-    public static List<ReviewDTO> convertEntitiesToDTOs(List<Review> reviews){
+
+    public static List<ReviewDTO> convertEntitiesToDTOs(List<Review> reviews) {
         return reviews.stream().map(ReviewConverter::convertFromEntityToDTO).collect(Collectors.toList());
     }
 }

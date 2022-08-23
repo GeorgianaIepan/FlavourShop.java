@@ -4,21 +4,19 @@ import msg.skillup.configuration.JWTokenCreator;
 import msg.skillup.converter.UserConverter;
 import msg.skillup.dto.UserDTO;
 import msg.skillup.exception.BusinessException;
-import msg.skillup.model.*;
+import msg.skillup.model.Role;
+import msg.skillup.model.User;
 import msg.skillup.repository.RoleRepository;
 import msg.skillup.repository.UserRepository;
 import msg.skillup.validator.UserValidator;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
-import javax.mail.Transport;
 import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
 
@@ -48,7 +46,7 @@ public class UserService {
         User user = UserConverter.convertFromDTOToEntity(userDTO);
         UserValidator.errorList.clear();
         userValidator.validate(user);
-        if(UserValidator.errorList.isEmpty()){
+        if (UserValidator.errorList.isEmpty()) {
             Role role = roleRepository.getById(2);
             user.setRole(role);
             String randomCode = RandomString.make(64);
@@ -57,8 +55,7 @@ public class UserService {
             User savedUser = userRepository.save(user);
             sendVerificationEmail(user);
             return savedUser;
-        }
-        else{
+        } else {
             throw new BusinessException(UserValidator.errorList.toString());
         }
     }
@@ -104,25 +101,22 @@ public class UserService {
             userRepository.save(user);
             return true;
         }
-
     }
 
     public String matchUser(String username, String password) throws BusinessException {
         User user = userRepository.matchUser(username);
         String token = jwTokenCreator.generateToken(user);
-        if(user == null){
+        if (user == null) {
             throw new BusinessException("Userul nu a fost gasit");
-        }
-        else if(!passwordEncoder.matches(password, user.getPassword())) {
+        } else if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new BusinessException("Parola incorecta");
-        }
-        else if(!user.isEnabled()){
+        } else if (!user.isEnabled()) {
             throw new BusinessException("emailul nu a fost verificat!");
         }
         return token;
     }
 
-    public User getUserFromUsername(String username){
+    public User getUserFromUsername(String username) {
         return userRepository.matchUser(username);
     }
 

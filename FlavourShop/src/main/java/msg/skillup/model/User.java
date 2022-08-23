@@ -1,10 +1,11 @@
 package msg.skillup.model;
 
-
 import lombok.Data;
-
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "USER_TABLE")
@@ -38,7 +39,7 @@ public class User {
 
     @NotBlank(message = "phoneNumber should not be blank")
     @Pattern(regexp = "^[0][7][0-9]{8}$")
-    @Column(name = "PHONE_NUMBER",length = 10)
+    @Column(name = "PHONE_NUMBER", length = 10)
     private String phoneNumber;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -50,5 +51,4 @@ public class User {
 
     @Column(name = "enabled")
     private boolean enabled;
-
 }

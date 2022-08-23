@@ -1,12 +1,13 @@
 package msg.skillup.model;
-import lombok.Data;
 
+import lombok.Data;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "PRODUCT_INGREDIENT")
 @Data
 public class ProductIngredient {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_PRODUCT_INGREDIENT")
@@ -19,7 +20,5 @@ public class ProductIngredient {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_ORDER_PRODUCT")
     private OrderProduct orderProduct;
-
-
 }
 

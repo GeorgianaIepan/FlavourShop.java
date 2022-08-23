@@ -6,7 +6,6 @@ import msg.skillup.model.Product;
 import msg.skillup.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -15,7 +14,7 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public List<ProductDTO> getAllProducts(){
+    public List<ProductDTO> getAllProducts() {
         List<Product> products = productRepository.findAll();
         return ProductConverter.convertEntitiesToDTOs(products);
     }
