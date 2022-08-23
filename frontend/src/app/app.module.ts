@@ -14,6 +14,10 @@ import { ShoppingCartComponent } from './features/user/components/shopping-cart/
 import {MatCardModule} from "@angular/material/card";
 import {ReactiveFormsModule} from "@angular/forms";
 import { IngredientComponent } from './features/user/components/ingredient/ingredient.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatInputModule} from "@angular/material/input";
+
 
 @NgModule({
     declarations: [
@@ -23,20 +27,24 @@ import { IngredientComponent } from './features/user/components/ingredient/ingre
         ShoppingCartComponent,
         //IngredientComponent,
     ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        CoreModule,
-        UserModule,
-        MatIconModule,
-        MatCardModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    CoreModule,
+    UserModule,
+    MatIconModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatInputModule
+  ],
     providers: [],
-    exports: [
-        HeaderComponent
-    ],
+  exports: [
+    HeaderComponent,
+    MatInputModule
+  ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
