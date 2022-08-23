@@ -19,7 +19,5 @@ public class ProductIngredient {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_ORDER_PRODUCT")
     private OrderProduct orderProduct;
-
-
 }
 

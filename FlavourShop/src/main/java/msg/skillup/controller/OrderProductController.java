@@ -42,8 +42,8 @@ public class OrderProductController {
 
     @PostMapping("/order")
     public ResponseEntity<String> save(@RequestBody OrderDTO orderDTO){
-            orderProductService.saveOrder(orderDTO);
-            return ResponseEntity.ok("order saved");
+        orderProductService.saveOrder(orderDTO);
+        return ResponseEntity.ok("order saved");
     }
 }
 
