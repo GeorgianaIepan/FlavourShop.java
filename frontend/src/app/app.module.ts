@@ -6,16 +6,17 @@ import { AppComponent } from './app.component';
 import {CoreModule} from "./core/core.module";
 import {UserModule} from "./features/user/services/user.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {HttpClientModule} from "@angular/common/http";
 import { HeaderComponent } from './features/header/header.component';
 import { HomeComponent } from './features/user/components/home/home.component';
 import {MatIconModule} from "@angular/material/icon";
 import { ShoppingCartComponent } from './features/user/components/shopping-cart/shopping-cart.component';
 import {MatCardModule} from "@angular/material/card";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { IngredientComponent } from './features/user/components/ingredient/ingredient.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { OrderComponent } from './features/user/components/order/order.component';
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatInputModule} from "@angular/material/input";
+
 
 @NgModule({
     declarations: [
@@ -24,24 +25,26 @@ import { OrderComponent } from './features/user/components/order/order.component
         HomeComponent,
         ShoppingCartComponent,
         OrderComponent,
-        //IngredientComponent,
-    ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        CoreModule,
-        UserModule,
-        MatIconModule,
-        MatCardModule,
-        ReactiveFormsModule,
-        FormsModule,
-        MatFormFieldModule
-    ],
+            ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    CoreModule,
+    UserModule,
+    MatIconModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    FormsModule
+  ],
     providers: [],
-    exports: [
-        HeaderComponent
-    ],
+  exports: [
+    HeaderComponent,
+    MatInputModule
+  ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

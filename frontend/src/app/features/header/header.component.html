@@ -4,21 +4,23 @@
       <a href = "/home" alt="refresh"></a>
       <img src="../../../assets/images/LogoFlavourShop.png" alt="Logo">
 
+      <form class="searchbar-form">
+        <mat-form-field class="searchbar"appearance="fill">
+          <mat-label>Product Name</mat-label>
+          <input  type="text" matInput [formControl]="myControl" [matAutocomplete]="auto"/>
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option.nameProduct}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+
+
       <button class="button"
               mat-raised-button color="Shopping_cart" *ngIf="logedin"><a routerLink="/shopping-cart"> <mat-icon>shopping_cart</mat-icon></a>
               <i class="fa badge fa-lg" value=0>&#xf07a;</i>
-      </button>
-
-      <button class="button"
-              mat-raised-button color="Register" *ngIf="!logedin"><a routerLink="/registration"> Register</a>
-      </button>
-
-      <button class="button"
-              mat-raised-button color="Login" *ngIf="!logedin"><a routerLink="/login">Login</a>
-      </button>
-<!--      location.href='/home'-->
-      <button class="button" id="logout"
-              mat-raised-button color="Logout" (click)="logout()" *ngIf="logedin">Logout
+              mat-raised-button color="Home" ><a routerLink="/home" > Home</a>
       </button>
 
       <button class="button"
@@ -26,9 +28,24 @@
       </button>
 
       <button class="button"
-              mat-raised-button color="Home" ><a routerLink="/home" > Home</a>
+              mat-raised-button color="Login" *ngIf="!logedin"><a routerLink="/login">Login</a>
       </button>
+
+      <button class="button"
+              mat-raised-button color="Register" *ngIf="!logedin"><a routerLink="/registration"> Register</a>
+      </button>
+
+      <button class="button" id="logout"
+              mat-raised-button color="Logout" (click)="logout()" *ngIf="logedin">Logout
+      </button>
+
+      <button class="button"
+              mat-raised-button color="Shopping_cart" *ngIf="logedin"><a routerLink="/shopping-cart"> <mat-icon>shopping_cart</mat-icon></a>
+      </button>
+
     </div>
+
+
   </nav>
 </div>
 
