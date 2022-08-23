@@ -1,6 +1,7 @@
 import { Ingredient } from "./ingredient.model";
 
 export type Product = {
+  idProduct: number;
   priceProduct: number;
   nameProduct: string;
   stockProduct: string;

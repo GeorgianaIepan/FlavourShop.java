@@ -14,6 +14,8 @@ import { ShoppingCartComponent } from './features/user/components/shopping-cart/
 import {MatCardModule} from "@angular/material/card";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { IngredientComponent } from './features/user/components/ingredient/ingredient.component';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { OrderComponent } from './features/user/components/order/order.component';
 
 @NgModule({
     declarations: [
@@ -21,6 +23,7 @@ import { IngredientComponent } from './features/user/components/ingredient/ingre
         HeaderComponent,
         HomeComponent,
         ShoppingCartComponent,
+        OrderComponent,
         //IngredientComponent,
     ],
     imports: [
@@ -32,7 +35,8 @@ import { IngredientComponent } from './features/user/components/ingredient/ingre
         MatIconModule,
         MatCardModule,
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        MatFormFieldModule
     ],
     providers: [],
     exports: [

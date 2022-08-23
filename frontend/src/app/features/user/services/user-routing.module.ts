@@ -9,6 +9,7 @@ import {VerifyFailedComponent} from "../components/verify-failed/verify-failed.c
 import {EmailConfirmationComponent} from "../components/email-confirmation/emailconfirmation";
 import { ShoppingCartComponent } from "../components/shopping-cart/shopping-cart.component";
 import { IngredientComponent } from "../components/ingredient/ingredient.component";
+import { OrderComponent } from "../components/order/order.component";
 
 const routes: Routes = [
   {
@@ -47,6 +48,10 @@ const routes: Routes = [
   },{
     path: 'ingredient',
     component: IngredientComponent,
+    pathMatch: 'full'
+  },{
+    path: 'order',
+    component: OrderComponent,
     pathMatch: 'full'
   }
 ];
