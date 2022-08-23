@@ -38,15 +38,12 @@ public class OrderProductController {
     private UserService userService;
 
     @PostMapping("/order")
-    public ResponseEntity.BodyBuilder save(@RequestBody OrderDTO orderDTO, @Valid String token) {
-        String username = jwTokenCreator.getUsernameFromToken(token);
-        User user = userService.getUserFromUsername(username);
-        if (user != null) {
-            orderProductService.saveOrder(orderDTO);
-            return ResponseEntity.ok();
-        } else {
-            return ResponseEntity.badRequest();
-        }
+    public ResponseEntity<String> save(@RequestBody OrderDTO orderDTO, @RequestHeader("Authorization") String token){
+        String jwtToken= token.substring(17);
+        jwtToken = jwtToken.substring(0,jwtToken.length()-2);
+        orderDTO.setUserId(userService.getUserFromUsername(jwTokenCreator.getUsernameFromToken(jwtToken)).getIdUser());
+        orderProductService.saveOrder(orderDTO);
+        return ResponseEntity.ok("order saved");
     }
 }
 

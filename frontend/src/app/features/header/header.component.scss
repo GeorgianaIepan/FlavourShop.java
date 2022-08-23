@@ -9,6 +9,7 @@ nav img {
 }
 
 .header {
+  display: flex;
   position: fixed;
   top: 0;
   background-color: #ffeaf7;
@@ -47,6 +48,15 @@ a:hover {
   color: #ef2796;
 }
 
+.searchbar-form {
+  margin-top: 1%;
+  margin-left: 20%;
+  margin-right: 30%;
+}
+
+.searchbar{
+  width: 200%;
+}
 
 
 
