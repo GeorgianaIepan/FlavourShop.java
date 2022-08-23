@@ -13,7 +13,7 @@
 
 .col1 {
   padding: 50px;
-  height: 150px;
+  height: 200px;
   background-color: #ffeaf7;
   opacity: 0.6;
   color: #6e0940;
@@ -26,7 +26,7 @@
 .col2 {
   padding-top: 60px;
   padding-bottom: 40px;
-  height: 150px;
+  height: 200px;
   background-color: #ffeaf7;
   opacity: 0.6;
   color: #6e0940;
@@ -38,7 +38,7 @@
 
 .col3 {
   padding: 50px;
-  height: 150px;
+  height: 200px;
   background-color: #ffeaf7;
   opacity: 0.6;
   color: #6e0940;
@@ -50,7 +50,7 @@
 
 .col4{
   padding: 50px;
-  height: 150px;
+  height: 200px;
   background-color: #ffeaf7;
   opacity: 0.6;
   color: #6e0940;
@@ -69,6 +69,13 @@ mat-card:not([class*=mat-elevation-z]) {
   color: #ef2796;
   font-weight: bold;
   font-size: 25px;
+  text-align: center;
+}
+
+.shopping-list-ingredients{
+  color: #6e0940;
+  font-weight: bold;
+  font-size: 15px;
   text-align: center;
 }
 

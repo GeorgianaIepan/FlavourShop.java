@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ProductService } from "../../services/product/product.service";
 import { Product } from "../../models/product.model";
 import { OrderProductService } from "../../services/orderProduct/order-product.service";
@@ -39,18 +39,19 @@ export class ProductListComponent implements OnInit {
 
       console.log('result', result),
         this.products = result.map(product => {
-          return { ...product, quantity: 0 }
+          return { ...product, quantity: 1 }
         });
+      this.pageSlice = this.products.slice(0, 4);
+
     })
     // TODO REPLACE WITH INGREDIENTS
-  /*  this.ingredientService.getAllIngredients().subscribe((result: Ingredient[]) => {
+    this.ingredientService.getAllIngredients().subscribe((result: Ingredient[]) => {
 
       console.log('result', result),
         this.ingredients = result.map(ingredient => {
           return { ...ingredient }
         });
-    })*/
-    this.pageSlice = this.products.slice(0, 4);
+    })
   }
 
   /* console.log('result', result),
@@ -77,7 +78,7 @@ export class ProductListComponent implements OnInit {
     this.pageSlice = this.products.slice(0, 4);
 }
 
-  OnPageChange(event: PageEvent){
+  onPageChange(event: PageEvent){
     const start = event.pageIndex * event.pageSize;
     let end = start + event.pageSize;
     if(end > this.products.length){

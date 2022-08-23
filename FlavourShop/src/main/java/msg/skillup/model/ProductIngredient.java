@@ -9,8 +9,8 @@ import javax.persistence.*;
 public class ProductIngredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_ORDER_PRODUCT_INGREDIENT")
-    private Long idOrderProd;
+    @Column(name = "ID_PRODUCT_INGREDIENT")
+    private Long idProdIngred;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_INGREDIENT")
@@ -19,7 +19,5 @@ public class ProductIngredient {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_ORDER_PRODUCT")
     private OrderProduct orderProduct;
-
-
 }
 

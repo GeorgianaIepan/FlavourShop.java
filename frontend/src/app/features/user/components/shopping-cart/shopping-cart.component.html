@@ -4,12 +4,20 @@
       <div class="col1">
         <mat-card-title-group>
           <mat-card-title class="shopping-list-name">{{orderProduct.product.nameProduct}}</mat-card-title>
+          <mat-card-subtitle class="shopping-list-ingredients" *ngFor="let ingredient of orderProduct.product.ingredients" >{{ ingredient.nameIngredient}}</mat-card-subtitle>
+<!--
+          <mat-card-subtitle class="shopping-list-ingredients">{{orderProduct.product.ingredients}}</mat-card-subtitle>
+-->
         </mat-card-title-group>
       </div>
       <div class="col2">
         <div class="order-option">Quantity: <span id="quantity-field">
         <button id="up" (click)="incrementQuantity(orderProduct)">+</button>
-        <input type="text" id="quantity" [value]="orderProduct.quantity">
+        <input type="text" id="quantity" [(ngModel)]="orderProduct.quantity"
+               [value]="orderProduct.quantity"
+               [min]="0"
+               [max]="50"
+        >
         <button id="down" *ngIf="orderProduct.quantity > 1; " mat-raised-button mat-button color="primary" type="submit" (click)="decrementQuantity(orderProduct)">-</button>
     </span>
 
@@ -25,9 +33,9 @@
 
       </div>
       <div class="col4">
-        <mat-card-content class="shopping-list-price">Price: {{orderProduct.product.priceProduct}}</mat-card-content>
+        <mat-card-content class="shopping-list-price">Price: {{getPrice(orderProduct.product)}}</mat-card-content>
         <mat-card-content class="shopping-list-price">Total
-          price: {{orderProduct.quantity * orderProduct.product.priceProduct}}</mat-card-content>
+          price: {{orderProduct.quantity * getPrice(orderProduct.product)}}</mat-card-content>
       </div>
     </div>
   </mat-card>

@@ -4,14 +4,8 @@ import msg.skillup.converter.OrderConverter;
 import msg.skillup.converter.ProductConverter;
 import msg.skillup.dto.OrderDTO;
 import msg.skillup.dto.ProductDTO;
-import msg.skillup.model.Order;
-import msg.skillup.model.OrderProduct;
-import msg.skillup.model.Product;
-import msg.skillup.model.User;
-import msg.skillup.repository.OrderProductRepository;
-import msg.skillup.repository.OrderRepository;
-import msg.skillup.repository.ProductRepository;
-import msg.skillup.repository.UserRepository;
+import msg.skillup.model.*;
+import msg.skillup.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +28,12 @@ public class OrderProductService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private IngredientRepository ingredientRepository;
+
+    @Autowired
+    private ProductIngredientRepository productIngredientRepository;
 
     public OrderDTO getOrderByUser(Long orderId, Long userId){
         List<OrderProduct> orders = orderProductRepository.findAllByUserAndOrder(orderId, userId);
@@ -82,9 +82,14 @@ public class OrderProductService {
             orderProduct.setOrder(savedOrder);
             orderProduct.setProduct(product);
             orderProduct.setQuantity(p.getQuantity());
-
-            OrderProduct savedOrderProduct = orderProductRepository.save(orderProduct);
+            orderProductRepository.save(orderProduct);
+            p.getIngredients().forEach( i-> {
+                Ingredient ingredient = ingredientRepository.getById(i.getIdIngredient());
+                ProductIngredient productIngredient = new ProductIngredient();
+                productIngredient.setOrderProduct(orderProduct);
+                productIngredient.setIngredient(ingredient);
+                productIngredientRepository.save(productIngredient);
+            });
         });
-
     }
 }

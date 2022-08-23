@@ -34,9 +34,19 @@ export class ShoppingCartComponent implements OnInit {
 
   getTotal(): number{
     let total = 0;
+
     for(let index in this.orderProducts){
-      total += this.orderProducts[index].product.priceProduct * this.orderProducts[index].quantity;
+      total += this.getPrice(this.orderProducts[index].product) * this.orderProducts[index].quantity;
     }
     return total;
   }
+
+  getPrice(product: Product): number{
+    let total = product.priceProduct;
+    for(let index in product.ingredients) {
+      total += product.ingredients[index].priceIngredient;
+    }
+    return total;
+  }
+
 }
