@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {LoginService} from "../user/services/login/login.service";
-import {Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { LoginService } from "../user/services/login/login.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loginService.currentLoginState.subscribe( result => this.logedin = result);
+    this.loginService.currentLoginState.subscribe(result => this.logedin = result);
   }
 
   logout(): void {
@@ -23,6 +23,4 @@ export class HeaderComponent implements OnInit {
     this.loginService.loginState.next(false);
     setTimeout(() => this.router.navigate(["/home"]), 1000);
   }
-
-
 }

@@ -1,6 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, FormGroupDirective, Validators} from "@angular/forms";
-import {User} from "../../models/user.model";
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, FormGroupDirective, Validators } from "@angular/forms";
+import { User } from "../../models/user.model";
 
 @Component({
   selector: 'app-login-form',
@@ -10,18 +10,20 @@ import {User} from "../../models/user.model";
 export class LoginFormComponent implements OnInit {
 
   @Output() submitForm = new EventEmitter<User>()
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
   loginForm = new FormGroup({
-    username:  new FormControl('', [Validators.required]),
+    username: new FormControl('', [Validators.required]),
     //email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
   })
 
-  onSubmit(formDirective: FormGroupDirective){
+  onSubmit(formDirective: FormGroupDirective) {
     this.submitForm.emit(formDirective.value)
     this.loginForm.reset()
     formDirective.resetForm()

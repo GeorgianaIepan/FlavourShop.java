@@ -11,17 +11,10 @@ export class IngredientComponent implements OnInit {
   ingredients: Ingredient[] = [];
 
 
-  constructor(private ingredientService: IngredientService) { }
+  constructor(private ingredientService: IngredientService) {
+  }
 
   ngOnInit(): void {
-    /*this.ingredientService.getAllIngredients().subscribe((result: Ingredient[]) => {
-
-      console.log('result', result),
-        this.ingredients = result.map(ingredient => {
-          return { ...ingredient }
-        });
-    })*/
-    //this.ingredients = this.ingredientService.ingredient;
   }
 
 }

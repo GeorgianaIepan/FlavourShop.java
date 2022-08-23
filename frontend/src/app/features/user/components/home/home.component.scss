@@ -3,19 +3,20 @@ body {
   color: #777;
   font: normal 15px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }
+
 p {
   line-height: 20px;
   margin-bottom: 20px;
-
 }
+
 h1 {
   font-family: 'Tempus Sans ITC', serif;
   font-weight: bold;
   color: #444;
   font-size: 60px;
   margin-bottom: 20px;
-
 }
+
 h2 {
   font-weight: 300;
   color: #444;
@@ -25,6 +26,7 @@ h2 {
   margin-bottom: 20px;
   margin-top: 50px;
 }
+
 h3 {
   font-size: 30px;
   color: #444;
@@ -33,20 +35,22 @@ h3 {
   text-align: center;
   margin-bottom: 20px;
 }
+
 h4 {
   font-size: 30px;
   color: #444;
   font-weight: bold;
-  //text-transform: uppercase;
-  margin-top:50px;
+  margin-top: 50px;
   font-family: "Tempus Sans ITC";
 }
+
 h5 {
   font-size: 15px;
   color: #444;
   font-weight: bold;
   text-transform: uppercase;
 }
+
 a {
   text-decoration: none;
   color: #444;
@@ -55,30 +59,34 @@ a {
 strong {
   font-weight: bold;
 }
+
 small {
   font-size: 13px;
   color: #777;
   font-style: italic;
 }
+
 .clear {
   clear: both;
 }
+
 .wrapper {
   margin: 0 auto;
   padding: 0 10px;
   width: 940px;
 }
 
-
 header {
   margin-top: 150px;
   height: 120px;
 }
+
 header h1 {
   text-align: center;
   margin-top: 32px;
 
 }
+
 header h1 .color {
   color: #ef81c3;
 }
@@ -86,7 +94,7 @@ header h1 .color {
 #flavour-image {
   height: 580px;
   padding-top: 1px;
-  background:  url('../../../../../assets/images/flavourImage.png')no-repeat center;
+  background: url('../../../../../assets/images/flavourImage.png') no-repeat center;
 
 }
 
@@ -102,11 +110,11 @@ header h1 .color {
   line-height: 50px;
   margin: 0 auto;
 }
+
 .button-1:hover {
   background-color: #ef2796;
   color: #ffffff;
 }
-
 
 #features ul {
   margin: 80px 0;
@@ -120,39 +128,6 @@ header h1 .color {
   margin: auto;
 
 }
-
-/*#features ul li.feature-1 {
-  background: url('../../../../../assets/images/flavour300.jpeg') no-repeat top center;
-  border-radius: 50%;
-  opacity: 0.5;
-  filter: alpha(opacity=40);
-  border:1px solid #6e0940;
-  -webkit-transition: all 0.5s linear;
-  -moz-transition: all 0.5s linear;
-  transition: all 0.5s linear;
-}*/
-/*#features ul li.feature-2 {
-  background: url('../../../../../assets/images/smell300.jpeg') no-repeat top center;
-  border-radius: 50%;
-  opacity: 0.5;
-  filter: alpha(opacity=40);
-  border:1px solid #6e0940;
-  -webkit-transition: all 0.5s linear;
-  -moz-transition: all 0.5s linear;
-  transition: all 0.5s linear;
-}*/
-/*#features ul li.feature-3 {
-  background: url('../../../../../assets/images/texture300.jpeg') no-repeat top center;
-  border-radius: 50%;
-  opacity: 0.5;
-  filter: alpha(opacity=40);
-  border:1px solid #6e0940;
-  -webkit-transition: all 0.5s linear;
-  -moz-transition: all 0.5s linear;
-  transition: all 0.5s linear;
-  margin: auto;
-
-}*/
 
 #primary-content {
   background-color: #ffffff;
@@ -168,6 +143,7 @@ footer {
   padding: 60px 0;
   background-color: #ead5d6;
 }
+
 #footer-info p {
   margin-top: 10px;
   text-align: center;
@@ -178,14 +154,13 @@ img:hover {
   filter: alpha(opacity=100);
 }
 
-img{
+img {
   border-radius: 50%;
   opacity: 0.5;
   filter: alpha(opacity=40);
-  border:1px solid #6e0940;
+  border: 1px solid #6e0940;
   -webkit-transition: all 0.5s linear;
   -moz-transition: all 0.5s linear;
   transition: all 0.5s linear;
   width: 275px;
 }
-

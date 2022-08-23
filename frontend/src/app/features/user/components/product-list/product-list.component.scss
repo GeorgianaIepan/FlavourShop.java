@@ -5,9 +5,6 @@
   margin-left: auto;
 }
 
-.row {
-}
-
 .col1 {
   padding: 50px;
   height: 400px;
@@ -29,7 +26,6 @@
   opacity: 0.6;
   color: #6e0940;
   margin-top: 20px;
-  //text-align: center;
   text-decoration: none;
   font-size: 10px;
   width: 35%;
@@ -93,53 +89,51 @@ mat-card:not([class*=mat-elevation-z]) {
   box-shadow: unset !important;
 }
 
-input{
+input {
   outline: none;
   border: none;
 }
 
-.multi-selector{
+.multi-selector {
   width: max-content;
 }
 
-.select-field,.ingredients, .list{
+.select-field, .ingredients, .list {
   width: 100%;
   background-color: white;
   padding: 0.3rem;
 }
 
-.list{
+.list {
   box-shadow: 0 30px 60px #e293b3;
-  //display: none;
 }
 
-.down-arrow{
+.down-arrow {
   font-size: 1.2rem;
   display: inline-block;
   cursor: pointer;
   transition: 0.2s linear;
 }
 
-.rotate150{
-  transform: rotate(150deg) ;
+.rotate150 {
+  transform: rotate(150deg);
 }
 
-
-.ingredients{
+.ingredients {
   display: block;
   padding-left: 0;
 }
 
-.ingredients span{
+.ingredients span {
   float: right;
   font-size: 0.6rem;
   padding-top: 6px;
 }
 
-.ingredients:hover{
+.ingredients:hover {
   background-color: white;
 }
 
-.show{
+.show {
   display: block;
 }

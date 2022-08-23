@@ -11,42 +11,40 @@ import { Product } from "../../models/product.model";
 export class ShoppingCartComponent implements OnInit {
   orderProducts: OrderProduct[] = [];
 
-  constructor(private orderProductService: OrderProductService) { }
-
-  ngOnInit(): void {
-   this.orderProducts = this.orderProductService.orderProduct;
+  constructor(private orderProductService: OrderProductService) {
   }
 
+  ngOnInit(): void {
+    this.orderProducts = this.orderProductService.orderProduct;
+  }
 
   incrementQuantity(orderProduct: OrderProduct): void {
-    orderProduct.quantity ++ ;
+    orderProduct.quantity++;
   }
 
   decrementQuantity(orderProduct: OrderProduct): void {
-    orderProduct.quantity --;
+    orderProduct.quantity--;
   }
 
-
   deleteProductFromCart(orderProduct1: OrderProduct): void {
-    const index: number= this.orderProducts.indexOf(orderProduct1);
+    const index: number = this.orderProducts.indexOf(orderProduct1);
     this.orderProducts.splice(index, 1);
   }
 
-  getTotal(): number{
+  getTotal(): number {
     let total = 0;
 
-    for(let index in this.orderProducts){
+    for (let index in this.orderProducts) {
       total += this.getPrice(this.orderProducts[index].product) * this.orderProducts[index].quantity;
     }
     return total;
   }
 
-  getPrice(product: Product): number{
+  getPrice(product: Product): number {
     let total = product.priceProduct;
-    for(let index in product.ingredients) {
+    for (let index in product.ingredients) {
       total += product.ingredients[index].priceIngredient;
     }
     return total;
   }
-
 }
