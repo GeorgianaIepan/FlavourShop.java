@@ -12,8 +12,12 @@ import { HomeComponent } from './features/user/components/home/home.component';
 import {MatIconModule} from "@angular/material/icon";
 import { ShoppingCartComponent } from './features/user/components/shopping-cart/shopping-cart.component';
 import {MatCardModule} from "@angular/material/card";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { IngredientComponent } from './features/user/components/ingredient/ingredient.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatInputModule} from "@angular/material/input";
+
 
 @NgModule({
     declarations: [
@@ -23,21 +27,25 @@ import { IngredientComponent } from './features/user/components/ingredient/ingre
         ShoppingCartComponent,
         //IngredientComponent,
     ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        CoreModule,
-        UserModule,
-        MatIconModule,
-        MatCardModule,
-        ReactiveFormsModule,
-        FormsModule
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    CoreModule,
+    UserModule,
+    MatIconModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    FormsModule
+  ],
     providers: [],
-    exports: [
-        HeaderComponent
-    ],
+  exports: [
+    HeaderComponent,
+    MatInputModule
+  ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
