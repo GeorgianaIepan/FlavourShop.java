@@ -21,8 +21,6 @@ insert into INGREDIENT(PRICE_INGREDIENT, NAME_INGREDIENT) values (5, 'Aloe vera'
 insert into INGREDIENT(PRICE_INGREDIENT, NAME_INGREDIENT) values (5, 'Mint');
 insert into INGREDIENT(PRICE_INGREDIENT, NAME_INGREDIENT) values (5, 'Tea tree');
 
-insert into PRODUCT_INGREDIENT(ID_PRODUCT_INGREDIENT, ID_INGREDIENT, ID_ORDER_PRODUCT) values (1, 1, 1);
-
 insert into ORDER_TABLE(ID_USER, ADDRESS) values (1, 'Str BlaBla 1');
 insert into ORDER_TABLE(ID_USER, ADDRESS) values (1, 'Str BlaBla 1');
 insert into ORDER_PRODUCT(ID_ORDER, ID_PRODUCT, QUANTITY_ORDER_PRODUCT) values (1, 1, 1);

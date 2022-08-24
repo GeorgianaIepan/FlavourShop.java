@@ -16,6 +16,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { OrderComponent } from './features/user/components/order/order.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatInputModule} from "@angular/material/input";
+import { OrderContainerComponent } from './features/user/containers/order-container/order-container.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import {MatInputModule} from "@angular/material/input";
         HomeComponent,
         ShoppingCartComponent,
         OrderComponent,
+        OrderContainerComponent,
             ],
   imports: [
     BrowserModule,

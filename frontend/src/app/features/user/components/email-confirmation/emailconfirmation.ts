@@ -1,8 +1,6 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EmailVerificationService} from "../../services/email-verification/email-verification.service";
-// import {logDeprecation} from "sweetalert/typings/modules/options/deprecations";
 
 @Component({
   selector: 'app-email-confirmation',

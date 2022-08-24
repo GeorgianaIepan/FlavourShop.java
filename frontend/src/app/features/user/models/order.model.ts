@@ -1,6 +1,6 @@
-import { OrderProduct } from "./order-product.model";
+import { Product } from "./product.model";
 
-export type Order = {
+export interface Order {
   address: string;
-  orderProducts: OrderProduct[];
+  products: Product[];
 }

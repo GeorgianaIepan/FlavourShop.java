@@ -40,7 +40,7 @@ public class OrderProductService {
         List<ProductDTO> products = new ArrayList<>();
         orders.forEach(el -> {
             ProductDTO productDTO = ProductConverter.convertFromEntityToDTO(el.getProduct());
-            productDTO.setQuantity(el.getQuantity());
+            productDTO.setQuantityProduct(el.getQuantity());
             products.add(productDTO);
         });
         OrderDTO orderDTO = new OrderDTO();
@@ -61,7 +61,7 @@ public class OrderProductService {
             List<ProductDTO> products = new ArrayList<>();
             orderMap.get(orderId).forEach(el -> {
                 ProductDTO productDTO = ProductConverter.convertFromEntityToDTO(el.getProduct());
-                productDTO.setQuantity(el.getQuantity());
+                productDTO.setQuantityProduct(el.getQuantity());
                 products.add(productDTO);
             });
             order = OrderConverter.convertFromEntityToDTO(orderMap.get(orderId).get(0));
@@ -71,8 +71,8 @@ public class OrderProductService {
         return ordersResult;
     }
 
-    public void saveOrder(OrderDTO orderDTO){
-        User user = userRepository.getById(orderDTO.getUserId());
+    public void saveOrder(OrderDTO orderDTO, Long idUser){
+        User user = userRepository.getById(idUser);
         Order order = OrderConverter.convertFromDTOToEntity(orderDTO);
         order.setUser(user);
         Order savedOrder = orderRepository.save(order);
@@ -81,7 +81,7 @@ public class OrderProductService {
             OrderProduct orderProduct = new OrderProduct();
             orderProduct.setOrder(savedOrder);
             orderProduct.setProduct(product);
-            orderProduct.setQuantity(p.getQuantity());
+            orderProduct.setQuantity(p.getQuantityProduct());
             orderProductRepository.save(orderProduct);
             p.getIngredients().forEach( i-> {
                 Ingredient ingredient = ingredientRepository.getById(i.getIdIngredient());

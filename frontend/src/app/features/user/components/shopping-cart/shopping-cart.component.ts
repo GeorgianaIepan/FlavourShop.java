@@ -1,10 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { OrderProductService } from "../../services/orderProduct/order-product.service";
-import { OrderProduct } from "../../models/order-product.model";
 import { Product } from "../../models/product.model";
-import { FormControl, FormGroup, FormGroupDirective, ValidationErrors, Validators } from "@angular/forms";
-import { User } from "../../models/user.model";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Order } from "../../models/order.model";
+import { OrderService } from "../../services/order/order.service";
+import { ProductService } from "../../services/product/product.service";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -15,36 +14,37 @@ export class ShoppingCartComponent implements OnInit {
 
   @Output() submitForm = new EventEmitter<Order>()
 
-  orderProducts: OrderProduct[] = [];
-  order: Order[] = [];
+  productsCart: Product[] = [];
+  addressForm!: FormGroup;
 
-  constructor(private orderProductService: OrderProductService) {
+  constructor(private productService: ProductService, private formBuilder: FormBuilder, private orderService: OrderService) {
+    this.setupForm();
   }
 
   ngOnInit(): void {
-    this.orderProducts = this.orderProductService.orderProduct;
+    this.productsCart = this.productService.products;
   }
 
 
-  incrementQuantity(orderProduct: OrderProduct): void {
-    orderProduct.quantity++;
+  incrementQuantity(product: Product): void {
+    product.quantityProduct++;
   }
 
-  decrementQuantity(orderProduct: OrderProduct): void {
-    orderProduct.quantity--;
+  decrementQuantity(product: Product): void {
+    product.quantityProduct--;
   }
 
 
-  deleteProductFromCart(orderProduct1: OrderProduct): void {
-    const index: number = this.orderProducts.indexOf(orderProduct1);
-    this.orderProducts.splice(index, 1);
+  deleteProductFromCart(product1: Product): void {
+    const index: number = this.productsCart.indexOf(product1);
+    this.productsCart.splice(index, 1);
   }
 
   getTotal(): number {
     let total = 0;
 
-    for (let index in this.orderProducts) {
-      total += this.getPrice(this.orderProducts[index].product) * this.orderProducts[index].quantity;
+    for (let index in this.productsCart) {
+      total += this.getPrice(this.productsCart[index]) * this.productsCart[index].quantityProduct;
     }
     return total;
   }
@@ -57,28 +57,22 @@ export class ShoppingCartComponent implements OnInit {
     return total;
   }
 
-  addressValidator(street: string, number: string, code: string, state: string, country: string){
+ /* addressValidator(street: string, number: string, code: string, state: string, country: string){
     return this.addressForm.value.street !== null && this.addressForm.value.number !== null && this.addressForm.value.code !== null && this.addressForm.value.state !== null && this.addressForm.value.country !== null;
+  }*/
+
+  onSubmit(): void {
+    const formData = this.addressForm.getRawValue()
+    this.orderService.submit({products: this.productsCart, address: Object.values(formData).toString() }).subscribe(console.log)
   }
 
-  addressForm = new FormGroup({
-    street: new FormControl('', [Validators.required]),
-    number: new FormControl('', [Validators.required]),
-    code: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{6}$')]),
-    state: new FormControl('', [Validators.required]),
-    country: new FormControl('', [Validators.required]),
-  })
-
-  onSubmit(formDirective: FormGroupDirective) {
-    if (this.addressForm.value.street != null && this.addressForm.value.number != null && this.addressForm.value.code != null && this.addressForm.value.state != null && this.addressForm.value.country != null) {
-      this.order[0].address.concat(this.addressForm.value.street, this.addressForm.value.number, this.addressForm.value.code, this.addressForm.value.state, this.addressForm.value.country);
-      this.order[0].orderProducts = this.orderProducts;
-      this.submitForm.emit(this.order[0] as Order)
-    } else {
-      this.addressForm.setErrors({ incorrect: true, message: 'Please enter a 5 digit value'});
-    }
-    this.addressForm.reset()
-    formDirective.resetForm()
+  private setupForm() : void {
+    this.addressForm = this.formBuilder.group({
+      street: new FormControl('', [Validators.required]),
+      number: new FormControl('', [Validators.required]),
+      code: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{6}$')]),
+      state: new FormControl('', [Validators.required]),
+      country: new FormControl('', [Validators.required]),
+    });
   }
-
 }

@@ -26,16 +26,16 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 @NgModule({
-  declarations: [
-    RegistrationFormComponent,
-    RegistrationContainerComponent,
-    ProductListComponent,
-    LoginFormComponent,
-    LoginContainerComponent,
-    EmailConfirmationComponent,
-    VerifyFailedComponent,
-    IngredientComponent
-  ],
+    declarations: [
+        RegistrationFormComponent,
+        RegistrationContainerComponent,
+        ProductListComponent,
+        LoginFormComponent,
+        LoginContainerComponent,
+        EmailConfirmationComponent,
+        VerifyFailedComponent,
+        IngredientComponent
+    ],
     imports: [
         CommonModule,
         UserRoutingModule,
@@ -50,13 +50,16 @@ import {MatPaginatorModule} from "@angular/material/paginator";
         FormsModule,
         MatMenuModule,
         MatSelectModule,
-      MatPaginatorModule
+        MatPaginatorModule
     ],
-  providers: [UserService,TokenInterceptor,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi:true
-    }]
+    exports: [
+        RegistrationFormComponent
+    ],
+    providers: [UserService, TokenInterceptor,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptor,
+            multi: true
+        }]
 })
 export class UserModule { }
