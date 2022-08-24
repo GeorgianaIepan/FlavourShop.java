@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable } from "rxjs";
 })
 export class LoginService {
   loginURL = 'http://localhost:8080/login';
-  loginState = new BehaviorSubject(false);
+  loginState = new BehaviorSubject(!!localStorage.getItem('token'));
   currentLoginState = this.loginState.asObservable();
 
   constructor(private service: BackendService) {

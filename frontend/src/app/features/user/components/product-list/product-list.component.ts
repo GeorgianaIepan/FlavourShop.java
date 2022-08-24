@@ -6,6 +6,7 @@ import { IngredientService } from "../../services/ingredient/ingredient.service"
 import { PageEvent } from "@angular/material/paginator";
 import { ShoppingCartService } from "../shopping-cart/shopping-cart.service";
 import { environment } from "../../../../../environments/environment";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-product-list',
@@ -22,6 +23,7 @@ export class ProductListComponent implements OnInit {
   pageSlice: Product[] = this.products.slice(0, 4);
 
   constructor(private shoppingCartService: ShoppingCartService, private productService: ProductService, private ingredientService: IngredientService) {
+  constructor(private productService: ProductService,  private ingredientService: IngredientService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -44,9 +46,16 @@ export class ProductListComponent implements OnInit {
     })
   }
 
-  addProduct(product: Product): void {
-    this.productService.addToCart(product);
-    this.shoppingCartService.setCartItemsNumber(this.shoppingCartService.cartItemsNumber + Number.parseInt(product.quantityProduct.toString()))
+    addProduct(product: Product): void {
+    if(localStorage.getItem('token') == null){
+      this.router.navigate(["/login"]);
+
+      this.productService.addToCart(product);
+      this.shoppingCartService.setCartItemsNumber(this.shoppingCartService.cartItemsNumber + Number.parseInt(product.quantityProduct.toString()));
+
+    }
+    else{
+      this.productService.addToCart(product);}
   }
 
   sortProduct(type: string, by: string) {

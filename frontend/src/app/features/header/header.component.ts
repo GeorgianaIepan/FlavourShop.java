@@ -5,23 +5,25 @@ import { map, Observable, startWith } from "rxjs";
 import { FormControl } from "@angular/forms";
 import { Product } from "../user/models/product.model";
 import { ProductService } from "../user/services/product/product.service";
-import { ShoppingCartComponent } from "../user/components/shopping-cart/shopping-cart.component";
 import { ShoppingCartService } from "../user/components/shopping-cart/shopping-cart.service";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit{
 
   logedin: boolean = false;
   myControl = new FormControl<string | Product>('');
   options: Product[] = [];
   filteredOptions: Observable<Product[]> | undefined;
   shoppingCartItemsNumber = 0;
+  nameProduct: string = '';
 
   constructor(private shoppingCartService: ShoppingCartService, private productService: ProductService, private loginService: LoginService, private router: Router, ) {
+  constructor(private productService: ProductService, private loginService: LoginService, private router: Router, private _snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -41,6 +43,18 @@ export class HeaderComponent implements OnInit {
         }),
       );
     });
+  }
+
+  clickedFn(): void{
+    this.nameProduct='';
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => {
+        const name = typeof value === 'string' ? value : value?.nameProduct;
+        return name ? this._filter(name as string) : this.options.slice();
+      }),
+    );
+  //[routerLink]="['/product', nameProduct.value]"
     this.loginService.currentLoginState.subscribe(result => this.logedin = result);
 
     this.shoppingCartService.cartItemsNumber$.subscribe(itemsNumber => {
@@ -54,9 +68,9 @@ export class HeaderComponent implements OnInit {
     setTimeout(() => this.router.navigate(["/home"]), 1000);
   }
 
-
   displayFn(item: any): string {
-    if (item == undefined) {
+    if (item == undefined)
+     {
       return ''
     }
     return item.nameProduct;
@@ -67,10 +81,5 @@ export class HeaderComponent implements OnInit {
 
     return this.options.filter(option => option.nameProduct.toLowerCase().includes(filterValue));
   }
-
- /* itemsInCartHeader(): void {
-    this.shopping.itemsInCart();
-  }*/
-
 
 }

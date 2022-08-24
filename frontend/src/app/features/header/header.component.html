@@ -1,18 +1,25 @@
 <div>
   <nav>
     <div class="header">
-      <a href="/home" alt="refresh"></a>
+      <a href = "/home" alt="refresh"></a>
       <img src="../../../assets/images/LogoFlavourShop.png" alt="Logo">
 
       <form class="searchbar-form">
-        <mat-form-field class="searchbar" appearance="fill">
-          <mat-label>Product Name</mat-label>
-          <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto"/>
+        <mat-form-field class="searchbar" appearance="outline">
+<!--          <mat-label>Product Name</mat-label>-->
+          <div class="searchbar-div" >
+            <input placeholder="Product Name" type="text" #nameProduct matInput [formControl]="myControl" [matAutocomplete]="auto"/>
+            <button color="primary" mat-icon-button (click)="clickedFn()" [routerLink]="['/product', nameProduct.value]" >
+              <mat-icon>search</mat-icon>
+            </button>
+
+          </div>
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
               {{option.nameProduct}}
             </mat-option>
           </mat-autocomplete>
+
         </mat-form-field>
       </form>
 
@@ -22,33 +29,32 @@
       </button>
 
       <button class="button"
-              mat-raised-button color="Products"><a routerLink="/products">Products</a>
+              color="Products"><a routerLink="/products"> Products</a>
       </button>
 
       <button class="button"
-              mat-raised-button color="Login" *ngIf="!logedin"><a routerLink="/login">Login</a>
+              color="Login" *ngIf="!logedin"><a routerLink="/login">Login</a>
       </button>
 
-
       <button class="button"
-              mat-raised-button color="Register" *ngIf="!logedin"><a routerLink="/registration"> Register</a>
+              color="Register" *ngIf="!logedin"><a routerLink="/registration"> Register</a>
       </button>
 
       <button class="button" id="logout"
-              mat-raised-button color="Logout" (click)="logout()" *ngIf="logedin">Logout
+              color="Logout" (click)="logout()" *ngIf="logedin">Logout
       </button>
 
-      <!--<button class="button" mat-raised-button color="Shopping_cart" *ngIf="logedin"><a routerLink="/shopping-cart">
-        <mat-icon>shopping_cart</mat-icon></a>
+      <!--<button class="button"
+              color="Shopping_cart" *ngIf="logedin"><a routerLink="/shopping-cart"> <mat-icon>shopping_cart</mat-icon></a>
       </button>-->
 
       <button type="button" class="icon-button" mat-raised-button color="Shopping_cart" *ngIf="logedin"><a routerLink="/shopping-cart"><mat-icon>shopping_cart</mat-icon></a>
-          <span class="icon-button__badge">{{ shoppingCartItemsNumber }}</span>
+        <span class="icon-button__badge">{{ shoppingCartItemsNumber }}</span>
 
-        </button>
-
+      </button>
 
     </div>
+
+
   </nav>
 </div>
-
