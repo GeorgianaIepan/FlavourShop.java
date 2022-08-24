@@ -83,13 +83,16 @@ public class OrderProductService {
             orderProduct.setProduct(product);
             orderProduct.setQuantity(p.getQuantityProduct());
             orderProductRepository.save(orderProduct);
-            p.getIngredients().forEach( i-> {
-                Ingredient ingredient = ingredientRepository.getById(i.getIdIngredient());
-                ProductIngredient productIngredient = new ProductIngredient();
-                productIngredient.setOrderProduct(orderProduct);
-                productIngredient.setIngredient(ingredient);
-                productIngredientRepository.save(productIngredient);
-            });
+            if(!p.getIngredients().isEmpty()){
+                p.getIngredients().forEach( i-> {
+                    Ingredient ingredient = ingredientRepository.getById(i.getIdIngredient());
+                    ProductIngredient productIngredient = new ProductIngredient();
+                    productIngredient.setOrderProduct(orderProduct);
+                    productIngredient.setIngredient(ingredient);
+                    productIngredientRepository.save(productIngredient);
+                });
+            }
+
         });
     }
 }
