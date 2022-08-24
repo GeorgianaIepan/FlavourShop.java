@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from "../../services/product/product.service";
 import { Product } from "../../models/product.model";
-import { OrderProductService } from "../../services/orderProduct/order-product.service";
 import { Ingredient } from "../../models/ingredient.model";
 import { IngredientService } from "../../services/ingredient/ingredient.service";
 import { PageEvent } from "@angular/material/paginator";
@@ -15,13 +14,13 @@ import {Router} from "@angular/router";
 export class ProductListComponent implements OnInit {
   ingredients: Ingredient[] = [];
 
-  products: (Product & { quantity: number })[] = [];
+  products: Product[] = [];
 
   selectedProductIngredients: Ingredient[] = [];
 
-  pageSlice: (Product & { quantity: number })[] = this.products.slice(0, 4);
+  pageSlice: Product[] = this.products.slice(0, 4);
 
-  constructor(private productService: ProductService, private orderProductService: OrderProductService, private ingredientService: IngredientService, private router: Router) {
+  constructor(private productService: ProductService,  private ingredientService: IngredientService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -29,7 +28,7 @@ export class ProductListComponent implements OnInit {
 
       console.log('result', result),
         this.products = result.map(product => {
-          return { ...product, quantity: 1 }
+          return { ...product, quantityProduct: 1 }
         });
       this.pageSlice = this.products.slice(0, 4);
 
@@ -44,32 +43,35 @@ export class ProductListComponent implements OnInit {
     })
   }
 
-  addProduct(product: Product, quantity: number): void {
+ /* addProduct(product: Product): void {
+    console.log(product);
+    console.log(product.quantityProduct);
+    this.productService.addToCart(product);*/
+  addProduct(product: Product): void {
     if(localStorage.getItem('token') == null){
       this.router.navigate(["/login"]);
     }
     else
-      this.orderProductService.addToCart(product, quantity);
+      this.productService.addToCart(product);
   }
 
-  sortProduct(type: string, by: string){
-    if(by == "price")
-      if(type == "asc")
+  sortProduct(type: string, by: string) {
+    if (by == "price")
+      if (type == "asc") {
         this.products.sort((a, b) => a.priceProduct - b.priceProduct);
-      else
+      } else
         this.products.sort((a, b) => b.priceProduct - a.priceProduct);
-      else
-        if(type == "asc")
-          this.products.sort((a, b) => a.nameProduct.localeCompare(b.nameProduct));
-        else
-          this.products.sort((a, b) => b.nameProduct.localeCompare(a.nameProduct));
+    else if (type == "asc")
+      this.products.sort((a, b) => a.nameProduct.localeCompare(b.nameProduct));
+    else
+      this.products.sort((a, b) => b.nameProduct.localeCompare(a.nameProduct));
     this.pageSlice = this.products.slice(0, 4);
-}
+  }
 
-  onPageChange(event: PageEvent){
+  onPageChange(event: PageEvent) {
     const start = event.pageIndex * event.pageSize;
     let end = start + event.pageSize;
-    if(end > this.products.length){
+    if (end > this.products.length) {
       end = this.products.length;
     }
     this.pageSlice = this.products.slice(start, end);

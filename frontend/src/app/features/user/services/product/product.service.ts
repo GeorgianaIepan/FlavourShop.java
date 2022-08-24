@@ -8,7 +8,7 @@ import {Product} from "../../models/product.model";
   providedIn: 'root'
 })
 export class ProductService {
-  product: Product | undefined;
+  products: Product[] = [];
 
   productsURL = 'http://localhost:8080/products/findall';
   oneProductURL = 'http://localhost:8080/products/';
@@ -21,5 +21,10 @@ export class ProductService {
   getProduct(productName: string | null): Observable<Product> {
     return this.service.get(this.oneProductURL + productName);
 }
+
+
+  addToCart(product: Product) {
+    this.products.push(product);
+  }
 
 }

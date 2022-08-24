@@ -24,40 +24,41 @@ import { IngredientComponent } from "../components/ingredient/ingredient.compone
 import { MatPaginatorModule } from "@angular/material/paginator";
 
 @NgModule({
-  declarations: [
-    RegistrationFormComponent,
-    RegistrationContainerComponent,
-    ProductListComponent,
-    LoginFormComponent,
-    LoginContainerComponent,
-    EmailConfirmationComponent,
-    VerifyFailedComponent,
-    IngredientComponent
-  ],
-
-  imports: [
-    CommonModule,
-    UserRoutingModule,
-    MatFormFieldModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatButtonModule,
-    HttpClientModule,
-    MatSnackBarModule,
-    MatCardModule,
-    FormsModule,
-    MatMenuModule,
-    MatSelectModule,
-    MatPaginatorModule
-  ],
-
-  providers: [UserService, TokenInterceptor,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
-    }]
+    declarations: [
+        RegistrationFormComponent,
+        RegistrationContainerComponent,
+        ProductListComponent,
+        LoginFormComponent,
+        LoginContainerComponent,
+        EmailConfirmationComponent,
+        VerifyFailedComponent,
+        IngredientComponent
+    ],
+    imports: [
+        CommonModule,
+        UserRoutingModule,
+        MatFormFieldModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatButtonModule,
+        HttpClientModule,
+        MatSnackBarModule,
+        MatCardModule,
+        FormsModule,
+        MatMenuModule,
+        MatSelectModule,
+        MatPaginatorModule
+    ],
+    exports: [
+        RegistrationFormComponent
+    ],
+    providers: [UserService, TokenInterceptor,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptor,
+            multi: true
+        }]
 })
 
 export class UserModule {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { EmailVerificationService } from "../../services/email-verification/email-verification.service";
+import {ActivatedRoute, Router} from '@angular/router';
+import {EmailVerificationService} from "../../services/email-verification/email-verification.service";
 
 @Component({
   selector: 'app-email-confirmation',

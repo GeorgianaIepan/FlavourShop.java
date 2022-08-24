@@ -2,7 +2,6 @@
   <button mat-button class="button" [matMenuTriggerFor]="menu">Sort
     <mat-icon>keyboard_arrow_down</mat-icon>
   </button>
-
   <mat-menu class="sort" #menu="matMenu">
     <button mat-menu-item (click)="sortProduct('asc', 'price')">Ascending by Price</button>
     <button mat-menu-item (click)="sortProduct('desc', 'price')">Descending by Price</button>
@@ -23,8 +22,8 @@
 
         <mat-card-actions>
           <div></div>
-          <button class="button" *ngIf="product.quantity >= 0; " mat-raised-button mat-button color="primary"
-                  type="submit" (click)="addProduct(product, product.quantity)">
+          <button class="button" *ngIf="product.quantityProduct >= 0; " mat-raised-button mat-button color="primary"
+                  type="submit" (click)="addProduct(product)">
             Add to cart
             <a href="/ingredients"></a>
           </button>
@@ -32,7 +31,7 @@
       </div>
 
       <div class="col2">
-        <input placeholder="Enter a Quantity!" [(ngModel)]="product.quantity">
+        <input placeholder="Enter a Quantity!" [(ngModel)]="product.quantityProduct">
         <label *ngIf="true" [ngClass]="'error'"> </label>
 
         <br><br>
