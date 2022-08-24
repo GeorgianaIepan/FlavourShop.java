@@ -50,7 +50,7 @@ export class ProductListComponent implements OnInit {
 
   sortProduct(type: string, by: string) {
     if (by == "price")
-      if (type == "asc")
+      if (type == "asc") {
         this.products.sort((a, b) => a.priceProduct - b.priceProduct);
       } else
         this.products.sort((a, b) => b.priceProduct - a.priceProduct);
