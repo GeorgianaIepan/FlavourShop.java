@@ -13,11 +13,16 @@ public class ProductConverter {
         productDTO.setNameProduct(product.getNameProduct());
         productDTO.setPriceProduct(product.getPriceProduct());
         productDTO.setDescription(product.getDescription());
+        productDTO.setRating(productDTO.getRating());
         return productDTO;
     }
 
     public static List<ProductDTO> convertEntitiesToDTOs(List<Product> products){
         return products.stream().map(ProductConverter::convertFromEntityToDTO).collect(Collectors.toList());
     }
+
+//    public static ProductDTO convertEntityToDTO(List<Product> products){
+//        return (ProductDTO) products.stream().map(ProductConverter::convertFromEntityToDTO);
+//    }
 }
 

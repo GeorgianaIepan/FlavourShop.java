@@ -19,4 +19,9 @@ public class ProductController {
     public ResponseEntity<List<ProductDTO>> getAll(){
         return ResponseEntity.ok(productService.getAllProducts());
     }
+
+    @GetMapping("/products/{name}")
+    public ResponseEntity<ProductDTO> getProduct(@PathVariable String name){
+        return ResponseEntity.ok(productService.getProduct(name));
+    }
 }

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../services/user/user.service";
 import {User} from "../../models/user.model";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {Router, Routes} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-registration-container',
@@ -21,8 +21,8 @@ export class RegistrationContainerComponent {
         panelClass: 'success-snackbar'
       });
       setTimeout(() => this.router.navigate(["/login"]), 1000);
-    }, () => this._snackBar.open('Inregistrarea a esuat!', 'OK', {
-      duration: 3000,
+    }, (e) => this._snackBar.open(e.error.message, 'OK', {
+      duration: 10000,
       panelClass: 'fail-snackbar'
     }))
   }

@@ -17,6 +17,8 @@ import { IngredientComponent } from './features/user/components/ingredient/ingre
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatInputModule} from "@angular/material/input";
+import { ProductSearchedComponent } from './features/user/components/product-searched/product-searched.component';
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -25,6 +27,7 @@ import {MatInputModule} from "@angular/material/input";
         HeaderComponent,
         HomeComponent,
         ShoppingCartComponent,
+        ProductSearchedComponent,
         //IngredientComponent,
     ],
   imports: [
@@ -39,7 +42,8 @@ import {MatInputModule} from "@angular/material/input";
     MatFormFieldModule,
     MatAutocompleteModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatSelectModule
   ],
     providers: [],
   exports: [
