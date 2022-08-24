@@ -42,6 +42,18 @@ export class HeaderComponent implements OnInit{
     });
   }
 
+  clickedFn(): void{
+    this.nameProduct='';
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => {
+        const name = typeof value === 'string' ? value : value?.nameProduct;
+        return name ? this._filter(name as string) : this.options.slice();
+      }),
+    );
+  //[routerLink]="['/product', nameProduct.value]"
+  }
+
   logout(): void {
     localStorage.removeItem('token');
     this.loginService.loginState.next(false);

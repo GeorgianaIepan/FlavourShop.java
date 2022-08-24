@@ -19,6 +19,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatInputModule} from "@angular/material/input";
 import { ProductSearchedComponent } from './features/user/components/product-searched/product-searched.component';
 import {MatSelectModule} from "@angular/material/select";
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import {MatSelectModule} from "@angular/material/select";
     MatAutocompleteModule,
     MatInputModule,
     FormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonModule
   ],
     providers: [],
   exports: [

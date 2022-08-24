@@ -5,8 +5,6 @@ import { OrderProductService } from "../../services/orderProduct/order-product.s
 import { Ingredient } from "../../models/ingredient.model";
 import { IngredientService } from "../../services/ingredient/ingredient.service";
 import { PageEvent } from "@angular/material/paginator";
-import { OrderProduct } from "../../models/order-product.model";
-import {PageEvent} from "@angular/material/paginator";
 import {Router} from "@angular/router";
 
 @Component({
@@ -47,9 +45,6 @@ export class ProductListComponent implements OnInit {
   }
 
   addProduct(product: Product, quantity: number): void {
-    console.log(product);
-    console.log(quantity);
-    console.log('token: ', localStorage.getItem('token'));
     if(localStorage.getItem('token') == null){
       this.router.navigate(["/login"]);
     }

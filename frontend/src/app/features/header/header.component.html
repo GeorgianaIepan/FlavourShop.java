@@ -5,14 +5,15 @@
       <img src="../../../assets/images/LogoFlavourShop.png" alt="Logo">
 
       <form class="searchbar-form">
-        <mat-form-field class="searchbar"appearance="fill">
-          <mat-label>Product Name</mat-label>
-          <input  type="text" #nameProduct matInput [formControl]="myControl" [matAutocomplete]="auto"/>
+        <mat-form-field class="searchbar" appearance="outline">
+<!--          <mat-label>Product Name</mat-label>-->
+          <div class="searchbar-div" >
+            <input placeholder="Product Name" type="text" #nameProduct matInput [formControl]="myControl" [matAutocomplete]="auto"/>
+            <button color="primary" mat-icon-button (click)="clickedFn()" [routerLink]="['/product', nameProduct.value]" >
+              <mat-icon>search</mat-icon>
+            </button>
 
-          <button class="searchButton">
-            <a class="searchA" [routerLink]="['/product', nameProduct.value]" (click)="nameProduct.value=''"><mat-icon matPrefix>search</mat-icon></a>
-          </button>
-
+          </div>
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
               {{option.nameProduct}}
