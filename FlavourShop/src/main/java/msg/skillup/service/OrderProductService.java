@@ -8,12 +8,11 @@ import msg.skillup.model.*;
 import msg.skillup.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
 
 @Service
 public class OrderProductService {
@@ -44,7 +43,7 @@ public class OrderProductService {
             products.add(productDTO);
         });
         OrderDTO orderDTO = new OrderDTO();
-        if(!orders.isEmpty()){
+        if (!orders.isEmpty()) {
             orderDTO = OrderConverter.convertFromEntityToDTO(orders.get(0));
             orderDTO.setProducts(products);
         }
@@ -52,12 +51,12 @@ public class OrderProductService {
         return orderDTO;
     }
 
-    public List<OrderDTO> getAllOrdersByUser(Long userId){
+    public List<OrderDTO> getAllOrdersByUser(Long userId) {
         List<OrderProduct> orders = orderProductRepository.findAllByUser(userId);
-        Map<Long, List<OrderProduct>> orderMap = orders.stream().collect(groupingBy(e->e.getOrder().getIdOrder(), toList()));
+        Map<Long, List<OrderProduct>> orderMap = orders.stream().collect(groupingBy(e -> e.getOrder().getIdOrder(), toList()));
         List<OrderDTO> ordersResult = new ArrayList<>();
         OrderDTO order;
-        for(Long orderId: orderMap.keySet()){
+        for (Long orderId : orderMap.keySet()) {
             List<ProductDTO> products = new ArrayList<>();
             orderMap.get(orderId).forEach(el -> {
                 ProductDTO productDTO = ProductConverter.convertFromEntityToDTO(el.getProduct());
@@ -71,7 +70,7 @@ public class OrderProductService {
         return ordersResult;
     }
 
-    public void saveOrder(OrderDTO orderDTO){
+    public void saveOrder(OrderDTO orderDTO) {
         User user = userRepository.getById(orderDTO.getUserId());
         Order order = OrderConverter.convertFromDTOToEntity(orderDTO);
         order.setUser(user);
@@ -91,5 +90,6 @@ public class OrderProductService {
                 productIngredientRepository.save(productIngredient);
             });
         });
+
     }
 }

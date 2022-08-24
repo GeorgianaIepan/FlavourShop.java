@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductService } from "../../services/product/product.service";
 import { Product } from "../../models/product.model";
 import { OrderProductService } from "../../services/orderProduct/order-product.service";
 import { Ingredient } from "../../models/ingredient.model";
 import { IngredientService } from "../../services/ingredient/ingredient.service";
+import { PageEvent } from "@angular/material/paginator";
 import { OrderProduct } from "../../models/order-product.model";
 import {PageEvent} from "@angular/material/paginator";
 import {Router} from "@angular/router";
@@ -20,16 +21,6 @@ export class ProductListComponent implements OnInit {
 
   selectedProductIngredients: Ingredient[] = [];
 
-
-  // orderProducts: OrderProduct[] = [];
-  // OrderProduct list!!!
-
-  // angForm = new FormGroup({
-  //   productsQuantity: new FormArray([
-  //     new FormControl('', Validators.required),
-  //     new FormControl('', Validators.required),
-  //   ])
-  // });
   pageSlice: (Product & { quantity: number })[] = this.products.slice(0, 4);
 
   constructor(private productService: ProductService, private orderProductService: OrderProductService, private ingredientService: IngredientService, private router: Router) {
@@ -45,7 +36,7 @@ export class ProductListComponent implements OnInit {
       this.pageSlice = this.products.slice(0, 4);
 
     })
-    // TODO REPLACE WITH INGREDIENTS
+
     this.ingredientService.getAllIngredients().subscribe((result: Ingredient[]) => {
 
       console.log('result', result),
@@ -54,10 +45,6 @@ export class ProductListComponent implements OnInit {
         });
     })
   }
-
-  /* console.log('result', result),
-     return this.orderProducts = result;
- }*/
 
   addProduct(product: Product, quantity: number): void {
     console.log(product);
@@ -92,17 +79,6 @@ export class ProductListComponent implements OnInit {
     }
     this.pageSlice = this.products.slice(start, end);
   }
-
-/*
-  incrementQuantity(product: OrderProduct): void {
-    product.quantity += 1;
-  }
-
-  decrementQuantity(product: OrderProduct): void {
-    product.quantity -= 1;
-  }
-*/
-
 
   onSelectionChange(): void {
     console.log(this.selectedProductIngredients);

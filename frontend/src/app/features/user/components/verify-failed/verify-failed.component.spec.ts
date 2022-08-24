@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { VerifyFailedComponent } from './verify-failed.component';
 
 describe('VerifyFailedComponent', () => {
@@ -8,9 +7,9 @@ describe('VerifyFailedComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VerifyFailedComponent ]
+      declarations: [VerifyFailedComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(VerifyFailedComponent);
     component = fixture.componentInstance;

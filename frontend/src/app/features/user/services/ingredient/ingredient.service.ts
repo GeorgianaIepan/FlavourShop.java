@@ -10,7 +10,9 @@ export class IngredientService {
   ingredient: Ingredient | undefined;
 
   ingredientsURL = 'http://localhost:8080/ingredients/findall';
-  constructor(private service: BackendService) { }
+
+  constructor(private service: BackendService) {
+  }
 
   getAllIngredients(): Observable<Ingredient[]> {
     return this.service.get(this.ingredientsURL);

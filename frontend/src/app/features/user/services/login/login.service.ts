@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {BackendService} from "../../../../core/backend/backend.service";
-import {User} from "../../models/user.model";
-import {BehaviorSubject, Observable} from "rxjs";
+import { BackendService } from "../../../../core/backend/backend.service";
+import { User } from "../../models/user.model";
+import { BehaviorSubject, Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +11,10 @@ export class LoginService {
   loginState = new BehaviorSubject(false);
   currentLoginState = this.loginState.asObservable();
 
-  constructor(private service: BackendService) { }
+  constructor(private service: BackendService) {
+  }
 
-  login(user: User): Observable<void>{
+  login(user: User): Observable<void> {
     return this.service.post(this.loginURL, user)
   }
 }

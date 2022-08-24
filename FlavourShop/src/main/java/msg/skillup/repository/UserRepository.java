@@ -5,8 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>{
+public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT us FROM User us WHERE us.username= :username")
     User matchUser(@Param("username") String username);
 
@@ -14,6 +15,6 @@ public interface UserRepository extends JpaRepository<User, Long>{
     int existsUsername(@Param("username") String username);
 
     @Query("SELECT us FROM User us WHERE us.verificationCode= :code")
-    User findByVerificationCode(@Param("code")String code);
+    User findByVerificationCode(@Param("code") String code);
 }
 

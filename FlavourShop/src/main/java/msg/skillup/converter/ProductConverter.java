@@ -2,7 +2,6 @@ package msg.skillup.converter;
 
 import msg.skillup.dto.ProductDTO;
 import msg.skillup.model.Product;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +16,7 @@ public class ProductConverter {
         return productDTO;
     }
 
-    public static List<ProductDTO> convertEntitiesToDTOs(List<Product> products){
+    public static List<ProductDTO> convertEntitiesToDTOs(List<Product> products) {
         return products.stream().map(ProductConverter::convertFromEntityToDTO).collect(Collectors.toList());
     }
 
