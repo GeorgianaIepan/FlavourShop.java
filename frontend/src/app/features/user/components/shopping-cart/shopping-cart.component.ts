@@ -71,4 +71,12 @@ export class ShoppingCartComponent implements OnInit {
       country: new FormControl('', [Validators.required]),
     });
   }
+
+  itemsInCart(): number{
+    let total: number = 0;
+    for(let index in this.productsCart){
+      total += this.productsCart[index].quantityProduct;
+    }
+    return total;
+  }
 }

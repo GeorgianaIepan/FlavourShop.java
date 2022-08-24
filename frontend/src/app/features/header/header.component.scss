@@ -70,5 +70,51 @@ a:hover {
   width: 200%;
 }
 
+.items{
+  margin: 25px;
+}
+
+.icon-button{
+  margin-top: 25px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  color: #6e0940;
+  background: #ffeaf7;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+
+}
+
+.icon-button__badge{
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 23px;
+  height: 23px;
+  background: red;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.icon-button:hover {
+  color: #ef2796;
+}
+
+a {
+  text-decoration: none;
+  color: #6e0940;
+}
+
+a:hover {
+  color: #ef2796;
+}
 
 
