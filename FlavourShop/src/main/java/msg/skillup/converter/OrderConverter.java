@@ -5,7 +5,7 @@ import msg.skillup.model.Order;
 import msg.skillup.model.OrderProduct;
 
 public class OrderConverter {
-    public static OrderDTO convertFromEntityToDTO(OrderProduct orderProduct){
+    public static OrderDTO convertFromEntityToDTO(OrderProduct orderProduct) {
         OrderDTO orderDTO = new OrderDTO();
         orderDTO.setId(orderProduct.getOrder().getIdOrder());
         orderDTO.setAddress(orderProduct.getOrder().getAddress());

@@ -1,7 +1,6 @@
 package msg.skillup.model;
 
 import lombok.Data;
-
 import javax.persistence.*;
 
 @Entity
@@ -27,5 +26,4 @@ public class Review {
 
     @Column(name = "RATING")
     private Integer rating;
-
 }

@@ -52,7 +52,7 @@ export class ProductListComponent implements OnInit {
     if (by == "price")
       if (type == "asc")
         this.products.sort((a, b) => a.priceProduct - b.priceProduct);
-      else
+      } else
         this.products.sort((a, b) => b.priceProduct - a.priceProduct);
     else if (type == "asc")
       this.products.sort((a, b) => a.nameProduct.localeCompare(b.nameProduct));

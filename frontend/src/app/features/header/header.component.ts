@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {LoginService} from "../user/services/login/login.service";
-import {Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { LoginService } from "../user/services/login/login.service";
+import { Router } from "@angular/router";
 import {map, Observable, startWith} from "rxjs";
 import {FormControl} from "@angular/forms";
 import {Product} from "../user/models/product.model";
@@ -38,6 +38,7 @@ export class HeaderComponent implements OnInit {
         }),
       );
     });
+    this.loginService.currentLoginState.subscribe(result => this.logedin = result);
   }
 
   logout(): void {

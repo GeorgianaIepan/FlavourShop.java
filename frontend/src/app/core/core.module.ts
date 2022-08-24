@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {BackendService} from "./backend/backend.service";
-
-
+import { BackendService } from "./backend/backend.service";
 
 @NgModule({
   declarations: [],
@@ -11,4 +9,5 @@ import {BackendService} from "./backend/backend.service";
   ],
   providers: [BackendService]
 })
-export class CoreModule { }
+export class CoreModule {
+}

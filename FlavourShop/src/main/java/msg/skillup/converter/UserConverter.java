@@ -1,10 +1,6 @@
 package msg.skillup.converter;
 
-import msg.skillup.dto.OrderDTO;
-import msg.skillup.dto.ProductDTO;
 import msg.skillup.dto.UserDTO;
-import msg.skillup.model.Order;
-import msg.skillup.model.Product;
 import msg.skillup.model.User;
 
 import java.util.List;
@@ -21,20 +17,17 @@ public class UserConverter {
         return userDTO;
     }
 
-    public static User convertFromDTOToEntity(UserDTO userDTO){
+    public static User convertFromDTOToEntity(UserDTO userDTO) {
         User user = new User();
-        //user.setIdUser(userDTO.getIdUser());
         user.setUsername(userDTO.getUsername());
         user.setName(userDTO.getName());
-        //user.setPassword(passwordEncoder.encode(accountDto.getPassword()));
         user.setPassword(userDTO.getPassword());
         user.setEmail(userDTO.getEmail());
         user.setPhoneNumber(userDTO.getPhoneNumber());
-        //user.setRole(userDTO.getRole().getIdRole());
         return user;
     }
 
-    public static List<UserDTO> convertEntitiesToDTOs(List<User> users){
+    public static List<UserDTO> convertEntitiesToDTOs(List<User> users) {
         return users.stream().map(UserConverter::convertFromEntityToDTO).collect(Collectors.toList());
     }
 }

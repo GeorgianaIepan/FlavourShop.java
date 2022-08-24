@@ -57,10 +57,6 @@ export class ShoppingCartComponent implements OnInit {
     return total;
   }
 
- /* addressValidator(street: string, number: string, code: string, state: string, country: string){
-    return this.addressForm.value.street !== null && this.addressForm.value.number !== null && this.addressForm.value.code !== null && this.addressForm.value.state !== null && this.addressForm.value.country !== null;
-  }*/
-
   onSubmit(): void {
     const formData = this.addressForm.getRawValue()
     this.orderService.submit({products: this.productsCart, address: Object.values(formData).toString() }).subscribe(console.log)

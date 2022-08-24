@@ -1,12 +1,13 @@
 package msg.skillup.model;
-import lombok.Data;
 
+import lombok.Data;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "PRODUCT_INGREDIENT")
 @Data
 public class ProductIngredient {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_PRODUCT_INGREDIENT")

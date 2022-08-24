@@ -1,9 +1,6 @@
 package msg.skillup.model;
 
-
 import lombok.Data;
-import oracle.sql.BlobDBAccess;
-
 import javax.persistence.*;
 import java.sql.Blob;
 
@@ -26,12 +23,11 @@ public class Product {
     @Column(name = "STOCK_PRODUCT", nullable = false)
     private Integer stockProduct;
 
-    @Column(name = "DESCRIPTION",nullable = false)
+    @Column(name = "DESCRIPTION", nullable = false)
     private String description;
 
     @Column(name = "IMG_PRODUCT")
     @Lob
     private Blob imgProduct;
-
 }
 

@@ -22,17 +22,18 @@ import java.util.List;
 public class OrderProductController {
     @Autowired
     private OrderProductService orderProductService;
+
     //e.g /orders/user/10
     @GetMapping("/orders/{orderId}/user/{userId}")
     @Transactional
-    public ResponseEntity<OrderDTO> getByUser(@PathVariable Long orderId, @PathVariable Long userId){
-        return ResponseEntity.ok( orderProductService.getOrderByUser(orderId, userId));
+    public ResponseEntity<OrderDTO> getByUser(@PathVariable Long orderId, @PathVariable Long userId) {
+        return ResponseEntity.ok(orderProductService.getOrderByUser(orderId, userId));
     }
 
     @GetMapping("/orders/user/{userId}")
     @Transactional
-    public ResponseEntity<List<OrderDTO>> getAllByUser(@PathVariable Long userId){
-        return ResponseEntity.ok( orderProductService.getAllOrdersByUser(userId));
+    public ResponseEntity<List<OrderDTO>> getAllByUser(@PathVariable Long userId) {
+        return ResponseEntity.ok(orderProductService.getAllOrdersByUser(userId));
     }
 
     @Autowired

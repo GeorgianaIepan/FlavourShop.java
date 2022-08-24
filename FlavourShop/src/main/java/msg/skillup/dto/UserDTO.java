@@ -1,9 +1,6 @@
 package msg.skillup.dto;
 
 import lombok.Data;
-import msg.skillup.model.Role;
-
-import javax.persistence.*;
 
 @Data
 public class UserDTO {
