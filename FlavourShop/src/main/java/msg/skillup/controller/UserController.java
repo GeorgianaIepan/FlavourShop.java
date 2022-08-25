@@ -1,10 +1,12 @@
 package msg.skillup.controller;
 
 import lombok.val;
+import msg.skillup.configuration.JWTokenCreator;
 import msg.skillup.dto.EmailConfirmationDTO;
 import msg.skillup.dto.TokenRespDTO;
 import msg.skillup.dto.UserDTO;
 import msg.skillup.exception.BusinessException;
+import msg.skillup.model.User;
 import msg.skillup.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -21,6 +23,9 @@ import java.io.UnsupportedEncodingException;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private JWTokenCreator jwTokenCreator;
 
     @PostMapping("/user")
     public void save(@RequestBody @Valid UserDTO userDTO)
@@ -48,6 +53,40 @@ public class UserController {
         val emailConfirmationDTO = new EmailConfirmationDTO();
         emailConfirmationDTO.setConfirmed(userService.verify(code));
         return ResponseEntity.ok(emailConfirmationDTO);
+    }
+
+    @GetMapping("/user/role")
+    public ResponseEntity<String> roleUser(@RequestHeader("Authorization") String token){
+        String jwtToken= token.substring(17);
+        jwtToken = jwtToken.substring(0,jwtToken.length()-2);
+        String role = null;
+        try {
+            role = userService.getUserFromUsername(jwTokenCreator.getUsernameFromToken(jwtToken)).getRole().getNameRole();
+            return ResponseEntity.ok(role);
+        } catch (BusinessException businessException) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, businessException.getMessage());
+        }
+    }
+
+    @GetMapping("/reset")
+    public ResponseEntity<String> resetPassword(@Param("user") String username) throws MessagingException, UnsupportedEncodingException {
+        try {
+            userService.sendResetEmail(username);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (BusinessException businessException) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, businessException.getMessage());
+        }
+    }
+
+    @PostMapping("/reset")
+    public ResponseEntity<String> updatePassword(@Param("userId") Long userId, @RequestBody String password){
+        try {
+            userService.resetPassword(userId, password);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (BusinessException businessException) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, businessException.getMessage());
+        }
+
     }
 
 }

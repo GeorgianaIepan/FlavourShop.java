@@ -60,6 +60,19 @@ public class UserService {
         }
     }
 
+    public void resetPassword(Long userId, String password) throws BusinessException{
+        User user = userRepository.getById(userId);
+        user.setPassword(password);
+        UserValidator.errorList.clear();
+        userValidator.validate(user);
+        if (UserValidator.errorList.isEmpty()) {
+            userRepository.updatePassword(user.getPassword(), user.getIdUser());
+        } else {
+            throw new BusinessException(UserValidator.errorList.toString());
+        }
+
+    }
+
     private void sendVerificationEmail(User user)
             throws MessagingException, UnsupportedEncodingException {
         String toAddress = user.getEmail();
@@ -90,6 +103,36 @@ public class UserService {
         System.out.printf("email send");
     }
 
+    public void sendResetEmail(String username)
+            throws MessagingException, UnsupportedEncodingException, BusinessException {
+        User user = getUserFromUsername(username);
+        String toAddress = user.getEmail();
+        String fromAddress = "flavourshopskillup@outlook.com";
+        String senderName = "FlavourShop";
+        String subject = "Forgot password";
+        String content = "Dear [[name]],<br>"
+                + "Please click the link below to reset your password:<br>"
+                + "<h3><a href=\"[[URL]]\" target=\"_self\">RESET</a></h3>"
+                + "Thank you,<br>"
+                + "FlavourShop.";
+
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        helper.setFrom(fromAddress, senderName);
+        helper.setTo(toAddress);
+        helper.setSubject(subject);
+
+        content = content.replace("[[name]]", user.getName());
+        String resetURL = "http:/localhost:4200" + "/reset?user=" + user.getIdUser();
+
+        content = content.replace("[[URL]]", resetURL);
+
+        helper.setText(content, true);
+
+        mailSender.send(message);
+    }
+
     public boolean verify(String verificationCode) {
         User user = userRepository.findByVerificationCode(verificationCode);
 
@@ -118,8 +161,12 @@ public class UserService {
         return token;
     }
 
-    public User getUserFromUsername(String username) {
-        return userRepository.matchUser(username);
+    public User getUserFromUsername(String username) throws BusinessException{
+        User user = userRepository.matchUser(username);
+        if(user == null){
+            throw new BusinessException("Userul nu a fost gasit");
+        }
+        return user;
     }
 
 }
