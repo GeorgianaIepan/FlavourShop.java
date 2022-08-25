@@ -68,8 +68,8 @@ public class JwtRequestFilter extends OncePerRequestFilter{
                     SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
                 }
             }
-        } else {
-            System.out.println("JWT Token does not begin with Bearer String");
+//        } else {
+//            System.out.println("JWT Token does not begin with Bearer String");
         }
         chain.doFilter(request, response);
     }

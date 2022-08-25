@@ -1,8 +1,11 @@
 package msg.skillup.model;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import oracle.sql.BlobDBAccess;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.sql.Blob;
@@ -10,6 +13,8 @@ import java.sql.Blob;
 @Entity
 @Table(name = "PRODUCT")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
 
     @Id
@@ -33,5 +38,7 @@ public class Product {
     @Lob
     private Blob imgProduct;
 
+    public Product(String imageName, String contentType, byte[] bytes) {
+    }
 }
 

@@ -15,6 +15,7 @@ import msg.skillup.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +40,12 @@ public class OrderProductService {
         List<OrderProduct> orders = orderProductRepository.findAllByUserAndOrder(orderId, userId);
         List<ProductDTO> products = new ArrayList<>();
         orders.forEach(el -> {
-            ProductDTO productDTO = ProductConverter.convertFromEntityToDTO(el.getProduct());
+            ProductDTO productDTO = null;
+            try {
+                productDTO = ProductConverter.convertFromEntityToDTO(el.getProduct());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             productDTO.setQuantity(el.getQuantity());
             products.add(productDTO);
         });
@@ -60,7 +66,12 @@ public class OrderProductService {
         for(Long orderId: orderMap.keySet()){
             List<ProductDTO> products = new ArrayList<>();
             orderMap.get(orderId).forEach(el -> {
-                ProductDTO productDTO = ProductConverter.convertFromEntityToDTO(el.getProduct());
+                ProductDTO productDTO = null;
+                try {
+                    productDTO = ProductConverter.convertFromEntityToDTO(el.getProduct());
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
                 productDTO.setQuantity(el.getQuantity());
                 products.add(productDTO);
             });

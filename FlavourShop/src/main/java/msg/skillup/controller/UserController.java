@@ -1,5 +1,7 @@
 package msg.skillup.controller;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
@@ -14,9 +16,11 @@ import msg.skillup.repository.UserRepository;
 import msg.skillup.repository.UserRepository;
 import msg.skillup.service.OrderProductService;
 import msg.skillup.service.UserService;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -57,5 +61,8 @@ public class UserController {
         emailConfirmationDTO.setConfirmed(userService.verify(code));
         return  ResponseEntity.ok(emailConfirmationDTO);
     }
+
+
+
 
 }
