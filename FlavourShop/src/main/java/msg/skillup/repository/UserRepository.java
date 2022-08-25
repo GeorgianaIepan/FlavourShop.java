@@ -11,7 +11,13 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT us FROM User us WHERE us.username= :username")
     User matchUser(@Param("username") String username);
 
+    @Query("SELECT COUNT(us.idUser) FROM User us WHERE us.username= :username")
+    int existsUsername(@Param("username") String username);
+
     @Query("SELECT us FROM User us WHERE us.verificationCode= :code")
     User findByVerificationCode(@Param("code") String code);
+
+    @Query("UPDATE User us SET us.password= :password  WHERE us.idUser= :idUser")
+    void updatePassword(@Param("password") String password, @Param("idUser") Long idUser);
 }
 

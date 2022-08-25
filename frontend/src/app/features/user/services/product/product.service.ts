@@ -14,10 +14,16 @@ export class ProductService {
 
   constructor(private service: BackendService) {
   }
+  oneProductURL = 'http://localhost:8080/products/';
 
   getAllProducts(): Observable<Product[]> {
     return this.service.get(this.productsURL);
   }
+
+  getProduct(productName: string | null): Observable<Product> {
+    return this.service.get(this.oneProductURL + productName);
+}
+
 
   addToCart(product: Product) {
     this.products.push(product);

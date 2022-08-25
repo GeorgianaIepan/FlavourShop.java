@@ -22,6 +22,7 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MatSelectModule } from "@angular/material/select";
 import { IngredientComponent } from "../components/ingredient/ingredient.component";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { ShoppingCartService } from "../components/shopping-cart/shopping-cart.service";
 
 @NgModule({
     declarations: [
@@ -58,7 +59,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
             provide: HTTP_INTERCEPTORS,
             useClass: TokenInterceptor,
             multi: true
-        }]
+        }, ShoppingCartService]
 })
 
 export class UserModule {
