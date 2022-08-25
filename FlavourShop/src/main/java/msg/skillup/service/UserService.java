@@ -1,5 +1,8 @@
 package msg.skillup.service;
 
+import msg.skillup.configuration.JWTokenCreator;
+import msg.skillup.converter.UserConverter;
+import msg.skillup.dto.ForgotPasswordDTO;
 import msg.skillup.dto.UserDTO;
 import msg.skillup.model.Role;
 import msg.skillup.model.User;
@@ -60,15 +63,15 @@ public class UserService {
         }
     }
 
-    public void resetPassword(Long userId, String password) throws BusinessException{
-        User user = userRepository.getById(userId);
-        user.setPassword(password);
-        UserValidator.errorList.clear();
-        userValidator.validate(user);
-        if (UserValidator.errorList.isEmpty()) {
+    public void resetPassword(ForgotPasswordDTO forgotPasswordDTO) throws BusinessException{
+        User user = userRepository.getById(forgotPasswordDTO.getId());
+        if(!forgotPasswordDTO.getConfirmationPassword().equals(forgotPasswordDTO.getPassword()))
+            throw new BusinessException("passwords do not match");
+        String error = userValidator.validatePassword(user, forgotPasswordDTO.getPassword());
+        if (error == null) {
             userRepository.updatePassword(user.getPassword(), user.getIdUser());
         } else {
-            throw new BusinessException(UserValidator.errorList.toString());
+            throw new BusinessException(error);
         }
 
     }
