@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProductService } from "../../services/product/product.service";
 import { Product } from "../../models/product.model";
 import { Ingredient } from "../../models/ingredient.model";
@@ -21,6 +21,8 @@ export class ProductListComponent implements OnInit {
   selectedProductIngredients: Ingredient[] = [];
 
   pageSlice: Product[] = this.products.slice(0, 4);
+
+  role: string = '';
 
   constructor(private shoppingCartService: ShoppingCartService, private productService: ProductService, private ingredientService: IngredientService, private router: Router) {
   }
@@ -79,4 +81,13 @@ export class ProductListComponent implements OnInit {
   onSelectionChange(): void {
     console.log(this.selectedProductIngredients);
   }
+
+ /* getRoleUser(): any {
+    this.productService.getRole().subscribe(result => {
+      this.role = result;
+
+      return result;
+    })
+
+  }*/
 }

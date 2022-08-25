@@ -1,7 +1,7 @@
 package msg.skillup.converter;
 
-import msg.skillup.dto.RoleDTO;
 import msg.skillup.model.Role;
+import msg.skillup.dto.RoleDTO;
 
 public class RoleConverter {
 

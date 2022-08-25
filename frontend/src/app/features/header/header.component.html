@@ -1,7 +1,7 @@
 <div>
   <nav>
     <div class="header">
-      <a href = "/home" alt="refresh"></a>
+      <a href="/home" alt="refresh"></a>
       <img src="../../../assets/images/LogoFlavourShop.png" alt="Logo">
 
       <form class="searchbar-form">
@@ -29,15 +29,16 @@
       </button>
 
       <button class="button"
-              color="Products"><a routerLink="/products"> Products</a>
+               color="Products"><a routerLink="/products">Products</a>
       </button>
 
       <button class="button"
-              color="Login" *ngIf="!logedin"><a routerLink="/login">Login</a>
+               color="Login" *ngIf="!logedin"><a routerLink="/login">Login</a>
       </button>
 
+
       <button class="button"
-              color="Register" *ngIf="!logedin"><a routerLink="/registration"> Register</a>
+               color="Register" *ngIf="!logedin"><a routerLink="/registration"> Register</a>
       </button>
 
       <button class="button" id="logout"
@@ -48,9 +49,7 @@
         <span class="icon-button__badge">{{ shoppingCartItemsNumber }}</span>
 
       </button>
-
     </div>
-
-
   </nav>
 </div>
+

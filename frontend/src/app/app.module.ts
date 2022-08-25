@@ -22,18 +22,16 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatSelectModule} from "@angular/material/select";
 
 
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    HomeComponent,
-    ShoppingCartComponent,
-    OrderComponent,
-    OrderContainerComponent,
-    ProductSearchedComponent,
-  ],
-
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        HomeComponent,
+        ShoppingCartComponent,
+        OrderComponent,
+        OrderContainerComponent,
+        ProductSearchedComponent,
+            ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -48,7 +46,6 @@ import {MatSelectModule} from "@angular/material/select";
     MatInputModule,
     FormsModule,
     MatSelectModule,
-    MatButtonModule,
     MatButtonModule
   ],
     providers: [],

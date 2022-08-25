@@ -12,6 +12,7 @@ import {ProductSearchedComponent} from "../components/product-searched/product-s
 import { OrderComponent } from "../components/order/order.component";
 import {ForgotPasswordComponent} from "../components/forgot-password/forgot-password.component";
 import {ResetPasswordComponent} from "../containers/reset-password/reset-password.component";
+import { OrderContainerComponent } from "../containers/order-container/order-container.component";
 
 const routes: Routes = [
   {
@@ -44,7 +45,7 @@ const routes: Routes = [
     pathMatch: 'full'
   }, {
     path: 'shopping-cart',
-    component: ShoppingCartComponent,
+    component: OrderContainerComponent,
     pathMatch: 'full'
   }, {
     path: 'ingredient',

@@ -22,6 +22,10 @@ export class LoginContainerComponent implements OnInit {
       console.log(result);
       localStorage.setItem('token', JSON.stringify(result));
       this.loginService.loginState.next(true);
+      this._snackBar.open("Hello! You were successfully logged in!", 'OK', {
+        duration: 10000,
+        panelClass: 'success-snackbar'
+      })
       setTimeout(() => this.router.navigate(["/home"]), 1000);
     }, e => {
       this._snackBar.open(e.error.message, 'OK', {

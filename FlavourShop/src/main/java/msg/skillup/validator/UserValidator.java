@@ -1,6 +1,5 @@
 package msg.skillup.validator;
 
-import msg.skillup.exception.BusinessException;
 import msg.skillup.model.User;
 import msg.skillup.repository.ProductRepository;
 import msg.skillup.repository.UserRepository;
