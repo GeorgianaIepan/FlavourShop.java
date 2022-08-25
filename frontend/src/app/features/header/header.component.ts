@@ -29,9 +29,8 @@ export class HeaderComponent implements OnInit {
     this.loginService.currentLoginState.subscribe(result => this.logedin = result);
     this.productService.getAllProducts().subscribe((result: Product[]) => {
 
-      console.log('result', result),
-        this.options = result.map(product => {
-          return { ...product }
+      this.options = result.map(product => {
+          return {...product}
         });
 
       this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -48,8 +47,10 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  clickedFn(): void {
-    this.nameProduct = '';
+  clickedFn(): void{
+    const product: Product = this.myControl.value as Product;
+    this.myControl.setValue(' ');
+    this.router.navigate(['/product'], {queryParams: {name: product.nameProduct.replace(' ', '-')}});
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => {
@@ -57,21 +58,16 @@ export class HeaderComponent implements OnInit {
         return name ? this._filter(name as string) : this.options.slice();
       }),
     );
-
-    this.loginService.currentLoginState.subscribe(result => this.logedin = result);
   }
 
   logout(): void {
     localStorage.removeItem('token');
     this.loginService.loginState.next(false);
-    setTimeout(() => this.router.navigate(["/home"]), 1000
-    );
+    setTimeout(() => this.router.navigate(["/home"]), 1000);
   }
 
   displayFn(item: any): string {
-    if (item == undefined) {
-      return ''
-    }
+    if (item == undefined) { return '';}
     return item.nameProduct;
   }
 

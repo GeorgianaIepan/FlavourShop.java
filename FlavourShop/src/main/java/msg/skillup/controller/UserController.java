@@ -69,7 +69,7 @@ public class UserController {
     }
 
     @GetMapping("/reset")
-    public ResponseEntity<String> resetPassword(@Param("user") String username) throws MessagingException, UnsupportedEncodingException {
+    public ResponseEntity<String> resetPassword(@Param("username") String username) throws MessagingException, UnsupportedEncodingException {
         try {
             userService.sendResetEmail(username);
             return new ResponseEntity<>(HttpStatus.OK);
