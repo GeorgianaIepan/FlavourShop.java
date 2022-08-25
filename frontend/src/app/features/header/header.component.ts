@@ -13,7 +13,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
 
   logedin: boolean = false;
   myControl = new FormControl<string | Product>('');
@@ -22,8 +22,7 @@ export class HeaderComponent implements OnInit{
   shoppingCartItemsNumber = 0;
   nameProduct: string = '';
 
-  constructor(private shoppingCartService: ShoppingCartService, private productService: ProductService, private loginService: LoginService, private router: Router, ) {
-  constructor(private productService: ProductService, private loginService: LoginService, private router: Router, private _snackBar: MatSnackBar) {
+  constructor(private shoppingCartService: ShoppingCartService, private productService: ProductService, private loginService: LoginService, private router: Router, private _snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -43,10 +42,14 @@ export class HeaderComponent implements OnInit{
         }),
       );
     });
+
+    this.shoppingCartService.cartItemsNumber$.subscribe(itemsNumber => {
+      this.shoppingCartItemsNumber = itemsNumber;
+    });
   }
 
-  clickedFn(): void{
-    this.nameProduct='';
+  clickedFn(): void {
+    this.nameProduct = '';
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => {
@@ -54,23 +57,19 @@ export class HeaderComponent implements OnInit{
         return name ? this._filter(name as string) : this.options.slice();
       }),
     );
-  //[routerLink]="['/product', nameProduct.value]"
-    this.loginService.currentLoginState.subscribe(result => this.logedin = result);
 
-    this.shoppingCartService.cartItemsNumber$.subscribe(itemsNumber => {
-      this.shoppingCartItemsNumber = itemsNumber;
-    });
+    this.loginService.currentLoginState.subscribe(result => this.logedin = result);
   }
 
   logout(): void {
     localStorage.removeItem('token');
     this.loginService.loginState.next(false);
-    setTimeout(() => this.router.navigate(["/home"]), 1000);
+    setTimeout(() => this.router.navigate(["/home"]), 1000
+    );
   }
 
   displayFn(item: any): string {
-    if (item == undefined)
-     {
+    if (item == undefined) {
       return ''
     }
     return item.nameProduct;
