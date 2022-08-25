@@ -2,11 +2,10 @@ package msg.skillup.controller;
 
 import lombok.val;
 import msg.skillup.configuration.JWTokenCreator;
-import msg.skillup.dto.EmailConfirmationDTO;
-import msg.skillup.dto.ForgotPasswordDTO;
-import msg.skillup.dto.TokenRespDTO;
-import msg.skillup.dto.UserDTO;
+import msg.skillup.converter.RoleConverter;
+import msg.skillup.dto.*;
 import msg.skillup.exception.BusinessException;
+import msg.skillup.model.Role;
 import msg.skillup.model.User;
 import msg.skillup.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,13 +56,13 @@ public class UserController {
     }
 
     @GetMapping("/user/role")
-    public ResponseEntity<String> roleUser(@RequestHeader("Authorization") String token){
+    public ResponseEntity<RoleDTO> roleUser(@RequestHeader("Authorization") String token){
         String jwtToken= token.substring(17);
         jwtToken = jwtToken.substring(0,jwtToken.length()-2);
-        String role = null;
+        Role role = null;
         try {
-            role = userService.getUserFromUsername(jwTokenCreator.getUsernameFromToken(jwtToken)).getRole().getNameRole();
-            return ResponseEntity.ok(role);
+            role = userService.getUserFromUsername(jwTokenCreator.getUsernameFromToken(jwtToken)).getRole();
+            return ResponseEntity.ok(RoleConverter.convertFromEntityToDTO(role));
         } catch (BusinessException businessException) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, businessException.getMessage());
         }

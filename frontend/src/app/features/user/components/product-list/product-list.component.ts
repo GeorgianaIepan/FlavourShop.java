@@ -45,6 +45,10 @@ export class ProductListComponent implements OnInit {
           return { ...ingredient }
         });
     })
+
+    this.productService.getRole().subscribe(result => {
+      this.role = result.name;
+    })
   }
 
   addProduct(product: Product): void {
@@ -82,12 +86,5 @@ export class ProductListComponent implements OnInit {
     console.log(this.selectedProductIngredients);
   }
 
- /* getRoleUser(): any {
-    this.productService.getRole().subscribe(result => {
-      this.role = result;
 
-      return result;
-    })
-
-  }*/
 }
