@@ -145,10 +145,16 @@ a {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  /*margin-right: auto;
+  margin-left: auto;
+  max-width: 1000px;*/
 
   .user-details {
     display: flex;
     flex-direction: column;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1000px;
 
     *:not(:last-child):not(label) {
       margin-bottom: 1rem;
@@ -168,6 +174,7 @@ a {
 
     button:not(:last-child) {
       margin-right: .5rem;
+      //width: 100%;
     }
   }
 
@@ -202,8 +209,13 @@ a {
     background-color: #ffeaf7;
     padding: 50px;
     margin-top: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 1000px;
     opacity: 0.6;
   }
+
+
 
 }
 

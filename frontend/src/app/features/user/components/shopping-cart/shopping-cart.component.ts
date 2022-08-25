@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Product } from "../../models/product.model";
-import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Order } from "../../models/order.model";
 import { OrderService } from "../../services/order/order.service";
 import { ProductService } from "../../services/product/product.service";
@@ -15,10 +15,15 @@ export class ShoppingCartComponent implements OnInit {
   @Output() submitForm = new EventEmitter<Order>()
 
   productsCart: Product[] = [];
-  addressForm!: FormGroup;
+  addressForm: FormGroup = new FormGroup({
+    street: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    number: new FormControl('', [Validators.required, Validators.minLength(1)]),
+    code: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{6}$')]),
+    state: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    country: new FormControl('', [Validators.required, Validators.minLength(3)]),
+  });
 
-  constructor(private productService: ProductService, private formBuilder: FormBuilder, private orderService: OrderService) {
-    this.setupForm();
+  constructor(private productService: ProductService, private orderService: OrderService) {
   }
 
   ngOnInit(): void {
@@ -59,16 +64,7 @@ export class ShoppingCartComponent implements OnInit {
 
   onSubmit(): void {
     const formData = this.addressForm.getRawValue()
-    this.orderService.submit({products: this.productsCart, address: Object.values(formData).toString() }).subscribe(console.log)
+    this.submitForm.emit({products: this.productsCart, address: Object.values(formData).toString() })
   }
 
-  private setupForm() : void {
-    this.addressForm = this.formBuilder.group({
-      street: new FormControl('', [Validators.required]),
-      number: new FormControl('', [Validators.required]),
-      code: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{6}$')]),
-      state: new FormControl('', [Validators.required]),
-      country: new FormControl('', [Validators.required]),
-    });
-  }
 }

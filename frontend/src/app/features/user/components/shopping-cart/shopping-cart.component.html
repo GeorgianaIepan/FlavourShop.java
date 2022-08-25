@@ -17,7 +17,7 @@
                [value]="product.quantityProduct"
                [min]="0"
                [max]="50">
-        <button id="down" *ngIf="product.quantityProduct > 1; " mat-raised-button mat-button color="primary"
+        <button id="down" *ngIf="product.quantityProduct > 1; " color="primary"
                 type="submit"
                 (click)="decrementQuantity(product)">-</button></span>
         </div>
@@ -25,7 +25,7 @@
 
       <div class="col3">
         <mat-card-actions>
-          <button class="button" mat-raised-button mat-button color="primary" type="submit"
+          <button class="button" color="primary" type="submit"
                   (click)="deleteProductFromCart(product)">
             <mat-icon>delete</mat-icon>
           </button>
@@ -43,33 +43,55 @@
   <div *ngIf="productsCart.length > 0; else emptyCart" class="order-container">
     <div class="user-details">
 
-      <form [formGroup]="addressForm" novalidate>
-
+      <form [formGroup]="addressForm">
         <div class="address-form">
-          <label for="street">Street</label>
-          <input type="text" id="street" placeholder="Street name" formControlName="street">
 
-          <label for="number">Number</label>
-          <input type="text" id="number" placeholder="Street number" formControlName="number">
+          <div class="row">
+            <mat-form-field>
+              <mat-label>Street</mat-label>
+              <input matInput placeholder="Street name" formControlName="street">
+              <mat-error *ngIf="addressForm.controls['street'].invalid">Not a valid street name</mat-error>
+            </mat-form-field>
+          </div>
 
-          <label for="code">Postal Code</label>
-          <input type="text" id="code" placeholder="Postal code" formControlName="code">
+          <div class="row">
+            <mat-form-field>
+              <mat-label>Street number</mat-label>
+              <input matInput placeholder="Street number" formControlName="number">
+              <mat-error *ngIf="addressForm.controls['number'].invalid">Not a valid street number</mat-error>
+            </mat-form-field>
+          </div>
 
-          <label for="state">State</label>
-          <input type="text" id="state" placeholder="State" formControlName="state">
+          <div class="row">
+            <mat-form-field>
+              <mat-label>Postal code</mat-label>
+              <input matInput placeholder="Postal code" formControlName="code">
+              <mat-error *ngIf="addressForm.controls['code'].invalid">Not a valid postal code</mat-error>
+            </mat-form-field>
+          </div>
 
-          <label for="country">Country</label>
-          <select id="country" name="country" formControlName="country">
-            <option value="Romania">Romania</option>
-          </select>
+          <div class="row">
+            <mat-form-field>
+              <mat-label>State</mat-label>
+              <input matInput placeholder="State" formControlName="state">
+              <mat-error *ngIf="addressForm.controls['state'].invalid">Not a valid state</mat-error>
+            </mat-form-field>
+          </div>
 
+          <div class="row">
+            <mat-form-field>
+              <mat-label>Country</mat-label>
+              <input matInput placeholder="Country" formControlName="country">
+              <mat-error *ngIf="addressForm.controls['country'].invalid">Not a valid country</mat-error>
+            </mat-form-field>
+          </div>
 
         </div>
       </form>
       <button mat-raised-button mat-button color="primary"
               [disabled]="addressForm.invalid"
               (click)="onSubmit()" class="buttonSubmit"
-              type="button"><a routerLink="/order"> Submit</a>
+              type="button">Submit
       </button>
 
 

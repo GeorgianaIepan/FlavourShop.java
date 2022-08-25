@@ -1,6 +1,5 @@
 package msg.skillup.validator;
 
-import msg.skillup.exception.BusinessException;
 import msg.skillup.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
