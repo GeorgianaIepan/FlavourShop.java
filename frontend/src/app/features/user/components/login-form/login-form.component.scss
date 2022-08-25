@@ -5,7 +5,7 @@
   height: 100%;
   background-color: #ffeaf7;
   opacity: 0.5;
-  max-width:100%;
+  max-width: 100%;
 }
 
 form {
@@ -33,3 +33,19 @@ mat-label, mat-icon, mat-error {
 .button {
   background-color: #6e0940;
 }
+
+.forgot-password:hover{
+  color: #6e0940;
+}
+
+.forgot-password{
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: none;
+  font-weight: bold;
+}
+

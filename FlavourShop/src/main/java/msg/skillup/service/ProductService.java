@@ -20,10 +20,14 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-
     public List<ProductDTO> getAllProducts() {
         List<Product> products = productRepository.findAll();
         return ProductConverter.convertEntitiesToDTOs(products);
+    }
+
+    public ProductDTO getProduct(String productName){
+        Product product = productRepository.findByName(productName);
+        return ProductConverter.convertFromEntityToDTO(product);
     }
 
 

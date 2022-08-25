@@ -1,10 +1,7 @@
 package msg.skillup.model;
 
-
 import lombok.Data;
-
 import javax.persistence.*;
-import java.sql.Blob;
 
 @Entity
 @Table(name = "INGREDIENT")
@@ -21,12 +18,5 @@ public class Ingredient {
 
     @Column(name = "NAME_INGREDIENT", nullable = false)
     private String nameIngredient;
-
-    @Column(name = "IMG_INGREDIENT")
-    @Lob
-    private Blob imgIngredient;
-
-    @Column(name = "ORIGIN_INGREDIENT")
-    private String originIngredient;
 }
 

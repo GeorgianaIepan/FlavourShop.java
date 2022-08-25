@@ -1,6 +1,29 @@
 <div class="products">
-  <mat-card class="example-card" *ngFor="let product of products; index as idx">
+  <button mat-button class="button" [matMenuTriggerFor]="menu">Sort
+    <mat-icon>keyboard_arrow_down</mat-icon>
+  </button>
+
+  <div class="sortAndEdit">
+
+    <mat-menu class="sort" #menu="matMenu">
+      <button mat-menu-item (click)="sortProduct('asc', 'price')">Ascending by Price</button>
+      <button mat-menu-item (click)="sortProduct('desc', 'price')">Descending by Price</button>
+      <button mat-menu-item (click)="sortProduct('asc', 'name')">Ascending by Name</button>
+      <button mat-menu-item (click)="sortProduct('desc', 'name')">Descending by Name</button>
+    </mat-menu>
+
+    <button class="buttonEdit" *ngIf="role === 'admin';" color="primary" type="submit">
+      <!--(click)="editProduct(product)"-->
+      Edit products
+      <a routerLink="/editProduct"></a>
+    </button>
+
+  </div>
+
+
+  <mat-card class="example-card" *ngFor="let product of pageSlice; index as idx">
     <div class="row">
+
       <div class="col1">
         <mat-card-title-group>
           <mat-card-title class="product-name">{{product.nameProduct}}</mat-card-title>
@@ -10,26 +33,36 @@
         <mat-card-content class="product-description">{{product.description}}</mat-card-content>
 
         <mat-card-actions>
-          <div ></div>
-          <button class="button" *ngIf="product.quantity > 0; " mat-raised-button mat-button color="primary" type="submit" (click)="addProduct(product, product.quantity)">
+          <div></div>
+          <button class="button" *ngIf="product.quantityProduct >= 0; " color="primary"
+                  type="submit" (click)="addProduct(product)">
             Add to cart
             <a href="/ingredients"></a>
           </button>
         </mat-card-actions>
       </div>
-      <div class="col2">
-        <!--<form action="/action_page.php">
-          <label for="quantity">Quantity: </label>
-          <input type="number" id="quantity" name="quantity" min="1" max="5">
-          <input type="submit">
-        </form>-->
-<!--        <div formArrayName="productQuantity">-->
-<!--          <div *ngFor="let productQuantity of productsQuantity.controls">-->
-            <input placeholder="Enter a Quantity!" [(ngModel)]="product.quantity">
-            <label *ngIf="true" [ngClass] = "'error'"> Quantity is required. </label>
-<!--          </div>-->
-<!--        </div>-->
 
+      <div class="col2">
+        <input placeholder="Enter a Quantity!" [(ngModel)]="product.quantityProduct">
+        <label *ngIf="true" [ngClass]="'error'"> </label>
+
+        <br><br>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Choose ingredients</mat-label>
+          <mat-select [(ngModel)]="product.ingredients" multiple (selectionChange)="onSelectionChange()">
+            <mat-option *ngFor="let ingredient of ingredients" [value]="ingredient">{{ ingredient.nameIngredient}}
+              : {{ingredient.priceIngredient}} RON
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <script>
+          document.querySelector('.select-field').addEventListener('click', () => {
+            document.querySelector('.list').classList.toggle('show');
+            document.querySelector('.down-arrow').classList.toggle('rotate150');
+          });
+        </script>
       </div>
       <div class="col3">
         <img mat-card-sm-image src="{{product.imgProduct}}" alt="image not found">
@@ -37,3 +70,10 @@
     </div>
   </mat-card>
 </div>
+
+<mat-paginator [length]="products.length"
+               [pageSize]="4"
+               [pageSizeOptions]="[4, 8, 16]"
+               aria-label="Select page"
+               (page)="onPageChange($event)">
+</mat-paginator>

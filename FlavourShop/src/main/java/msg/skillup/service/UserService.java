@@ -2,23 +2,24 @@ package msg.skillup.service;
 
 import msg.skillup.configuration.JWTokenCreator;
 import msg.skillup.converter.UserConverter;
+import msg.skillup.dto.ForgotPasswordDTO;
 import msg.skillup.dto.UserDTO;
+import msg.skillup.model.Role;
+import msg.skillup.model.User;
+import msg.skillup.configuration.JWTokenCreator;
+import msg.skillup.converter.UserConverter;
 import msg.skillup.exception.BusinessException;
-import msg.skillup.model.*;
 import msg.skillup.repository.RoleRepository;
 import msg.skillup.repository.UserRepository;
 import msg.skillup.validator.UserValidator;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
-import javax.mail.Transport;
 import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
 
@@ -62,6 +63,19 @@ public class UserService {
         }
     }
 
+    public void resetPassword(ForgotPasswordDTO forgotPasswordDTO) throws BusinessException{
+        User user = userRepository.getById(forgotPasswordDTO.getId());
+        if(!forgotPasswordDTO.getConfirmationPassword().equals(forgotPasswordDTO.getPassword()))
+            throw new BusinessException("passwords do not match");
+        String error = userValidator.validatePassword(user, forgotPasswordDTO.getPassword());
+        if (error == null) {
+            userRepository.updatePassword(user.getPassword(), user.getIdUser());
+        } else {
+            throw new BusinessException(error);
+        }
+
+    }
+
     private void sendVerificationEmail(User user)
             throws MessagingException, UnsupportedEncodingException {
         String toAddress = user.getEmail();
@@ -92,6 +106,36 @@ public class UserService {
         System.out.printf("email send");
     }
 
+    public void sendResetEmail(String username)
+            throws MessagingException, UnsupportedEncodingException, BusinessException {
+        User user = getUserFromUsername(username);
+        String toAddress = user.getEmail();
+        String fromAddress = "flavourshopskillup@outlook.com";
+        String senderName = "FlavourShop";
+        String subject = "Forgot password";
+        String content = "Dear [[name]],<br>"
+                + "Please click the link below to reset your password:<br>"
+                + "<h3><a href=\"[[URL]]\" target=\"_self\">RESET</a></h3>"
+                + "Thank you,<br>"
+                + "FlavourShop.";
+
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        helper.setFrom(fromAddress, senderName);
+        helper.setTo(toAddress);
+        helper.setSubject(subject);
+
+        content = content.replace("[[name]]", user.getName());
+        String resetURL = "http:/localhost:4200" + "/reset?user=" + user.getIdUser();
+
+        content = content.replace("[[URL]]", resetURL);
+
+        helper.setText(content, true);
+
+        mailSender.send(message);
+    }
+
     public boolean verify(String verificationCode) {
         User user = userRepository.findByVerificationCode(verificationCode);
 
@@ -108,19 +152,24 @@ public class UserService {
 
     public String matchUser(String username, String password) throws BusinessException {
         User user = userRepository.matchUser(username);
-        String token = jwTokenCreator.generateToken(user);
-        if (user == null) {
+
+        if(user == null){
             throw new BusinessException("Userul nu a fost gasit");
         } else if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new BusinessException("Parola incorecta");
         } else if (!user.isEnabled()) {
             throw new BusinessException("emailul nu a fost verificat!");
         }
+        String token = jwTokenCreator.generateToken(user);
         return token;
     }
 
-    public User getUserFromUsername(String username) {
-        return userRepository.matchUser(username);
+    public User getUserFromUsername(String username) throws BusinessException{
+        User user = userRepository.matchUser(username);
+        if(user == null){
+            throw new BusinessException("Userul nu a fost gasit");
+        }
+        return user;
     }
 
 }

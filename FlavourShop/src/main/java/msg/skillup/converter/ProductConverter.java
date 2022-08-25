@@ -15,6 +15,7 @@ public class ProductConverter {
         productDTO.setPriceProduct(product.getPriceProduct());
         productDTO.setDescription(product.getDescription());
         productDTO.setImgProduct("http://localhost:8080/image/" + product.getIdProduct());
+        productDTO.setRating(productDTO.getRating());
         return productDTO;
     }
 
@@ -34,7 +35,7 @@ public class ProductConverter {
         product.setIdProduct(productDTO.getIdProduct());
         product.setPriceProduct(productDTO.getPriceProduct());
         product.setNameProduct(productDTO.getNameProduct());
-        product.setStockProduct(productDTO.getQuantity());
+        product.setStockProduct(productDTO.getQuantityProduct());
         product.setDescription(productDTO.getDescription());
         return product;
     }

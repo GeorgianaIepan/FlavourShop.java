@@ -1,32 +1,28 @@
 package msg.skillup.configuration;
 
-
-import java.io.IOException;
-
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import io.jsonwebtoken.ExpiredJwtException;
-import msg.skillup.dto.TokenRespDTO;
 import msg.skillup.model.User;
 import msg.skillup.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 @Component
-public class JwtRequestFilter extends OncePerRequestFilter{
+public class JwtRequestFilter extends OncePerRequestFilter {
     @Autowired
     private UserRepository userRepository;
 
     @Autowired
-    private  JWTokenCreator jwTokenCreator;
+    private JWTokenCreator jwTokenCreator;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
@@ -39,8 +35,8 @@ public class JwtRequestFilter extends OncePerRequestFilter{
         // JWT Token is in the form "Bearer token". Remove Bearer word and get
         // only the Token
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
-            jwtToken= requestTokenHeader.substring(17);
-            jwtToken = jwtToken.substring(0,jwtToken.length()-2);
+            jwtToken = requestTokenHeader.substring(17);
+            jwtToken = jwtToken.substring(0, jwtToken.length() - 2);
             try {
                 username = jwTokenCreator.getUsernameFromToken(jwtToken);
             } catch (IllegalArgumentException e) {

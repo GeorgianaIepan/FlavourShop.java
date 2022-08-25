@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
+import { OrderService } from './order.service';
 
-import { VerifySuccessService } from './verify-success.service';
-
-describe('VerifySuccessService', () => {
-  let service: VerifySuccessService;
+describe('OrderService', () => {
+  let service: OrderService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(VerifySuccessService);
+    service = TestBed.inject(OrderService);
   });
 
   it('should be created', () => {

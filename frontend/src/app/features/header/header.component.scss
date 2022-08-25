@@ -9,6 +9,7 @@ nav img {
 }
 
 .header {
+  display: flex;
   position: fixed;
   top: 0;
   background-color: #ffeaf7;
@@ -47,6 +48,98 @@ a:hover {
   color: #ef2796;
 }
 
+.badge:after{
+  content:attr(value);
+  font-size:12px;
+  color: #fff;
+  background: red;
+  border-radius:50%;
+  padding: 0 5px;
+  position:relative;
+  left:-8px;
+  top:-10px;
+  opacity:0.9;
+}
 
+.searchbar-form {
+  margin-top: 0.35%;
+  margin-left: 20%;
+  margin-right: 30%;
+  flex-flow: row wrap;
+}
 
+.searchbar{
+  width: 200%;
+}
 
+.searchA{
+  float: right;
+  margin:auto;
+  padding: 0px;
+}
+.items{
+  margin: 25px;
+}
+
+.icon-button{
+  margin-top: 25px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  color: #6e0940;
+  background: #ffeaf7;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+
+}
+
+.icon-button__badge{
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 23px;
+  height: 23px;
+  background: red;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.icon-button:hover {
+  color: #ef2796;
+}
+
+a {
+  text-decoration: none;
+  color: #6e0940;
+}
+
+a:hover {
+  color: #ef2796;
+}
+
+input{
+  float: left;
+}
+
+.searchButton{
+  float: right;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.searchbar-div{
+  display: inline-flex;
+  width: 100%;
+}

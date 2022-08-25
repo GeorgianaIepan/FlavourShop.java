@@ -1,55 +1,110 @@
 <div class="shopping">
-  <mat-card class="shopping-cart" *ngFor="let orderProduct of orderProducts">
+  <mat-card class="shopping-cart" *ngFor="let product of productsCart">
     <div class="row">
+
       <div class="col1">
         <mat-card-title-group>
-          <mat-card-title class="shopping-list-name">{{orderProduct.product.nameProduct}}</mat-card-title>
+          <mat-card-title class="shopping-list-name">{{product.nameProduct}}</mat-card-title>
+          <mat-card-subtitle class="shopping-list-ingredients"
+                             *ngFor="let ingredient of product.ingredients">{{ ingredient.nameIngredient}}</mat-card-subtitle>
         </mat-card-title-group>
       </div>
-      <div class="col2">
-        <!--<button class="button" *ngIf="product.quantity > 0; " mat-raised-button mat-button color="primary" type="submit" (click)="addProduct(product, product.quantity)">-->
-        <div class="order-option">Quantity: <span id="quantity-field">
-        <button id="up" (click)="incrementQuantity(orderProduct)">+</button>
-        <input type="text" id="quantity" [value]="orderProduct.quantity">
-        <button id="down" (click)="decrementQuantity(orderProduct)">-</button>
-    </span>
 
+      <div class="col2">
+        <div class="order-option">Quantity: <span id="quantity-field">
+        <button id="up" (click)="incrementQuantity(product)">+</button>
+        <input type="text" id="quantity" [(ngModel)]="product.quantityProduct"
+               [value]="product.quantityProduct"
+               [min]="0"
+               [max]="50">
+        <button id="down" *ngIf="product.quantityProduct > 1; " color="primary"
+                type="submit"
+                (click)="decrementQuantity(product)">-</button></span>
         </div>
       </div>
+
       <div class="col3">
         <mat-card-actions>
-          <button class="button" mat-raised-button mat-button color="primary" type="submit"
-                  (click)="deleteProductFromCart(orderProduct)">
+          <button class="button" color="primary" type="submit"
+                  (click)="deleteProductFromCart(product)">
             <mat-icon>delete</mat-icon>
           </button>
         </mat-card-actions>
-
       </div>
+
       <div class="col4">
-        <mat-card-content class="shopping-list-price">Price: {{orderProduct.product.priceProduct}}</mat-card-content>
+        <mat-card-content class="shopping-list-price">Price: {{getPrice(product)}}</mat-card-content>
         <mat-card-content class="shopping-list-price">Total
-          price: {{orderProduct.quantity * orderProduct.product.priceProduct}}</mat-card-content>
+          price: {{product.quantityProduct * getPrice(product)}}</mat-card-content>
       </div>
     </div>
   </mat-card>
 
-  <div *ngIf="orderProducts.length > 0; else emptyCart" class="order-container">
+  <div *ngIf="productsCart.length > 0; else emptyCart" class="order-container">
     <div class="user-details">
-      <div class="address">
-        <label for="adr">Address:</label>
-        <input type="text" id="adr" name="adr">
-      </div>
+
+      <form [formGroup]="addressForm">
+        <div class="address-form">
+
+          <div class="row">
+            <mat-form-field>
+              <mat-label>Street</mat-label>
+              <input matInput placeholder="Street name" formControlName="street">
+              <mat-error *ngIf="addressForm.controls['street'].invalid">Not a valid street name</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field>
+              <mat-label>Street number</mat-label>
+              <input matInput placeholder="Street number" formControlName="number">
+              <mat-error *ngIf="addressForm.controls['number'].invalid">Not a valid street number</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field>
+              <mat-label>Postal code</mat-label>
+              <input matInput placeholder="Postal code" formControlName="code">
+              <mat-error *ngIf="addressForm.controls['code'].invalid">Not a valid postal code</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field>
+              <mat-label>State</mat-label>
+              <input matInput placeholder="State" formControlName="state">
+              <mat-error *ngIf="addressForm.controls['state'].invalid">Not a valid state</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field>
+              <mat-label>Country</mat-label>
+              <input matInput placeholder="Country" formControlName="country">
+              <mat-error *ngIf="addressForm.controls['country'].invalid">Not a valid country</mat-error>
+            </mat-form-field>
+          </div>
+
+        </div>
+      </form>
+      <button color="primary"
+              [disabled]="addressForm.invalid"
+              (click)="onSubmit()" class="buttonSubmit"
+              type="button">Submit
+      </button>
+
+
       <div class="total-price">
         <p>Total price: {{getTotal()}} RON</p>
       </div>
     </div>
+
     <div class="actions-footer">
       <button class="buttonSubmit" type="button">
         <a routerLink="/products"> Continue shopping</a>
       </button>
-      <button class="buttonSubmit" type="submit">Submit
-        <!--(click)="deleteProductFromCart(orderProduct)-->
-      </button>
+
 
     </div>
   </div>

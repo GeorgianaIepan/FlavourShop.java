@@ -2,16 +2,17 @@ package msg.skillup.dto;
 
 import lombok.Data;
 
-import java.sql.Blob;
+import java.util.List;
 
 @Data
 public class ProductDTO {
     private Long idProduct;
     private Double priceProduct;
     private String nameProduct;
-    private Integer quantity;
+    private Integer stock;
+    private Integer quantityProduct;
     private Double rating;
     private String description;
     private String imgProduct;
+    private List<IngredientDTO> ingredients;
 }
-

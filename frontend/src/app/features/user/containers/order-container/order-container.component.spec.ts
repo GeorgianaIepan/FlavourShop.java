@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VerifySuccessComponent } from './verify-success.component';
+import { OrderContainerComponent } from './order-container.component';
 
-describe('VerifySuccessComponent', () => {
-  let component: VerifySuccessComponent;
-  let fixture: ComponentFixture<VerifySuccessComponent>;
+describe('OrderContainerComponent', () => {
+  let component: OrderContainerComponent;
+  let fixture: ComponentFixture<OrderContainerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VerifySuccessComponent ]
+      declarations: [ OrderContainerComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(VerifySuccessComponent);
+    fixture = TestBed.createComponent(OrderContainerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
