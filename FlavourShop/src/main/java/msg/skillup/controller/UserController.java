@@ -3,6 +3,7 @@ package msg.skillup.controller;
 import lombok.val;
 import msg.skillup.configuration.JWTokenCreator;
 import msg.skillup.dto.EmailConfirmationDTO;
+import msg.skillup.dto.ForgotPasswordDTO;
 import msg.skillup.dto.TokenRespDTO;
 import msg.skillup.dto.UserDTO;
 import msg.skillup.exception.BusinessException;
@@ -79,9 +80,9 @@ public class UserController {
     }
 
     @PostMapping("/reset")
-    public ResponseEntity<String> updatePassword(@Param("userId") Long userId, @RequestBody String password){
+    public ResponseEntity<String> updatePassword(@RequestBody ForgotPasswordDTO forgotPasswordDTO){
         try {
-            userService.resetPassword(userId, password);
+            userService.resetPassword(forgotPasswordDTO);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (BusinessException businessException) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, businessException.getMessage());
