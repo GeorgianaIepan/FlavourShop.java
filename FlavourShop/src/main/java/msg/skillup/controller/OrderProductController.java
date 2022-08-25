@@ -1,5 +1,6 @@
 package msg.skillup.controller;
 
+import com.itextpdf.text.DocumentException;
 import msg.skillup.configuration.JWTokenCreator;
 import msg.skillup.dto.OrderDTO;
 import msg.skillup.exception.BusinessException;
@@ -13,8 +14,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
+import javax.print.Doc;
 import javax.validation.Valid;
 import javax.xml.ws.Response;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -43,7 +49,8 @@ public class OrderProductController {
     private UserService userService;
 
     @PostMapping("/order")
-    public ResponseEntity<String> save(@RequestBody OrderDTO orderDTO, @RequestHeader("Authorization") String token){
+    public ResponseEntity<String> save(@RequestBody OrderDTO orderDTO, @RequestHeader("Authorization") String token)
+            throws IOException, DocumentException, MessagingException, BusinessException {
         String jwtToken= token.substring(17);
         jwtToken = jwtToken.substring(0,jwtToken.length()-2);
         Long idUser = userService.getUserFromUsername(jwTokenCreator.getUsernameFromToken(jwtToken)).getIdUser();

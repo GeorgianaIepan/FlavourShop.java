@@ -44,7 +44,7 @@ export class ProductSearchedComponent implements OnInit {
     })
   }
 
-  addProduct(product: Product, quantity: number): void {
+  addProduct(product: Product): void {
     this.productService.addToCart(product);
   }
 

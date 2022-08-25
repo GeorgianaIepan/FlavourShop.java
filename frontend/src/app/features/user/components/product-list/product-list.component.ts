@@ -4,7 +4,9 @@ import { Product } from "../../models/product.model";
 import { Ingredient } from "../../models/ingredient.model";
 import { IngredientService } from "../../services/ingredient/ingredient.service";
 import { PageEvent } from "@angular/material/paginator";
-import {Router} from "@angular/router";
+import { ShoppingCartService } from "../shopping-cart/shopping-cart.service";
+import { environment } from "../../../../../environments/environment";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-product-list',
@@ -20,7 +22,7 @@ export class ProductListComponent implements OnInit {
 
   pageSlice: Product[] = this.products.slice(0, 4);
 
-  constructor(private productService: ProductService,  private ingredientService: IngredientService, private router: Router) {
+  constructor(private shoppingCartService: ShoppingCartService, private productService: ProductService, private ingredientService: IngredientService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -43,16 +45,13 @@ export class ProductListComponent implements OnInit {
     })
   }
 
- /* addProduct(product: Product): void {
-    console.log(product);
-    console.log(product.quantityProduct);
-    this.productService.addToCart(product);*/
   addProduct(product: Product): void {
-    if(localStorage.getItem('token') == null){
+    if (localStorage.getItem('token') === null) {
       this.router.navigate(["/login"]);
-    }
-    else
+    } else {
       this.productService.addToCart(product);
+      this.shoppingCartService.setCartItemsNumber(this.shoppingCartService.cartItemsNumber + Number.parseInt(product.quantityProduct.toString()));
+    }
   }
 
   sortProduct(type: string, by: string) {

@@ -1,31 +1,32 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {LoginService} from "../user/services/login/login.service";
-import {Router} from "@angular/router";
-import {map, Observable, startWith} from "rxjs";
-import {FormControl} from "@angular/forms";
-import {Product} from "../user/models/product.model";
-import {ProductService} from "../user/services/product/product.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
-
+import { Component, OnInit } from '@angular/core';
+import { LoginService } from "../user/services/login/login.service";
+import { Router } from "@angular/router";
+import { map, Observable, startWith } from "rxjs";
+import { FormControl } from "@angular/forms";
+import { Product } from "../user/models/product.model";
+import { ProductService } from "../user/services/product/product.service";
+import { ShoppingCartService } from "../user/components/shopping-cart/shopping-cart.service";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
 
   logedin: boolean = false;
   myControl = new FormControl<string | Product>('');
   options: Product[] = [];
   filteredOptions: Observable<Product[]> | undefined;
+  shoppingCartItemsNumber = 0;
+  nameProduct: string = '';
 
-
-  constructor(private productService: ProductService, private loginService: LoginService, private router: Router, private _snackBar: MatSnackBar) {
+  constructor(private shoppingCartService: ShoppingCartService, private productService: ProductService, private loginService: LoginService, private router: Router, private _snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
-    this.loginService.currentLoginState.subscribe( result => this.logedin = result);
+    this.loginService.currentLoginState.subscribe(result => this.logedin = result);
     this.productService.getAllProducts().subscribe((result: Product[]) => {
 
       this.options = result.map(product => {
@@ -39,6 +40,10 @@ export class HeaderComponent implements OnInit{
           return name ? this._filter(name as string) : this.options.slice();
         }),
       );
+    });
+
+    this.shoppingCartService.cartItemsNumber$.subscribe(itemsNumber => {
+      this.shoppingCartItemsNumber = itemsNumber;
     });
   }
 

@@ -1,5 +1,7 @@
 package msg.skillup.service;
 
+import com.itextpdf.text.DocumentException;
+import msg.skillup.configuration.PdfCreator;
 import msg.skillup.converter.OrderConverter;
 import msg.skillup.converter.ProductConverter;
 import msg.skillup.dto.OrderDTO;
@@ -7,8 +9,13 @@ import msg.skillup.dto.ProductDTO;
 import msg.skillup.model.*;
 import msg.skillup.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +41,12 @@ public class OrderProductService {
 
     @Autowired
     private ProductIngredientRepository productIngredientRepository;
+
+    @Autowired
+    private PdfCreator pdfCreator;
+
+    @Autowired
+    private JavaMailSender mailSender;
 
     public OrderDTO getOrderByUser(Long orderId, Long userId){
         List<OrderProduct> orders = orderProductRepository.findAllByUserAndOrder(orderId, userId);
@@ -71,7 +84,7 @@ public class OrderProductService {
         return ordersResult;
     }
 
-    public void saveOrder(OrderDTO orderDTO, Long idUser){
+    public void saveOrder(OrderDTO orderDTO, Long idUser) throws DocumentException, IOException, MessagingException {
         User user = userRepository.getById(idUser);
         Order order = OrderConverter.convertFromDTOToEntity(orderDTO);
         order.setUser(user);
@@ -83,8 +96,8 @@ public class OrderProductService {
             orderProduct.setProduct(product);
             orderProduct.setQuantity(p.getQuantityProduct());
             orderProductRepository.save(orderProduct);
-            if(!p.getIngredients().isEmpty()){
-                p.getIngredients().forEach( i-> {
+            if(!p.getIngredients().isEmpty()) {
+                p.getIngredients().forEach(i -> {
                     Ingredient ingredient = ingredientRepository.getById(i.getIdIngredient());
                     ProductIngredient productIngredient = new ProductIngredient();
                     productIngredient.setOrderProduct(orderProduct);
@@ -92,7 +105,34 @@ public class OrderProductService {
                     productIngredientRepository.save(productIngredient);
                 });
             }
-
         });
+        pdfCreator.createPdf(order, orderDTO, user);
+
+        sendOrderEmail(order, user, new File("src/main/resources/orders/Order#" + order.getIdOrder() + ".pdf"));
+    }
+    private void sendOrderEmail(Order order, User user, File file)
+            throws MessagingException, UnsupportedEncodingException {
+        String toAddress = user.getEmail();
+        String fromAddress = "flavourshopskillup@outlook.com";
+        String senderName = "FlavourShop";
+        String subject = "Thank you for your order";
+        String content = "Dear [[name]],<br>"
+                + "We’re happy to let you know that we’ve received your order.<br>"
+                + "Your order is on its way. Your order details can be found below.<br>"
+                + "Thank you,<br>"
+                + "FlavourShop.";
+
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, 1);
+
+        helper.setFrom(fromAddress, senderName);
+        helper.setTo(toAddress);
+        helper.setSubject(subject);
+
+        content = content.replace("[[name]]", user.getName());
+
+        helper.setText(content, true);
+        helper.addAttachment("Order#" + order.getIdOrder() + ".pdf", file);
+        mailSender.send(message);
     }
 }
