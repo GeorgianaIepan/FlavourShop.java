@@ -20,7 +20,7 @@ import {OrderContainerComponent} from './features/user/containers/order-containe
 import {ProductSearchedComponent} from './features/user/components/product-searched/product-searched.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatSelectModule} from "@angular/material/select";
-import { ForgotPasswordComponent } from './features/user/components/forgot-password/forgot-password.component';
+
 
 
 @NgModule({
@@ -32,7 +32,6 @@ import { ForgotPasswordComponent } from './features/user/components/forgot-passw
     OrderComponent,
     OrderContainerComponent,
     ProductSearchedComponent,
-    ForgotPasswordComponent,
   ],
 
   imports: [

@@ -12,6 +12,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class LoginFormComponent implements OnInit {
 
   @Output() submitForm = new EventEmitter<User>()
+  color: string = 'red';
 
   constructor(private forgotPasswordService: ForgotPasswordService, private _snackBar:MatSnackBar) {
   }

@@ -11,6 +11,7 @@ import { IngredientComponent } from "../components/ingredient/ingredient.compone
 import {ProductSearchedComponent} from "../components/product-searched/product-searched.component";
 import { OrderComponent } from "../components/order/order.component";
 import {ForgotPasswordComponent} from "../components/forgot-password/forgot-password.component";
+import {ResetPasswordComponent} from "../containers/reset-password/reset-password.component";
 
 const routes: Routes = [
   {
@@ -55,7 +56,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },{
     path: 'reset',
-    component: ForgotPasswordComponent,
+    component: ResetPasswordComponent,
     pathMatch: 'full'
   }
 ];
