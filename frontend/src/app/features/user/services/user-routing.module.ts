@@ -8,6 +8,7 @@ import { VerifyFailedComponent } from "../components/verify-failed/verify-failed
 import { EmailConfirmationComponent } from "../components/email-confirmation/emailconfirmation";
 import { ShoppingCartComponent } from "../components/shopping-cart/shopping-cart.component";
 import { IngredientComponent } from "../components/ingredient/ingredient.component";
+import {ProductSearchedComponent} from "../components/product-searched/product-searched.component";
 import { OrderComponent } from "../components/order/order.component";
 
 const routes: Routes = [
@@ -18,6 +19,10 @@ const routes: Routes = [
   }, {
     path: 'products',
     component: ProductListComponent,
+    pathMatch: 'full'
+  }, {
+    path: 'product/:name',
+    component: ProductSearchedComponent,
     pathMatch: 'full'
   }, {
     path: 'login',
