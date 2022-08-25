@@ -22,6 +22,7 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MatSelectModule } from "@angular/material/select";
 import { IngredientComponent } from "../components/ingredient/ingredient.component";
 import { MatPaginatorModule } from "@angular/material/paginator";
+// import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
     declarations: [
@@ -32,7 +33,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
         LoginContainerComponent,
         EmailConfirmationComponent,
         VerifyFailedComponent,
-        IngredientComponent
+        IngredientComponent,
     ],
     imports: [
         CommonModule,
