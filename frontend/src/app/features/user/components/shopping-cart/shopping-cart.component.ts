@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Product } from "../../models/product.model";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Order } from "../../models/order.model";
 import { OrderService } from "../../services/order/order.service";
 import { ProductService } from "../../services/product/product.service";
@@ -25,7 +25,7 @@ export class ShoppingCartComponent implements OnInit {
   });
 
   constructor(private productService: ProductService, private formBuilder: FormBuilder, private orderService: OrderService, private shoppingCartService: ShoppingCartService) {
-    this.setupForm();
+  /*  this.setupForm();*/
   }
 
   ngOnInit(): void {
