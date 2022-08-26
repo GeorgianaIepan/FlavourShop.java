@@ -4,6 +4,10 @@ import msg.skillup.dto.ProductDTO;
 import msg.skillup.model.Product;
 
 import java.sql.SQLException;
+import msg.skillup.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.stream.Collectors;
 
