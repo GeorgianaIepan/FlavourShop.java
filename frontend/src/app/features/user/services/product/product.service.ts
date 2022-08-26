@@ -15,6 +15,7 @@ export class ProductService {
 
   constructor(private service: BackendService) {
   }
+
   oneProductURL = 'http://localhost:8080/products/';
 
   getAllProducts(): Observable<Product[]> {
@@ -23,34 +24,25 @@ export class ProductService {
 
   getProduct(productName: string | null): Observable<Product> {
     return this.service.get(this.oneProductURL + productName);
-}
-
-
-  addToCart(product: Product) {
-    this.products.push(product);
   }
 
-  /*addToCart2(product: Product) {
-    const rezFind: undefined | Product = this.products.find(el => {
-      let ok: boolean = true;
-      console.log("here")
-      console.log(el);
-      // if(el.ingredients !== null && product.ingredients !== null){
-      //   el.ingredients.forEach(i => {
-      //     if(product.ingredients.includes(i)=== false){
-      //       ok = false;
-      //     }
-      //   })
-      //   if(el.ingredients.length !== product.ingredients.length){
-      //     ok = false;
-      //   }
-      // }
-      // if(el.ingredients === null && product.ingredients !== null)
-      //   ok = false;
-      // if(el.ingredients !== null && product.ingredients === null)
-      //   ok = false;
 
-      return product.idProduct === el.idProduct;
+  /*addToCart(product: Product) {
+    this.products.push(product);
+  }*/
+
+  addToCart(product: Product) {
+    const rezFind: undefined | Product = this.products.find(el => {
+      let result
+      if(!!el.ingredients) {
+         result = el.ingredients.every(function (element) {
+          let ingredientsNames = product.ingredients.map(el => el.nameIngredient);
+          return ingredientsNames.includes(element.nameIngredient);
+        });
+      }else{
+        result = el.ingredients === product.ingredients
+      }
+      return product.idProduct === el.idProduct && result;
     });
 
     if (!!rezFind) {
@@ -58,14 +50,14 @@ export class ProductService {
         if (!!rezFind) {
           console.log(el.quantityProduct);
           console.log(product.quantityProduct);
-          el.quantityProduct = el.quantityProduct + product.quantityProduct;
+          el.quantityProduct += product.quantityProduct;
           console.log(el.quantityProduct);
         }
       });
     } else {
       this.products.push(product);
     }
-  }*/
+  }
 
   getRole(): Observable<Role> {
     console.log(this.service.get(this.roleURL))

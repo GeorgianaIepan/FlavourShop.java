@@ -7,6 +7,8 @@ import { PageEvent } from "@angular/material/paginator";
 import { ShoppingCartService } from "../shopping-cart/shopping-cart.service";
 import { environment } from "../../../../../environments/environment";
 import { Router } from "@angular/router";
+import { FormArray, FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { forkJoin } from "rxjs";
 
 @Component({
   selector: 'app-product-list',
@@ -18,45 +20,49 @@ export class ProductListComponent implements OnInit {
 
   products: Product[] = [];
 
-  selectedProductIngredients: Ingredient[] = [];
+  selectedProductIngredients: Array<any[]> = [];
 
   pageSlice: Product[] = this.products.slice(0, 4);
 
   role: string = '';
 
-  constructor(private shoppingCartService: ShoppingCartService, private productService: ProductService, private ingredientService: IngredientService, private router: Router) {
+  quantities: Array<number> = [];
+
+  constructor(private fg: FormBuilder, private shoppingCartService: ShoppingCartService, private productService: ProductService, private ingredientService: IngredientService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.productService.getAllProducts().subscribe((result: Product[]) => {
 
-      console.log('result', result),
-        this.products = result.map(product => {
-          return { ...product, quantityProduct: 1 }
-        });
+    forkJoin(this.productService.getAllProducts(), this.ingredientService.getAllIngredients()).subscribe(data => {
+      const [products, ingredients] = data;
+      this.products = products.map(product => {
+        return { ...product, quantityProduct: 1 }
+      });
+      this.ingredients = ingredients.map(ingredient => {
+        return { ...ingredient }
+      });
       this.pageSlice = this.products.slice(0, 4);
-
+      this.resetQuantities();
+      this.resetIngredients();
     })
 
-    this.ingredientService.getAllIngredients().subscribe((result: Ingredient[]) => {
-
-      console.log('result', result),
-        this.ingredients = result.map(ingredient => {
-          return { ...ingredient }
-        });
-    })
 
     this.productService.getRole().subscribe(result => {
       this.role = result.name;
     })
   }
 
-  addProduct(product: Product): void {
+  addProduct(product: Product, index: number): void {
     if (localStorage.getItem('token') === null) {
       this.router.navigate(["/login"]);
     } else {
-      this.productService.addToCart(product);
-      this.shoppingCartService.setCartItemsNumber(this.shoppingCartService.cartItemsNumber + Number.parseInt(product.quantityProduct.toString()));
+      const productCopy = {...product};
+      productCopy.quantityProduct = +this.quantities[index];
+      productCopy.ingredients = this.selectedProductIngredients[index];
+      this.productService.addToCart(productCopy);
+      this.shoppingCartService.setCartItemsNumber(+this.quantities[index] + this.shoppingCartService.cartItemsNumber);
+      this.resetQuantities();
+      this.resetIngredients();
     }
   }
 
@@ -82,9 +88,15 @@ export class ProductListComponent implements OnInit {
     this.pageSlice = this.products.slice(start, end);
   }
 
-  onSelectionChange(): void {
-    console.log(this.selectedProductIngredients);
+  resetIngredients() {
+    this.selectedProductIngredients = [];
+    this.selectedProductIngredients.map(() =>  this.selectedProductIngredients.push([]))
+  console.log(this.selectedProductIngredients)
   }
 
-
+  resetQuantities() {
+    this.quantities = []
+    this.products.map(() =>  this.quantities.push(1))
+    console.log(this.quantities)
+  }
 }
