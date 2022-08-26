@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ReactiveFormsModule, FormGroup, FormControl} from "@angular/forms";
+import {ReactiveFormsModule, FormGroup, FormControl, Validators} from "@angular/forms";
 import {ProductService} from "../../../../services/product/product.service";
 import {Product} from "../../../../models/product.model";
 
@@ -17,10 +17,10 @@ export class PopUpComponent implements OnInit {
   }
 
   saveProductForm = new FormGroup({
-    priceProduct: new FormControl(''),
-    nameProduct: new FormControl(''),
-    quantityProduct: new FormControl(''),
-    description: new FormControl(''),
+    priceProduct: new FormControl('',[Validators.required]),
+    nameProduct: new FormControl('',[Validators.required, Validators.minLength(3)]),
+    quantityProduct: new FormControl('',[Validators.required]),
+    description: new FormControl('',[Validators.required, Validators.minLength(10)]),
     imgProduct: new FormControl()
   })
 
