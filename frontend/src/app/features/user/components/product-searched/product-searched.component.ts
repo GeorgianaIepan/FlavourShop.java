@@ -14,6 +14,9 @@ import {ShoppingCartService} from "../shopping-cart/shopping-cart.service";
 })
 export class ProductSearchedComponent implements OnInit {
 
+
+  selectedProductIngredients: Array<any[]> = [];
+  quantities: Array<number> = [];
   private nameProduct: string = '';
   products: Product[] = [{idProduct:0, nameProduct: '', priceProduct: 0, stockProduct: '', quantityProduct: 0, imgProduct: '', ingredients: [], description:''}];
   ingredients: Ingredient[] = [];
@@ -48,13 +51,30 @@ export class ProductSearchedComponent implements OnInit {
     })
   }
 
-  addProduct(product: Product): void {
+  addProduct(product: Product, index: number): void {
     if (localStorage.getItem('token') === null) {
       this.router.navigate(["/login"]);
     } else {
-      this.productService.addToCart(product);
-      this.shoppingCartService.setCartItemsNumber(this.shoppingCartService.cartItemsNumber + Number.parseInt(product.quantityProduct.toString()));
+      const productCopy = {...product};
+      productCopy.quantityProduct = +this.quantities[index];
+      productCopy.ingredients = this.selectedProductIngredients[index];
+      this.productService.addToCart(productCopy);
+      this.shoppingCartService.setCartItemsNumber(+this.quantities[index] + this.shoppingCartService.cartItemsNumber);
+      this.resetQuantities();
+      this.resetIngredients();
     }
+  }
+
+  resetIngredients() {
+    this.selectedProductIngredients = [];
+    this.selectedProductIngredients.map(() =>  this.selectedProductIngredients.push([]))
+    console.log(this.selectedProductIngredients)
+  }
+
+  resetQuantities() {
+    this.quantities = []
+    this.products.map(() =>  this.quantities.push(1))
+    console.log(this.quantities)
   }
 
 }

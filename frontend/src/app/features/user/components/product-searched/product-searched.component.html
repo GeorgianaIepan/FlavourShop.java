@@ -1,7 +1,7 @@
 <div class="products">
-  <mat-card class="example-card" *ngFor="let product of products; index as idx">
+  <mat-card class="example-card" *ngFor="let product of products; index as index">
     <div class="row">
-      <div class="col1">
+      <div class="col main-col">
         <mat-card-title-group>
           <mat-card-title class="product-name">{{product.nameProduct}}</mat-card-title>
           <mat-card-subtitle class="product-price">Price: {{product.priceProduct}} RON</mat-card-subtitle>
@@ -12,21 +12,21 @@
         <mat-card-actions>
           <div></div>
           <button class="button" *ngIf="product.quantityProduct >= 0; "  color="primary"
-                  type="submit" (click)="addProduct(product)">
+                  type="submit" (click)="addProduct(product, index)">
             Add to cart
             <a href="/ingredients"></a>
           </button>
         </mat-card-actions>
       </div>
-      <div class="col2">
+      <div class="col">
         <input placeholder="Enter a Quantity!" [(ngModel)]="product.quantityProduct">
         <label *ngIf="true" [ngClass]="'error'"> </label>
 
         <br><br>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field class="ingredient-tab" appearance="fill">
           <mat-label>Choose ingredients</mat-label>
-          <mat-select [(ngModel)]="product.ingredients" multiple>
+          <mat-select class="ingredient-list" [(value)]="selectedProductIngredients[index]" multiple>
             <mat-option *ngFor="let ingredient of ingredients" [value]="ingredient">{{ ingredient.nameIngredient}}: {{ingredient.priceIngredient}} RON</mat-option>
           </mat-select>
         </mat-form-field>
@@ -40,8 +40,10 @@
 
 
       </div>
-      <div class="col3">
-<!--        <img mat-card-sm-image src="">-->
+      <div class="col">
+        <div style="margin-right:30%;">
+          <img mat-card-sm-image src="{{product.imgProduct}}" alt="image not found">
+        </div>
       </div>
     </div>
 

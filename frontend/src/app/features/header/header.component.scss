@@ -9,7 +9,7 @@ nav img {
 }
 
 .header {
-  display: flex;
+  display: inline-flex;
   position: fixed;
   top: 0;
   background-color: #ffeaf7;
@@ -28,9 +28,8 @@ nav img {
   text-decoration: none;
   font-weight: bold;
   font-size: 20px;
-  display: inline-block;
   cursor: pointer;
-  float: right;
+  //float: right;
   line-height: 70px;
   margin-right: 10px;
 }

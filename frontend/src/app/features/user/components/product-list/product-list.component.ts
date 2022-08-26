@@ -113,6 +113,7 @@ export class ProductListComponent implements OnInit {
     this.products.map(() =>  this.quantities.push(1))
     console.log(this.quantities)
   }
+
   onDeleteProduct(id: number) {
     this.productService.delete(id).subscribe(result => {console.log(result),
         this.getAllProducts()},

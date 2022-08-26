@@ -49,8 +49,8 @@ export class HeaderComponent implements OnInit {
   }
 
   clickedFn(): void{
-    let product = {idProduct:0, nameProduct: '', priceProduct: 0, stockProduct: '', quantityProduct: 0, imgProduct: '', ingredients: [], description:''}//: Product;
-    product.nameProduct= this.myControl.value!// as Product;
+    let product = {idProduct:0, nameProduct: '', priceProduct: 0, stockProduct: '', quantityProduct: 0, imgProduct: '', ingredients: [], description:''}
+    product.nameProduct= this.myControl.value!
     this.myControl.setValue(' ');
     this.router.navigate(['/product'], {queryParams: {name: product.nameProduct.replace(' ', '-')}});
 
@@ -65,7 +65,7 @@ export class HeaderComponent implements OnInit {
 
   displayFn(item: any): string {
     if (item == undefined) { return '';}
-    return item.nameProduct;
+    return item;
   }
 
   _filter(myproduct: string): string[] {

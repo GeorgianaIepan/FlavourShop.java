@@ -5,14 +5,16 @@
   margin-left: auto;
 }
 
-.row {
+.main-col{
+  padding-left: 50px;
 }
 
-.col1 {
-  padding: 50px;
+.col {
+  padding-top: 50px;
+  padding-bottom: 20px;
   height: 400px;
   background-color: #ffeaf7;
-  opacity: 0.6;
+  opacity: 0.9;
   color: #6e0940;
   margin-top: 20px;
   text-align: center;
@@ -20,33 +22,6 @@
   font-size: 20px;
   float: left;
   width: 35%;
-}
-
-.col2 {
-  padding: 50px;
-  height: 400px;
-  background-color: #ffeaf7;
-  opacity: 0.6;
-  color: #6e0940;
-  margin-top: 20px;
-  //text-align: center;
-  text-decoration: none;
-  font-size: 10px;
-  width: 35%;
-}
-
-.col3 {
-  padding: 50px;
-  height: 400px;
-  background-color: #ffeaf7;
-  opacity: 0.6;
-  color: #6e0940;
-  margin-top: 20px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 20px;
-  float: right;
-  width: 30%;
 }
 
 .product-name {
@@ -74,7 +49,7 @@
   background-size: cover;
 }
 
-.button {
+.button, .buttonEdit {
   display: block;
   text-align: center;
   background: #6e0940;
@@ -83,7 +58,11 @@
   width: 160px;
   height: 45px;
   font-size: 20px;
-  line-height: 50px;
+  border: 0;
+}
+
+.buttonEdit:hover{
+  background-color: #ef2796;
 }
 
 .button:hover {
@@ -94,53 +73,82 @@ mat-card:not([class*=mat-elevation-z]) {
   box-shadow: unset !important;
 }
 
-input{
+input {
   outline: none;
   border: none;
 }
 
-.multi-selector{
+.multi-selector {
   width: max-content;
 }
 
-.select-field,.ingredients, .list{
+.select-field, .ingredients, .list {
   width: 100%;
   background-color: white;
   padding: 0.3rem;
 }
 
-.list{
+.list {
   box-shadow: 0 30px 60px #e293b3;
-  //display: none;
 }
 
-.down-arrow{
+.down-arrow {
   font-size: 1.2rem;
   display: inline-block;
   cursor: pointer;
   transition: 0.2s linear;
 }
 
-.rotate150{
-  transform: rotate(150deg) ;
+.rotate150 {
+  transform: rotate(150deg);
 }
 
-
-.ingredients{
+.ingredients {
   display: block;
   padding-left: 0;
 }
 
-.ingredients span{
+.ingredients span {
   float: right;
   font-size: 0.6rem;
   padding-top: 6px;
 }
 
-.ingredients:hover{
+.ingredients:hover {
   background-color: white;
 }
 
-.show{
+.show {
   display: block;
+}
+
+.example-button-container {
+  display: inline-block;
+  margin-right: -540%;
+}
+
+.delete-product-button {
+  margin-top: 40%;
+  margin-left: 10%;
+  background-color: #6e0940;
+  //margin-bottom: 0px;
+}
+
+.buttons {
+  display: inline-flex;
+}
+
+.add-product-button{
+  float: left;
+  margin-left: 3%;
+}
+
+.ingredient-list{
+  font-size: 15px;
+  margin-left: 10%;
+  width: 85%;
+}
+
+.ingredient-tab{
+  width: 90%;
 }
