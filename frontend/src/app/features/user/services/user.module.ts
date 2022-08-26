@@ -23,54 +23,57 @@ import { MatSelectModule } from "@angular/material/select";
 import { IngredientComponent } from "../components/ingredient/ingredient.component";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { ShoppingCartService } from "../components/shopping-cart/shopping-cart.service";
-import {ForgotPasswordComponent} from "../components/forgot-password/forgot-password.component";
-import {ResetPasswordComponent} from "../containers/reset-password/reset-password.component";
+import { ForgotPasswordComponent } from "../components/forgot-password/forgot-password.component";
+import { ResetPasswordComponent } from "../containers/reset-password/reset-password.component";
 import { StarRatingComponent } from "../components/star-rating/star-rating.component";
 import { MatTooltipModule } from "@angular/material/tooltip";
-import {MatDialogModule} from "@angular/material/dialog";
-@NgModule({
-    declarations: [
-        RegistrationFormComponent,
-        RegistrationContainerComponent,
-        ProductListComponent,
-        LoginFormComponent,
-        LoginContainerComponent,
-        EmailConfirmationComponent,
-        VerifyFailedComponent,
-        IngredientComponent,
-        ForgotPasswordComponent,
-        ResetPasswordComponent,
-        StarRatingComponent
-    ],
-    imports: [
-        CommonModule,
-        UserRoutingModule,
-        MatFormFieldModule,
-        MatIconModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        MatButtonModule,
-        HttpClientModule,
-        MatSnackBarModule,
-        MatCardModule,
-        FormsModule,
-        MatMenuModule,
-        MatSelectModule,
-        MatPaginatorModule,
-        MatDialogModule,
-        MatTooltipModule,
+import { MatDialogModule } from "@angular/material/dialog";
+import { NumberDirective } from "../directives/numbers-only.directive";
 
-    ],
-    exports: [
-        RegistrationFormComponent,
-        ResetPasswordComponent
-    ],
-    providers: [UserService, TokenInterceptor,
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: TokenInterceptor,
-            multi: true
-        }, ShoppingCartService]
+@NgModule({
+  declarations: [
+    RegistrationFormComponent,
+    RegistrationContainerComponent,
+    ProductListComponent,
+    LoginFormComponent,
+    LoginContainerComponent,
+    EmailConfirmationComponent,
+    VerifyFailedComponent,
+    IngredientComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    StarRatingComponent,
+    NumberDirective
+  ],
+  imports: [
+    CommonModule,
+    UserRoutingModule,
+    MatFormFieldModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
+    HttpClientModule,
+    MatSnackBarModule,
+    MatCardModule,
+    FormsModule,
+    MatMenuModule,
+    MatSelectModule,
+    MatPaginatorModule,
+    MatDialogModule,
+    MatTooltipModule,
+
+  ],
+  exports: [
+    RegistrationFormComponent,
+    ResetPasswordComponent
+  ],
+  providers: [UserService, TokenInterceptor,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }, ShoppingCartService]
 })
 
 export class UserModule {

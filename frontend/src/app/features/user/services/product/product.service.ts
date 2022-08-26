@@ -58,7 +58,7 @@ export class ProductService {
 
     if (!!rezFind) {
       this.products.forEach((el) => {
-        if (!!rezFind) {
+        if (!!rezFind && el.idProduct === product.idProduct) {
           console.log(el.quantityProduct);
           console.log(product.quantityProduct);
           el.quantityProduct += product.quantityProduct;

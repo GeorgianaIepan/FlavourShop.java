@@ -52,7 +52,7 @@
       </div>
 
       <div class="col">
-        <input placeholder="Enter a Quantity!" [(ngModel)]="quantities[index]">
+        <input numbersOnly placeholder="Enter a Quantity!" [(ngModel)]="quantities[index]" [pattern]="pattern" type="number" min="0">
         <label *ngIf="true" [ngClass]="'error'"> </label>
 
             <br><br>
@@ -83,7 +83,7 @@
 
 
         <div class="review" id="stars" color="stars"  *ngIf="logedin">
-          <mat-star-rating [rating]="rating"  [starCount]="5" (ratingUpdated)="onRatingChanged($event)"></mat-star-rating>
+          <mat-star-rating [rating]="rating[index]"  [starCount]="5" (ratingUpdated)="onRatingChanged($event, index)"></mat-star-rating>
         </div>
       </div>
     </div>
