@@ -20,11 +20,11 @@ import { LoginService } from "../../services/login/login.service";
 export class ProductListComponent implements OnInit {
 
   @Output() submitReview = new EventEmitter<number>();
-  rating:number = 0;
+  rating:Array<number> = [];
   ingredients: Ingredient[] = [];
   logedin: boolean = false;
   private ratingArr = [];
-
+  pattern="[0-9]*"
   products: Product[] = [];
 
   selectedProductIngredients: Array<any[]> = [];
@@ -32,6 +32,8 @@ export class ProductListComponent implements OnInit {
   pageSlice: Product[] = this.products.slice(0, 4);
 
   role: string = '';
+
+  isNumber: boolean = true;
 
   quantities: Array<number> = [];
 
@@ -52,7 +54,6 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginService.currentLoginState.subscribe(result => this.logedin = result);
-    this.getAllProducts();
     forkJoin(this.productService.getAllProducts(), this.ingredientService.getAllIngredients()).subscribe(data => {
       const [products, ingredients] = data;
       this.products = products.map(product => {
@@ -64,6 +65,7 @@ export class ProductListComponent implements OnInit {
       this.pageSlice = this.products.slice(0, 4);
       this.resetQuantities();
       this.resetIngredients();
+      this.products.map(() => this.rating.push(0))
     })
 
 
@@ -135,8 +137,8 @@ export class ProductListComponent implements OnInit {
     this.productService.addReview(review);
   }
 
-  onRatingChanged(rating: number){
-    this.rating = rating;
+  onRatingChanged(rating: number, index: number){
+    this.rating[index] = rating;
   }
 
 }
