@@ -22,12 +22,29 @@ public class ProductService {
 
     public List<ProductDTO> getAllProducts() {
         List<Product> products = productRepository.findAll();
-        return ProductConverter.convertEntitiesToDTOs(products);
+        List<ProductDTO> productDTOs = ProductConverter.convertEntitiesToDTOs(products);
+        computeRating(productDTOs);
+        return productDTOs;
     }
 
     public ProductDTO getProduct(String productName) throws SQLException {
         Product product = productRepository.findByName(productName);
-        return ProductConverter.convertFromEntityToDTO(product);
+        ProductDTO productDTO = ProductConverter.convertFromEntityToDTO(product);
+        productDTO.setRating(computeRating(product));
+        return productDTO;
+    }
+
+    public Integer computeRating(Product product){
+        Integer rating =  productRepository.findRating(product.getIdProduct());
+        if(rating == null)
+            rating = 0;
+        return rating;
+    }
+
+    public void computeRating(List<ProductDTO> product){
+        product.forEach( p-> {
+            p.setRating(productRepository.findRating(p.getIdProduct()));
+        });
     }
 
 

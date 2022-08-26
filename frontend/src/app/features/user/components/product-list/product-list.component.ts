@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {PopUpComponent} from "./pop-up/pop-up/pop-up.component";
 
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-product-list',

@@ -1,8 +1,9 @@
-
 insert into ROLE(name_role) values ('admin')
 insert into ROLE(name_role) values ('user')
 
 insert into USER_TABLE(username, name, password, id_role) values ('iepang', 'Georgiana', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 1)
+insert into USER_TABLE(username, name, password, id_role, enabled) values ('Admin123', 'Admin', '$2a$10$Vjiy4OJ4.xVAI3U6h31snuJr0nVHzU1cX4H/SzeEi2E7qr4zBvLBG', 1, 1)
+insert into USER_TABLE(username, name, password, id_role, enabled) values ('User1234', 'User', '$2a$10$O9idl6lRmSF7.41soFyzRejBQQadnrZLL1xwOJUnCIah.cl8c9V1.', 1, 2)
 
 insert into PRODUCT(PRICE_PRODUCT, NAME_PRODUCT, STOCK_PRODUCT, DESCRIPTION) values (10, 'Soap', 100, 'Flavor Soap gives sensitive skin that wonderful clean sensation it deserves. It works in harmony with the natural PH of the skin and the level of hydration to remove the sensation of "tight" skin and the discomfort caused by its drying: 100 g');
 insert into PRODUCT(PRICE_PRODUCT, NAME_PRODUCT, STOCK_PRODUCT, DESCRIPTION) values (15, 'Shower gel', 100, 'Suitable for all skin types, the shower gel leaves the skin soft, clean and hydrated, the foam transforming from a light gel texture into a super-fine foam: 500 ml');
@@ -18,9 +19,6 @@ insert into PRODUCT(PRICE_PRODUCT, NAME_PRODUCT, STOCK_PRODUCT, DESCRIPTION) val
 insert into PRODUCT(PRICE_PRODUCT, NAME_PRODUCT, STOCK_PRODUCT, DESCRIPTION) values (15, 'Lip balm', 100, 'Moisturize the lips in a single application with our new balm intensely hydrating Flavour. Apply our on-the-go lip savior for lips that feel soft and hydrated with a subtle shine. Reapply whenever you need hydration for healthy-looking lips throughout the day: 20 g');
 insert into PRODUCT(PRICE_PRODUCT, NAME_PRODUCT, STOCK_PRODUCT, DESCRIPTION) values (40, 'Body scrub', 100, 'Gently exfoliate that wonderful body with our Flavor scrub. Made with ingredients of natural origin, the creamy scrub removes dead skin cells leaving it feeling soft and smooth: 750 g');
 
-
-
-
 insert into INGREDIENT(PRICE_INGREDIENT, NAME_INGREDIENT) values (5, 'Coconut');
 insert into INGREDIENT(PRICE_INGREDIENT, NAME_INGREDIENT) values (5, 'Olive');
 insert into INGREDIENT(PRICE_INGREDIENT, NAME_INGREDIENT) values (5, 'Orange');
@@ -32,11 +30,30 @@ insert into INGREDIENT(PRICE_INGREDIENT, NAME_INGREDIENT) values (5, 'Tea tree')
 
 insert into ORDER_TABLE(ID_USER, ADDRESS) values (1, 'Str BlaBla 1');
 insert into ORDER_TABLE(ID_USER, ADDRESS) values (1, 'Str BlaBla 1');
+
 insert into ORDER_PRODUCT(ID_ORDER, ID_PRODUCT, QUANTITY_ORDER_PRODUCT) values (1, 1, 1);
 insert into ORDER_PRODUCT(ID_ORDER, ID_PRODUCT, QUANTITY_ORDER_PRODUCT) values (1, 2, 1);
 insert into ORDER_PRODUCT(ID_ORDER, ID_PRODUCT, QUANTITY_ORDER_PRODUCT) values (2, 2, 5);
-insert into REVIEW(ID_USER, ID_PRODUCT, TEXT_REVIEW, RATING) values (1, 1, 'Best Product', 5);
 
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 1, 5);
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 1, 4);
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 1, 3);
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 1, 4);
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 1, 5);
+
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 2, 5);
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 2, 4);
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 2, 3);
+
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 3, 4);
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 3, 5);
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 3, 5);
+
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 4, 4);
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 4, 3);
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 4, 4);
+
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 5, 5);
 
 
 

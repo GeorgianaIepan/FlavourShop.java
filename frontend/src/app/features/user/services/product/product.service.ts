@@ -3,7 +3,6 @@ import {BackendService} from "../../../../core/backend/backend.service";
 import {User} from "../../models/user.model";
 import {Observable} from "rxjs";
 import {Product} from "../../models/product.model";
-import {logDeprecation} from "sweetalert/typings/modules/options/deprecations";
 import {error} from "@angular/compiler-cli/src/transformers/util";
 
 import { Role } from "../../models/role.model";
