@@ -41,6 +41,19 @@ insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 1, 3);
 insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 1, 4);
 insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 1, 5);
 
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 2, 5);
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 2, 4);
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 2, 3);
+
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 3, 4);
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 3, 5);
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 3, 5);
+
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 4, 4);
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 4, 3);
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 4, 4);
+
+insert into REVIEW(ID_USER, ID_PRODUCT, RATING) values (2, 5, 5);
 
 
 
