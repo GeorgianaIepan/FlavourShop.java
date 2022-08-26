@@ -20,6 +20,8 @@ import {OrderContainerComponent} from './features/user/containers/order-containe
 import {ProductSearchedComponent} from './features/user/components/product-searched/product-searched.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatSelectModule} from "@angular/material/select";
+import { StarRatingComponent } from './features/user/components/star-rating/star-rating.component';
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 
 @NgModule({
@@ -30,24 +32,25 @@ import {MatSelectModule} from "@angular/material/select";
         ShoppingCartComponent,
         OrderComponent,
         OrderContainerComponent,
-        ProductSearchedComponent,
+        ProductSearchedComponent
             ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    CoreModule,
-    UserModule,
-    MatIconModule,
-    MatCardModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatAutocompleteModule,
-    MatInputModule,
-    FormsModule,
-    MatSelectModule,
-    MatButtonModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        CoreModule,
+        UserModule,
+        MatIconModule,
+        MatCardModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatAutocompleteModule,
+        MatInputModule,
+        FormsModule,
+        MatSelectModule,
+        MatButtonModule,
+        MatTooltipModule
+    ],
     providers: [],
   exports: [
     HeaderComponent,

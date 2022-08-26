@@ -25,6 +25,9 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { ShoppingCartService } from "../components/shopping-cart/shopping-cart.service";
 import {ForgotPasswordComponent} from "../components/forgot-password/forgot-password.component";
 import {ResetPasswordComponent} from "../containers/reset-password/reset-password.component";
+import { AppModule } from "../../../app.module";
+import { StarRatingComponent } from "../components/star-rating/star-rating.component";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 @NgModule({
     declarations: [
@@ -38,24 +41,27 @@ import {ResetPasswordComponent} from "../containers/reset-password/reset-passwor
         IngredientComponent,
         ForgotPasswordComponent,
         ResetPasswordComponent,
+        StarRatingComponent
     ],
-    imports: [
-        CommonModule,
-        UserRoutingModule,
-        MatFormFieldModule,
-        MatIconModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        MatButtonModule,
-        HttpClientModule,
-        MatSnackBarModule,
-        MatCardModule,
-        FormsModule,
-        MatMenuModule,
-        MatSelectModule,
-        MatPaginatorModule,
+  imports: [
+    CommonModule,
+    UserRoutingModule,
+    MatFormFieldModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
+    HttpClientModule,
+    MatSnackBarModule,
+    MatCardModule,
+    FormsModule,
+    MatMenuModule,
+    MatSelectModule,
+    MatPaginatorModule,
+    MatTooltipModule,
 
-    ],
+
+  ],
     exports: [
         RegistrationFormComponent,
         ResetPasswordComponent

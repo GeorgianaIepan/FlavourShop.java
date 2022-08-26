@@ -20,10 +20,11 @@ import { Review } from "../../models/review.model";
 })
 export class ProductListComponent implements OnInit {
 
-  @Output() submitReview = new EventEmitter<number>()
-
+  @Output() submitReview = new EventEmitter<number>();
+  rating:number = 0;
   ingredients: Ingredient[] = [];
   logedin: boolean = false;
+  private ratingArr = [];
 
   products: Product[] = [];
   // orderProducts: OrderProduct[] = [];
@@ -113,6 +114,10 @@ export class ProductListComponent implements OnInit {
 
   reviewSubmit(review: Review): void {
     this.productService.addReview(review);
+  }
+
+  onRatingChanged(rating: number){
+    this.rating = rating;
   }
 
 }

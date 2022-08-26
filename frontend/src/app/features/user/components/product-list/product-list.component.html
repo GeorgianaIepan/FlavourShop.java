@@ -38,20 +38,10 @@
         <div class="rate">
           <p>Rating: {{product.rating}}</p>
 
-          <div *ngFor="let i of [0,1,2,3,4]"><!-- type="radio" id="star5" name="rate" value="5"-->
+          <div class = "stars" *ngFor="let i of [0,1,2,3,4]"><!-- type="radio" id="star5" name="rate" value="5"-->
           <mat-icon *ngIf="i < product.rating">star</mat-icon>
           <mat-icon *ngIf="i >= product.rating">star_border</mat-icon>
         </div>
-
-          <!--<label for="star5" title="text">5 stars</label>
-          <input type="radio" id="star4" name="rate" value="4"/>
-          <label for="star4" title="text">4 stars</label>
-          <input type="radio" id="star3" name="rate" value="3"/>
-          <label for="star3" title="text">3 stars</label>
-          <input type="radio" id="star2" name="rate" value="2"/>
-          <label for="star2" title="text">2 stars</label>
-          <input type="radio" id="star1" name="rate" value="1"/>
-          <label for="star1" title="text">1 star</label>-->
 
         </div>
 
@@ -88,24 +78,24 @@
         </script>
       </div>
 
-
       <div class="col3">
         <img mat-card-sm-image src="{{product.imgProduct}}" alt="image not found">
 
-        <div class="review" id="stars" color="stars"  *ngIf="logedin">
-          <input type="radio" id="star6" name="review" value="5"/>
-          <label for="star6" title="text">5 stars</label>
-          <input type="radio" id="star7" name="review" value="4"/>
-          <label for="star7" title="text">4 stars</label>
-          <input type="radio" id="star8" name="review" value="3"/>
-          <label for="star8" title="text">3 stars</label>
-          <input type="radio" id="star9" name="review" value="2"/>
-          <label for="star9" title="text">2 stars</label>
-          <input type="radio" id="star10" name="review" value="1"/>
-          <label for="star10" title="text">1 star</label>
 
-          <button class="buttonReview" (click)="reviewSubmit({idProduct: product.idProduct, rating: product.rating})" type="button">Add review
-          </button>
+        <div class="review" id="stars" color="stars"  *ngIf="logedin">
+          <mat-star-rating [rating]="rating"  [starCount]="5" (ratingUpdated)="onRatingChanged($event)"></mat-star-rating>
+
+
+          <!--<div class="rating">
+            <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+            <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
+            <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+            <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+            <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+
+          </div>-->
+
+
         </div>
       </div>
     </div>
