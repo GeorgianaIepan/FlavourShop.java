@@ -34,8 +34,7 @@ import { MatTooltipModule } from "@angular/material/tooltip";
         OrderComponent,
         OrderContainerComponent,
         ProductSearchedComponent,
-        PopUpComponent,
-        StarRatingComponent
+        PopUpComponent
             ],
   imports: [
     BrowserModule,

@@ -31,6 +31,15 @@
         </mat-card-title-group>
 
         <mat-card-content class="product-description">{{product.description}}</mat-card-content>
+        <div class="rate">
+          <p>Rating: {{product.rating}}</p>
+
+          <div class = "stars" *ngFor="let i of [0,1,2,3,4]"><!-- type="radio" id="star5" name="rate" value="5"-->
+          <mat-icon *ngIf="i < product.rating">star</mat-icon>
+          <mat-icon *ngIf="i >= product.rating">star_border</mat-icon>
+        </div>
+
+        </div>
 
         <mat-card-actions>
           <div></div>
@@ -69,7 +78,7 @@
         </script>
       </div>
 
-      <div class="col3">
+      <div class="col">
         <img mat-card-sm-image src="{{product.imgProduct}}" alt="image not found">
 
 

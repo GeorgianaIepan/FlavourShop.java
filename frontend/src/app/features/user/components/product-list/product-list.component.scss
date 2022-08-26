@@ -12,7 +12,7 @@
 .col {
   padding-top: 50px;
   padding-bottom: 20px;
-  height: 400px;
+  height: 500px;
   background-color: #ffeaf7;
   opacity: 0.9;
   color: #6e0940;
@@ -153,4 +153,10 @@ input {
 
 .ingredient-tab{
   width: 90%;
+}
+
+.stars{
+  display: inline;
+  text-align: left;
+
 }
