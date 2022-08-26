@@ -48,9 +48,9 @@
 
             <br><br>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field  class="ingredient-tab" appearance="fill">
           <mat-label>Choose ingredients</mat-label>
-          <mat-select [(value)]="selectedProductIngredients[index]" multiple>
+          <mat-select class="ingredient-list" [(value)]="selectedProductIngredients[index]" multiple>
             <mat-option *ngFor="let ingredient of ingredients" [value]="ingredient">{{ ingredient.nameIngredient}}
               : {{ingredient.priceIngredient}} RON
             </mat-option>
