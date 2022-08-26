@@ -1,5 +1,5 @@
 <div class="products">
-  <mat-card class="example-card" >
+  <mat-card class="example-card" *ngFor="let product of products; index as idx">
     <div class="row">
       <div class="col1">
         <mat-card-title-group>
@@ -32,9 +32,9 @@
         </mat-form-field>
 
         <script>
-          document.querySelector('.select-field').addEventListener('click', () => {
-            document.querySelector('.list').classList.toggle('show');
-            document.querySelector('.down-arrow').classList.toggle('rotate150');
+            document.querySelector('.select-field').addEventListener('click', () => {
+              document.querySelector('.list').classList.toggle('show');
+              document.querySelector('.down-arrow').classList.toggle('rotate150');
           });
         </script>
 

@@ -19,8 +19,8 @@ public class ProductService {
         return ProductConverter.convertEntitiesToDTOs(products);
     }
 
-    public ProductDTO getProduct(String productName){
-        Product product = productRepository.findByName(productName);
-        return ProductConverter.convertFromEntityToDTO(product);
+    public List<ProductDTO> getProduct(String productName){
+        List<Product> product = productRepository.findByName('%'+productName+'%');
+        return ProductConverter.convertEntitiesToDTOs(product);
     }
 }

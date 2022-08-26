@@ -20,7 +20,7 @@ export class ProductService {
     return this.service.get(this.productsURL);
   }
 
-  getProduct(productName: string | null): Observable<Product> {
+  getProduct(productName: string | null): Observable<Product[]> {
     return this.service.get(this.oneProductURL + productName);
 }
 

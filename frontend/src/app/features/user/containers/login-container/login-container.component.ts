@@ -26,7 +26,7 @@ export class LoginContainerComponent implements OnInit {
         duration: 10000,
         panelClass: 'success-snackbar'
       })
-      setTimeout(() => this.router.navigate(["/home"]), 1000);
+      this.router.navigate(["/home"]);
     }, e => {
       this._snackBar.open(e.error.message, 'OK', {
         duration: 10000,
