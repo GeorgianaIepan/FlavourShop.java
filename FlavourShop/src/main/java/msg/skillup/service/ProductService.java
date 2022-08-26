@@ -27,11 +27,10 @@ public class ProductService {
         return productDTOs;
     }
 
-    public ProductDTO getProduct(String productName) throws SQLException {
-        Product product = productRepository.findByName(productName);
-        ProductDTO productDTO = ProductConverter.convertFromEntityToDTO(product);
-        productDTO.setRating(computeRating(product));
-        return productDTO;
+    public List<ProductDTO> getProduct(String productName) throws SQLException{
+        List<Product> product = productRepository.findByName('%'+productName+'%');
+        return ProductConverter.convertEntitiesToDTOs(product);
+
     }
 
     public Integer computeRating(Product product){
@@ -46,7 +45,6 @@ public class ProductService {
             p.setRating(productRepository.findRating(p.getIdProduct()));
         });
     }
-
 
     public byte[] getImage(Long id) throws SQLException {
 
