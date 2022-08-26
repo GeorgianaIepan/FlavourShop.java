@@ -6,6 +6,7 @@
         <mat-label>Username</mat-label>
         <input matInput formControlName="username">
         <mat-icon matSuffix>account_circle</mat-icon>
+        <mat-error *ngIf="registrationForm.controls['username'].invalid">Username must have min. length 6.</mat-error>
       </mat-form-field>
     </div>
 
@@ -14,6 +15,7 @@
         <mat-label>Name</mat-label>
         <input matInput formControlName="name">
         <mat-icon matSuffix>face</mat-icon>
+        <mat-error *ngIf="registrationForm.controls['name'].invalid">Not a valid name</mat-error>
       </mat-form-field>
     </div>
 
@@ -31,6 +33,7 @@
         <mat-label>Phone number</mat-label>
         <input matInput formControlName="phoneNumber">
         <mat-icon matSuffix> call</mat-icon>
+        <mat-error *ngIf="registrationForm.controls['phoneNumber'].invalid">Not a valid phone number</mat-error>
       </mat-form-field>
     </div>
 
@@ -39,6 +42,7 @@
         <mat-label>Password</mat-label>
         <input [type]="'password'" matInput formControlName="password">
         <mat-icon matSuffix> lock</mat-icon>
+        <mat-error  *ngIf="registrationForm.controls['password'].invalid">min. 8 characters, min. 1 uppercase and 1 lowercase letter, min 1 number</mat-error>
       </mat-form-field>
     </div>
 

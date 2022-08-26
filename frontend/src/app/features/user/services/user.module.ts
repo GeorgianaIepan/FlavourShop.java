@@ -23,6 +23,8 @@ import { MatSelectModule } from "@angular/material/select";
 import { IngredientComponent } from "../components/ingredient/ingredient.component";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { ShoppingCartService } from "../components/shopping-cart/shopping-cart.service";
+import {ForgotPasswordComponent} from "../components/forgot-password/forgot-password.component";
+import {ResetPasswordComponent} from "../containers/reset-password/reset-password.component";
 
 @NgModule({
     declarations: [
@@ -33,7 +35,9 @@ import { ShoppingCartService } from "../components/shopping-cart/shopping-cart.s
         LoginContainerComponent,
         EmailConfirmationComponent,
         VerifyFailedComponent,
-        IngredientComponent
+        IngredientComponent,
+        ForgotPasswordComponent,
+        ResetPasswordComponent,
     ],
     imports: [
         CommonModule,
@@ -49,10 +53,12 @@ import { ShoppingCartService } from "../components/shopping-cart/shopping-cart.s
         FormsModule,
         MatMenuModule,
         MatSelectModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+
     ],
     exports: [
-        RegistrationFormComponent
+        RegistrationFormComponent,
+        ResetPasswordComponent
     ],
     providers: [UserService, TokenInterceptor,
         {

@@ -2,12 +2,24 @@
   <button mat-button class="button" [matMenuTriggerFor]="menu">Sort
     <mat-icon>keyboard_arrow_down</mat-icon>
   </button>
-  <mat-menu class="sort" #menu="matMenu">
-    <button mat-menu-item (click)="sortProduct('asc', 'price')">Ascending by Price</button>
-    <button mat-menu-item (click)="sortProduct('desc', 'price')">Descending by Price</button>
-    <button mat-menu-item (click)="sortProduct('asc', 'name')">Ascending by Name</button>
-    <button mat-menu-item (click)="sortProduct('desc', 'name')">Descending by Name</button>
-  </mat-menu>
+
+  <div class="sortAndEdit">
+
+    <mat-menu class="sort" #menu="matMenu">
+      <button mat-menu-item (click)="sortProduct('asc', 'price')">Ascending by Price</button>
+      <button mat-menu-item (click)="sortProduct('desc', 'price')">Descending by Price</button>
+      <button mat-menu-item (click)="sortProduct('asc', 'name')">Ascending by Name</button>
+      <button mat-menu-item (click)="sortProduct('desc', 'name')">Descending by Name</button>
+    </mat-menu>
+
+    <button class="buttonEdit" *ngIf="role === 'admin';" color="primary" type="submit">
+      <!--(click)="editProduct(product)"-->
+      Edit products
+      <a routerLink="/editProduct"></a>
+    </button>
+
+  </div>
+
 
   <mat-card class="example-card" *ngFor="let product of pageSlice; index as idx">
     <div class="row">
@@ -36,7 +48,7 @@
 
         <mat-card-actions>
           <div></div>
-          <button class="button" *ngIf="product.quantityProduct >= 0; " mat-raised-button mat-button color="primary"
+          <button class="button" *ngIf="product.quantityProduct >= 0; " color="primary"
                   type="submit" (click)="addProduct(product)">
             Add to cart
             <a href="/ingredients"></a>
@@ -98,6 +110,7 @@
 
 
 
+        <img mat-card-sm-image src="{{product.imgProduct}}" alt="image not found">
       </div>
     </div>
   </mat-card>

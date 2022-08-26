@@ -13,5 +13,6 @@ public class ProductDTO {
     private Integer quantityProduct;
     private Double rating;
     private String description;
+    private String imgProduct;
     private List<IngredientDTO> ingredients;
 }

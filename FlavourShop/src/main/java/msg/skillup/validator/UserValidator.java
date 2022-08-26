@@ -1,6 +1,5 @@
 package msg.skillup.validator;
 
-import msg.skillup.exception.BusinessException;
 import msg.skillup.model.User;
 import msg.skillup.repository.ProductRepository;
 import msg.skillup.repository.UserRepository;
@@ -33,4 +32,18 @@ public class UserValidator implements Validator<User> {
         }
         return errorList;
     }
+
+    @Override
+    public String validatePassword(User user, String password) {
+        if(password.matches(regexPassword))
+        {
+            user.setPassword(passwordEncoder.encode(password));
+            return null;
+        }
+        else {
+            return "password must contain minimum eight characters, at least one uppercase letter, one lowercase letter and one number:";
+        }
+    }
+
+
 }
