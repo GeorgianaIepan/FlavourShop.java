@@ -70,7 +70,7 @@
   background-size: cover;
 }
 
-.button {
+.button, .buttonEdit {
   display: block;
   text-align: center;
   background: #6e0940;
@@ -80,6 +80,11 @@
   height: 45px;
   font-size: 20px;
   line-height: 50px;
+}
+
+
+.buttonEdit:hover{
+  background-color: #ef2796;
 }
 
 .button:hover {

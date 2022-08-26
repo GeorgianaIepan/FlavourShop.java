@@ -1,17 +1,23 @@
 package msg.skillup.controller;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+
 import lombok.val;
 import msg.skillup.configuration.JWTokenCreator;
-import msg.skillup.dto.EmailConfirmationDTO;
-import msg.skillup.dto.ForgotPasswordDTO;
-import msg.skillup.dto.TokenRespDTO;
-import msg.skillup.dto.UserDTO;
+import msg.skillup.converter.RoleConverter;
+import msg.skillup.dto.*;
 import msg.skillup.exception.BusinessException;
+import msg.skillup.model.Role;
 import msg.skillup.model.User;
 import msg.skillup.service.UserService;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -57,20 +63,20 @@ public class UserController {
     }
 
     @GetMapping("/user/role")
-    public ResponseEntity<String> roleUser(@RequestHeader("Authorization") String token){
+    public ResponseEntity<RoleDTO> roleUser(@RequestHeader("Authorization") String token){
         String jwtToken= token.substring(17);
         jwtToken = jwtToken.substring(0,jwtToken.length()-2);
-        String role = null;
+        Role role = null;
         try {
-            role = userService.getUserFromUsername(jwTokenCreator.getUsernameFromToken(jwtToken)).getRole().getNameRole();
-            return ResponseEntity.ok(role);
+            role = userService.getUserFromUsername(jwTokenCreator.getUsernameFromToken(jwtToken)).getRole();
+            return ResponseEntity.ok(RoleConverter.convertFromEntityToDTO(role));
         } catch (BusinessException businessException) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, businessException.getMessage());
         }
     }
 
     @GetMapping("/reset")
-    public ResponseEntity<String> resetPassword(@Param("user") String username) throws MessagingException, UnsupportedEncodingException {
+    public ResponseEntity<String> resetPassword(@Param("username") String username) throws MessagingException, UnsupportedEncodingException {
         try {
             userService.sendResetEmail(username);
             return new ResponseEntity<>(HttpStatus.OK);

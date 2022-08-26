@@ -1,6 +1,5 @@
 package msg.skillup.validator;
 
-import msg.skillup.exception.BusinessException;
 import msg.skillup.model.User;
 import msg.skillup.repository.ProductRepository;
 import msg.skillup.repository.UserRepository;
@@ -38,7 +37,7 @@ public class UserValidator implements Validator<User> {
     public String validatePassword(User user, String password) {
         if(password.matches(regexPassword))
         {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setPassword(passwordEncoder.encode(password));
             return null;
         }
         else {

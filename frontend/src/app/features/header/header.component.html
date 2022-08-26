@@ -1,15 +1,15 @@
 <div>
   <nav>
     <div class="header">
-      <a href = "/home" alt="refresh"></a>
+      <a href="/home" alt="refresh"></a>
       <img src="../../../assets/images/LogoFlavourShop.png" alt="Logo">
 
       <form class="searchbar-form">
         <mat-form-field class="searchbar" appearance="outline">
 <!--          <mat-label>Product Name</mat-label>-->
           <div class="searchbar-div" >
-            <input placeholder="Product Name" type="text" #nameProduct matInput [formControl]="myControl" [matAutocomplete]="auto"/>
-            <button color="primary" mat-icon-button (click)="clickedFn()" [routerLink]="['/product', nameProduct.value]" >
+            <input placeholder="Product Name" type="text" #nameProduct name="nameProduct" matInput [formControl]="myControl" [matAutocomplete]="auto"/>
+            <button color="primary" mat-icon-button (click)="clickedFn()" >
               <mat-icon>search</mat-icon>
             </button>
 
@@ -25,28 +25,25 @@
 
 
       <button class="button"
-              color="Home"><a routerLink="/home"> Home</a>
+              color="Home" ><a routerLink="/home" > Home</a>
       </button>
 
       <button class="button"
-              color="Products"><a routerLink="/products"> Products</a>
+               color="Products"><a routerLink="/products">Products</a>
       </button>
 
       <button class="button"
-              color="Login" *ngIf="!logedin"><a routerLink="/login">Login</a>
+               color="Login" *ngIf="!logedin"><a routerLink="/login">Login</a>
       </button>
 
+
       <button class="button"
-              color="Register" *ngIf="!logedin"><a routerLink="/registration"> Register</a>
+               color="Register" *ngIf="!logedin"><a routerLink="/registration"> Register</a>
       </button>
 
       <button class="button" id="logout"
               color="Logout" (click)="logout()" *ngIf="logedin">Logout
       </button>
-
-      <!--<button class="button"
-              color="Shopping_cart" *ngIf="logedin"><a routerLink="/shopping-cart"> <mat-icon>shopping_cart</mat-icon></a>
-      </button>-->
 
       <button type="button" class="icon-button" color="Shopping_cart" *ngIf="logedin"><a routerLink="/shopping-cart"><mat-icon>shopping_cart</mat-icon></a>
         <span class="icon-button__badge">{{ shoppingCartItemsNumber }}</span>
@@ -54,7 +51,6 @@
       </button>
 
     </div>
-
-
   </nav>
 </div>
+
