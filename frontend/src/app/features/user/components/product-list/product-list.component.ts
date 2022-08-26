@@ -1,12 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ProductService } from "../../services/product/product.service";
-import { Product } from "../../models/product.model";
-import { Ingredient } from "../../models/ingredient.model";
-import { IngredientService } from "../../services/ingredient/ingredient.service";
-import { PageEvent } from "@angular/material/paginator";
-import { ShoppingCartService } from "../shopping-cart/shopping-cart.service";
-import { environment } from "../../../../../environments/environment";
-import { Router } from "@angular/router";
+import {Component, Input, OnInit} from '@angular/core';
+import {ProductService} from "../../services/product/product.service";
+import {Product} from "../../models/product.model";
+import {Ingredient} from "../../models/ingredient.model";
+import {IngredientService} from "../../services/ingredient/ingredient.service";
+import {PageEvent} from "@angular/material/paginator";
+import {ShoppingCartService} from "../shopping-cart/shopping-cart.service";
+import {environment} from "../../../../../environments/environment";
+import {Router} from "@angular/router";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-product-list',
@@ -17,6 +18,8 @@ export class ProductListComponent implements OnInit {
   ingredients: Ingredient[] = [];
 
   products: Product[] = [];
+  // orderProducts: OrderProduct[] = [];
+  // OrderProduct list!!!
 
   selectedProductIngredients: Ingredient[] = [];
 
@@ -32,7 +35,7 @@ export class ProductListComponent implements OnInit {
 
       console.log('result', result),
         this.products = result.map(product => {
-          return { ...product, quantityProduct: 1 }
+          return {...product, quantityProduct: 1}
         });
       this.pageSlice = this.products.slice(0, 4);
 
@@ -42,8 +45,12 @@ export class ProductListComponent implements OnInit {
 
       console.log('result', result),
         this.ingredients = result.map(ingredient => {
-          return { ...ingredient }
+          return {...ingredient}
         });
+    })
+
+    this.productService.getRole().subscribe(result => {
+      this.role = result.name;
     })
   }
 
@@ -69,6 +76,7 @@ export class ProductListComponent implements OnInit {
     this.pageSlice = this.products.slice(0, 4);
   }
 
+
   onPageChange(event: PageEvent) {
     const start = event.pageIndex * event.pageSize;
     let end = start + event.pageSize;
@@ -82,12 +90,16 @@ export class ProductListComponent implements OnInit {
     console.log(this.selectedProductIngredients);
   }
 
- /* getRoleUser(): any {
-    this.productService.getRole().subscribe(result => {
-      this.role = result;
+  odSaveProduct(product: Product, image: any) {
+    this.productService.save(product, image).subscribe(result => {
+        console.log(result);
+      },
+      error => console.log(error))
+  }
 
-      return result;
-    })
+  onDeleteProduct(id: number) {
+    this.productService.delete(id).subscribe(result => console.log(result),
+      error => console.log(error))
+  }
 
-  }*/
 }
