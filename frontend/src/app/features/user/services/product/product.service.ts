@@ -17,7 +17,7 @@ export class ProductService {
   roleURL = 'http://localhost:8080/user/role';
   oneProductURL = 'http://localhost:8080/products/';
   saveProductURL = 'http://localhost:8080/product/save';
-  deleteProduct = 'http://localhost:8080/product/delete/{id}';
+  deleteProduct = 'http://localhost:8080/product/delete/';
 
   constructor(private service: BackendService) {
   }
@@ -30,8 +30,8 @@ export class ProductService {
     return this.service.get(this.oneProductURL + productName);
 }
 
-  save(product: Product, image: any) {
-    return this.service.post(this.saveProductURL, product, image);
+  save(formData: FormData) {
+    return this.service.post(this.saveProductURL, formData);
   }
 
   addToCart(product: Product) {
@@ -80,7 +80,7 @@ export class ProductService {
     return this.service.get(this.roleURL);
   }
   delete(id: number) {
-    return this.service.delete(this.deleteProduct, id);
+    return this.service.delete(this.deleteProduct + id);
   }
 
 }

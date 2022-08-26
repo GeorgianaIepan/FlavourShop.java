@@ -13,7 +13,7 @@
   padding-top: 50px;
   height: 400px;
   background-color: #ffeaf7;
-  opacity: 0.8;
+  opacity: 0.6;
   color: #6e0940;
   margin-top: 20px;
   text-align: center;
@@ -119,4 +119,25 @@ input {
 
 .show {
   display: block;
+}
+
+.example-button-container {
+  display: inline-block;
+  margin-right: -540%;
+}
+
+.delete-product-button > button {
+  margin-top: 60%;
+  margin-left: 10%;
+  background-color: #6e0940;
+
+}
+
+.buttons {
+  display: inline-flex;
+}
+
+.add-product-button{
+  float: left;
+
 }

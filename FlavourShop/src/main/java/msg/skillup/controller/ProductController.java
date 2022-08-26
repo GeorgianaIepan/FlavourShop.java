@@ -52,6 +52,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.getProduct(name));
     }
 
+
     @GetMapping(value = "/image/{id}")
     public ResponseEntity<byte[]> getProductImage(@PathVariable Long id) throws SQLException {
         byte[] product = productService.getImage(id);

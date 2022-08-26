@@ -20,6 +20,7 @@ import {OrderContainerComponent} from './features/user/containers/order-containe
 import {ProductSearchedComponent} from './features/user/components/product-searched/product-searched.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatSelectModule} from "@angular/material/select";
+import { PopUpComponent } from './features/user/components/product-list/pop-up/pop-up/pop-up.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import {MatSelectModule} from "@angular/material/select";
         OrderComponent,
         OrderContainerComponent,
         ProductSearchedComponent,
+        PopUpComponent,
             ],
   imports: [
     BrowserModule,
