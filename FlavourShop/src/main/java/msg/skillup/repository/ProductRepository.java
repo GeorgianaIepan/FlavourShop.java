@@ -16,7 +16,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     Product findByName(@Param("productName") String productName);
 
     @Query("SELECT AVG(r.rating) FROM Review r WHERE r.product.idProduct= :productId")
-    Double findRating(@Param("productId") Long productId);
+    Integer findRating(@Param("productId") Long productId);
 
 }
 
