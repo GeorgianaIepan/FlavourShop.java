@@ -53,13 +53,7 @@ export class HeaderComponent implements OnInit {
     product.nameProduct= this.myControl.value!// as Product;
     this.myControl.setValue(' ');
     this.router.navigate(['/product'], {queryParams: {name: product.nameProduct.replace(' ', '-')}});
-    // this.filteredOptions = this.myControl.valueChanges.pipe(
-    //   startWith(''),
-    //   map(value => {
-    //     const name = typeof value === 'string' ? value : value?.nameProduct;
-    //     return name ? this._filter(name as string) : this.options.slice();
-    //   }),
-    // );
+
   }
 
   logout(): void {

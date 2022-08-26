@@ -5,11 +5,15 @@
   margin-left: auto;
 }
 
-.col1 {
+.main-col{
   padding: 50px;
+}
+
+.col {
+  padding-top: 50px;
   height: 400px;
   background-color: #ffeaf7;
-  opacity: 0.6;
+  opacity: 0.8;
   color: #6e0940;
   margin-top: 20px;
   text-align: center;
@@ -17,32 +21,6 @@
   font-size: 20px;
   float: left;
   width: 35%;
-}
-
-.col2 {
-  padding: 50px;
-  height: 400px;
-  background-color: #ffeaf7;
-  opacity: 0.6;
-  color: #6e0940;
-  margin-top: 20px;
-  text-decoration: none;
-  font-size: 10px;
-  width: 35%;
-}
-
-.col3 {
-  padding: 50px;
-  height: 400px;
-  background-color: #ffeaf7;
-  opacity: 0.6;
-  color: #6e0940;
-  margin-top: 20px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 20px;
-  float: right;
-  width: 30%;
 }
 
 .product-name {

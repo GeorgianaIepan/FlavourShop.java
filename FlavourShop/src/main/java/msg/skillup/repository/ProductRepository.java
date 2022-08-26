@@ -6,10 +6,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.sql.Blob;
-import java.util.Optional;
-
-@Repository
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
