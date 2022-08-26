@@ -45,8 +45,11 @@ export class ProductService {
       let result
       if(!!el.ingredients) {
          result = el.ingredients.every(function (element) {
-          let ingredientsNames = product.ingredients.map(el => el.nameIngredient);
-          return ingredientsNames.includes(element.nameIngredient);
+           if(!!product.ingredients) {
+             let ingredientsNames = product.ingredients.map(el => el.nameIngredient);
+             return ingredientsNames.includes(element.nameIngredient);
+           }
+           return false
         });
       }else{
         result = el.ingredients === product.ingredients
