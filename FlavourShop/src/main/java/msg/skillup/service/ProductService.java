@@ -34,10 +34,10 @@ public class ProductService {
         return productDTO;
     }
 
-    public Double computeRating(Product product){
-        Double rating =  productRepository.findRating(product.getIdProduct());
+    public Integer computeRating(Product product){
+        Integer rating =  productRepository.findRating(product.getIdProduct());
         if(rating == null)
-            rating = 0D;
+            rating = 0;
         return rating;
     }
 
