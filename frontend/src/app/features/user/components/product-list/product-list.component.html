@@ -1,7 +1,13 @@
 <div class="products">
-  <button mat-button class="button" [matMenuTriggerFor]="menu">Sort
-    <mat-icon>keyboard_arrow_down</mat-icon>
-  </button>
+  <div class="buttons">
+    <button mat-button class="sort-button button" [matMenuTriggerFor]="menu">Sort
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <button mat-button class="add-product-button button" *ngIf="role === 'admin';" (click)="openDialog()">
+      Add Product
+    </button>
+  </div>
+
 
   <div class="sortAndEdit">
 
@@ -12,63 +18,48 @@
       <button mat-menu-item (click)="sortProduct('desc', 'name')">Descending by Name</button>
     </mat-menu>
 
-    <button class="buttonEdit" *ngIf="role === 'admin';" color="primary" type="submit">
-      <!--(click)="editProduct(product)"-->
-      Edit products
-      <a routerLink="/editProduct"></a>
-    </button>
-
   </div>
 
 
-  <mat-card class="example-card" *ngFor="let product of pageSlice; index as idx">
-    <div class="row">
+  <mat-card class="example-card" *ngFor="let product of pageSlice; let index = index">
+        <div class="row">
 
-      <div class="col1">
+      <div class="col main-col">
         <mat-card-title-group>
           <mat-card-title class="product-name">{{product.nameProduct}}</mat-card-title>
-
           <mat-card-subtitle class="product-price">Price: {{product.priceProduct}} RON</mat-card-subtitle>
         </mat-card-title-group>
 
-
-
-
         <mat-card-content class="product-description">{{product.description}}</mat-card-content>
-        <div class="rate">
-          <p>Rating: {{product.rating}}</p>
-
-          <div class = "stars" *ngFor="let i of [0,1,2,3,4]"><!-- type="radio" id="star5" name="rate" value="5"-->
-          <mat-icon *ngIf="i < product.rating">star</mat-icon>
-          <mat-icon *ngIf="i >= product.rating">star_border</mat-icon>
-        </div>
-
-        </div>
 
         <mat-card-actions>
           <div></div>
           <button class="button" *ngIf="product.quantityProduct >= 0; " color="primary"
-                  type="submit" (click)="addProduct(product)">
+                  type="submit" (click)="addProduct(product, index)">
             Add to cart
             <a href="/ingredients"></a>
           </button>
         </mat-card-actions>
       </div>
 
-      <div class="col2">
-        <input placeholder="Enter a Quantity!" [(ngModel)]="product.quantityProduct">
+      <div class="col">
+        <input placeholder="Enter a Quantity!" [(ngModel)]="quantities[index]">
         <label *ngIf="true" [ngClass]="'error'"> </label>
 
-        <br><br>
+            <br><br>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field  class="ingredient-tab" appearance="fill">
           <mat-label>Choose ingredients</mat-label>
-          <mat-select [(ngModel)]="product.ingredients" multiple (selectionChange)="onSelectionChange()">
+          <mat-select class="ingredient-list" [(value)]="selectedProductIngredients[index]" multiple>
             <mat-option *ngFor="let ingredient of ingredients" [value]="ingredient">{{ ingredient.nameIngredient}}
               : {{ingredient.priceIngredient}} RON
             </mat-option>
           </mat-select>
         </mat-form-field>
+
+        <button class="delete-product-button" mat-fab color="primary" (click)="onDeleteProduct(product.idProduct)">
+          <mat-icon>delete</mat-icon>
+        </button>
 
         <script>
           document.querySelector('.select-field').addEventListener('click', () => {
@@ -84,18 +75,6 @@
 
         <div class="review" id="stars" color="stars"  *ngIf="logedin">
           <mat-star-rating [rating]="rating"  [starCount]="5" (ratingUpdated)="onRatingChanged($event)"></mat-star-rating>
-
-
-          <!--<div class="rating">
-            <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
-            <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
-            <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
-            <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
-            <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
-
-          </div>-->
-
-
         </div>
       </div>
     </div>

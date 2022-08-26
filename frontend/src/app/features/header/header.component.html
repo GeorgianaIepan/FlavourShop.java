@@ -6,7 +6,6 @@
 
       <form class="searchbar-form">
         <mat-form-field class="searchbar" appearance="outline">
-<!--          <mat-label>Product Name</mat-label>-->
           <div class="searchbar-div" >
             <input placeholder="Product Name" type="text" #nameProduct name="nameProduct" matInput [formControl]="myControl" [matAutocomplete]="auto"/>
             <button color="primary" mat-icon-button (click)="clickedFn()" >
@@ -16,7 +15,7 @@
           </div>
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
             <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option.nameProduct}}
+              {{option}}
             </mat-option>
           </mat-autocomplete>
 

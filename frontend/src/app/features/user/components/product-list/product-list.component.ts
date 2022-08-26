@@ -1,18 +1,17 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import {ProductService} from "../../services/product/product.service";
-import {Product} from "../../models/product.model";
-import {Ingredient} from "../../models/ingredient.model";
-import {IngredientService} from "../../services/ingredient/ingredient.service";
-import {PageEvent} from "@angular/material/paginator";
-import {ShoppingCartService} from "../shopping-cart/shopping-cart.service";
-import {environment} from "../../../../../environments/environment";
-import {Router} from "@angular/router";
-import {error} from "@angular/compiler-cli/src/transformers/util";
-import {logDeprecation} from "sweetalert/typings/modules/options/deprecations";
-import { LoginService } from "../../services/login/login.service";
-import { Order } from "../../models/order.model";
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ProductService } from "../../services/product/product.service";
+import { Product } from "../../models/product.model";
+import { Ingredient } from "../../models/ingredient.model";
+import { IngredientService } from "../../services/ingredient/ingredient.service";
+import { PageEvent } from "@angular/material/paginator";
+import { ShoppingCartService } from "../shopping-cart/shopping-cart.service";
+import { Router } from "@angular/router";
+import { FormBuilder } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
+import { forkJoin } from "rxjs";
 import { Review } from "../../models/review.model";
-
+import { PopUpComponent } from "./pop-up/pop-up/pop-up.component";
+import { LoginService } from "../../services/login/login.service";
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -27,20 +26,18 @@ export class ProductListComponent implements OnInit {
   private ratingArr = [];
 
   products: Product[] = [];
-  // orderProducts: OrderProduct[] = [];
-  // OrderProduct list!!!
 
-  selectedProductIngredients: Ingredient[] = [];
+  selectedProductIngredients: Array<any[]> = [];
 
   pageSlice: Product[] = this.products.slice(0, 4);
 
   role: string = '';
 
-  constructor(private shoppingCartService: ShoppingCartService, private productService: ProductService, private ingredientService: IngredientService, private router: Router, private loginService: LoginService) {
-  }
+  quantities: Array<number> = [];
 
-  ngOnInit(): void {
-    this.loginService.currentLoginState.subscribe(result => this.logedin = result);
+  constructor(private shoppingCartService: ShoppingCartService, private productService: ProductService, private ingredientService: IngredientService, private router: Router, private dialog: MatDialog, private loginService: LoginService) {
+  }
+  getAllProducts(){
     this.productService.getAllProducts().subscribe((result: Product[]) => {
 
       console.log('result', result),
@@ -50,26 +47,42 @@ export class ProductListComponent implements OnInit {
       this.pageSlice = this.products.slice(0, 4);
 
     })
+  }
 
-    this.ingredientService.getAllIngredients().subscribe((result: Ingredient[]) => {
 
-      console.log('result', result),
-        this.ingredients = result.map(ingredient => {
-          return {...ingredient}
-        });
+  ngOnInit(): void {
+    this.loginService.currentLoginState.subscribe(result => this.logedin = result);
+    this.getAllProducts();
+    forkJoin(this.productService.getAllProducts(), this.ingredientService.getAllIngredients()).subscribe(data => {
+      const [products, ingredients] = data;
+      this.products = products.map(product => {
+        return { ...product, quantityProduct: 1 }
+      });
+      this.ingredients = ingredients.map(ingredient => {
+        return { ...ingredient }
+      });
+      this.pageSlice = this.products.slice(0, 4);
+      this.resetQuantities();
+      this.resetIngredients();
     })
+
 
     this.productService.getRole().subscribe(result => {
       this.role = result.name;
     })
   }
 
-  addProduct(product: Product): void {
+  addProduct(product: Product, index: number): void {
     if (localStorage.getItem('token') === null) {
       this.router.navigate(["/login"]);
     } else {
-      this.productService.addToCart(product);
-      this.shoppingCartService.setCartItemsNumber(this.shoppingCartService.cartItemsNumber + Number.parseInt(product.quantityProduct.toString()));
+      const productCopy = {...product};
+      productCopy.quantityProduct = +this.quantities[index];
+      productCopy.ingredients = this.selectedProductIngredients[index];
+      this.productService.addToCart(productCopy);
+      this.shoppingCartService.setCartItemsNumber(+this.quantities[index] + this.shoppingCartService.cartItemsNumber);
+      this.resetQuantities();
+      this.resetIngredients();
     }
   }
 
@@ -96,20 +109,26 @@ export class ProductListComponent implements OnInit {
     this.pageSlice = this.products.slice(start, end);
   }
 
-  onSelectionChange(): void {
-    console.log(this.selectedProductIngredients);
+  resetIngredients() {
+    this.selectedProductIngredients = [];
+    this.selectedProductIngredients.map(() =>  this.selectedProductIngredients.push([]))
+  console.log(this.selectedProductIngredients)
   }
 
-  odSaveProduct(product: Product, image: any) {
-    this.productService.save(product, image).subscribe(result => {
-        console.log(result);
-      },
-      error => console.log(error))
+  resetQuantities() {
+    this.quantities = []
+    this.products.map(() =>  this.quantities.push(1))
+    console.log(this.quantities)
   }
 
   onDeleteProduct(id: number) {
-    this.productService.delete(id).subscribe(result => console.log(result),
+    this.productService.delete(id).subscribe(result => {console.log(result),
+        this.getAllProducts()},
       error => console.log(error))
+  }
+
+  openDialog(){
+    this.dialog.open(PopUpComponent)
   }
 
   reviewSubmit(review: Review): void {

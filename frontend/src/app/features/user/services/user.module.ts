@@ -25,10 +25,9 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { ShoppingCartService } from "../components/shopping-cart/shopping-cart.service";
 import {ForgotPasswordComponent} from "../components/forgot-password/forgot-password.component";
 import {ResetPasswordComponent} from "../containers/reset-password/reset-password.component";
-import { AppModule } from "../../../app.module";
 import { StarRatingComponent } from "../components/star-rating/star-rating.component";
 import { MatTooltipModule } from "@angular/material/tooltip";
-
+import {MatDialogModule} from "@angular/material/dialog";
 @NgModule({
     declarations: [
         RegistrationFormComponent,
@@ -43,25 +42,25 @@ import { MatTooltipModule } from "@angular/material/tooltip";
         ResetPasswordComponent,
         StarRatingComponent
     ],
-  imports: [
-    CommonModule,
-    UserRoutingModule,
-    MatFormFieldModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatButtonModule,
-    HttpClientModule,
-    MatSnackBarModule,
-    MatCardModule,
-    FormsModule,
-    MatMenuModule,
-    MatSelectModule,
-    MatPaginatorModule,
-    MatTooltipModule,
+    imports: [
+        CommonModule,
+        UserRoutingModule,
+        MatFormFieldModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatButtonModule,
+        HttpClientModule,
+        MatSnackBarModule,
+        MatCardModule,
+        FormsModule,
+        MatMenuModule,
+        MatSelectModule,
+        MatPaginatorModule,
+        MatDialogModule,
+        MatTooltipModule,
 
-
-  ],
+    ],
     exports: [
         RegistrationFormComponent,
         ResetPasswordComponent

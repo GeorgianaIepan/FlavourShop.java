@@ -17,51 +17,43 @@ export class ProductService {
 
   productsURL = 'http://localhost:8080/products/findall';
   roleURL = 'http://localhost:8080/user/role';
-  oneProductURL = 'http://localhost:8080/products/';
-  saveProductURL = 'http://localhost:8080/product/save';
-  deleteProduct = 'http://localhost:8080/product/delete/{id}';
-  ratingURL = 'http://localhost:8080/review';
 
   constructor(private service: BackendService) {
   }
+
+  oneProductURL = 'http://localhost:8080/products/';
+  saveProductURL = 'http://localhost:8080/product/save';
+  deleteProduct = 'http://localhost:8080/product/delete/';
+  ratingURL = 'http://localhost:8080/review';
+
 
   getAllProducts(): Observable<Product[]> {
     return this.service.get(this.productsURL);
   }
 
-  getProduct(productName: string | null): Observable<Product> {
+  getProduct(productName: string | null): Observable<Product[]> {
     return this.service.get(this.oneProductURL + productName);
-}
+  }
 
-  save(product: Product, image: any) {
-    return this.service.post(this.saveProductURL, product, image);
+  save(formData: FormData) {
+    return this.service.post(this.saveProductURL, formData);
   }
 
   addToCart(product: Product) {
-    this.products.push(product);
-  }
-
-  /*addToCart2(product: Product) {
     const rezFind: undefined | Product = this.products.find(el => {
-      let ok: boolean = true;
-      console.log("here")
-      console.log(el);
-      // if(el.ingredients !== null && product.ingredients !== null){
-      //   el.ingredients.forEach(i => {
-      //     if(product.ingredients.includes(i)=== false){
-      //       ok = false;
-      //     }
-      //   })
-      //   if(el.ingredients.length !== product.ingredients.length){
-      //     ok = false;
-      //   }
-      // }
-      // if(el.ingredients === null && product.ingredients !== null)
-      //   ok = false;
-      // if(el.ingredients !== null && product.ingredients === null)
-      //   ok = false;
-
-      return product.idProduct === el.idProduct;
+      let result
+      if(!!el.ingredients) {
+         result = el.ingredients.every(function (element) {
+           if(!!product.ingredients) {
+             let ingredientsNames = product.ingredients.map(el => el.nameIngredient);
+             return ingredientsNames.includes(element.nameIngredient);
+           }
+           return false
+        });
+      }else{
+        result = el.ingredients === product.ingredients
+      }
+      return product.idProduct === el.idProduct && result;
     });
 
     if (!!rezFind) {
@@ -69,21 +61,21 @@ export class ProductService {
         if (!!rezFind) {
           console.log(el.quantityProduct);
           console.log(product.quantityProduct);
-          el.quantityProduct = el.quantityProduct + product.quantityProduct;
+          el.quantityProduct += product.quantityProduct;
           console.log(el.quantityProduct);
         }
       });
     } else {
       this.products.push(product);
     }
-  }*/
+  }
 
   getRole(): Observable<Role> {
     console.log(this.service.get(this.roleURL))
     return this.service.get(this.roleURL);
   }
   delete(id: number) {
-    return this.service.delete(this.deleteProduct, id);
+    return this.service.delete(this.deleteProduct + id);
   }
 
   addReview(review: Review): Observable<any> {

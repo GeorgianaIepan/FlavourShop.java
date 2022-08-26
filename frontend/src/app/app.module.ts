@@ -20,6 +20,7 @@ import {OrderContainerComponent} from './features/user/containers/order-containe
 import {ProductSearchedComponent} from './features/user/components/product-searched/product-searched.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatSelectModule} from "@angular/material/select";
+import { PopUpComponent } from './features/user/components/product-list/pop-up/pop-up/pop-up.component';
 import { StarRatingComponent } from './features/user/components/star-rating/star-rating.component';
 import { MatTooltipModule } from "@angular/material/tooltip";
 
@@ -32,25 +33,27 @@ import { MatTooltipModule } from "@angular/material/tooltip";
         ShoppingCartComponent,
         OrderComponent,
         OrderContainerComponent,
-        ProductSearchedComponent
+        ProductSearchedComponent,
+        PopUpComponent,
+        StarRatingComponent
             ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        CoreModule,
-        UserModule,
-        MatIconModule,
-        MatCardModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatAutocompleteModule,
-        MatInputModule,
-        FormsModule,
-        MatSelectModule,
-        MatButtonModule,
-        MatTooltipModule
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    CoreModule,
+    UserModule,
+    MatIconModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    FormsModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatTooltipModule
+  ],
     providers: [],
   exports: [
     HeaderComponent,
