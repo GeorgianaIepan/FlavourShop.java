@@ -2,17 +2,21 @@ package msg.skillup.converter;
 
 import msg.skillup.dto.ProductDTO;
 import msg.skillup.model.Product;
+import msg.skillup.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ProductConverter {
+
     public static ProductDTO convertFromEntityToDTO(Product product) {
         ProductDTO productDTO = new ProductDTO();
         productDTO.setIdProduct(product.getIdProduct());
         productDTO.setNameProduct(product.getNameProduct());
         productDTO.setPriceProduct(product.getPriceProduct());
         productDTO.setDescription(product.getDescription());
-        productDTO.setRating(productDTO.getRating());
         return productDTO;
     }
 

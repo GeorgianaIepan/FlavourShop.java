@@ -21,9 +21,6 @@ public class Review {
     @JoinColumn(name = "ID_PRODUCT")
     private Product product;
 
-    @Column(name = "TEXT_REVIEW")
-    private String textReview;
-
     @Column(name = "RATING")
     private Integer rating;
 }

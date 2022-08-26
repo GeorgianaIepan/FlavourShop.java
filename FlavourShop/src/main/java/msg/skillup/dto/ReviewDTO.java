@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class ReviewDTO {
     private Long idReview;
-    private String textReview;
+    private Long idProduct;
     private Integer rating;
 }
