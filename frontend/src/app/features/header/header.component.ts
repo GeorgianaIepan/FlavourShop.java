@@ -16,9 +16,9 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 export class HeaderComponent implements OnInit {
 
   logedin: boolean = false;
-  myControl = new FormControl<string | Product>('');
-  options: Product[] = [];
-  filteredOptions: Observable<Product[]> | undefined;
+  myControl = new FormControl<string>('');
+  options: string[] = [];
+  filteredOptions: Observable<string[]> | undefined;
   shoppingCartItemsNumber = 0;
   nameProduct: string = '';
 
@@ -30,13 +30,14 @@ export class HeaderComponent implements OnInit {
     this.productService.getAllProducts().subscribe((result: Product[]) => {
 
       this.options = result.map(product => {
-          return {...product}
+          return product.nameProduct
         });
 
       this.filteredOptions = this.myControl.valueChanges.pipe(
         startWith(''),
         map(value => {
-          const name = typeof value === 'string' ? value : value?.nameProduct;
+          // const name = typeof value === 'string' ? value : value?.nameProduct;
+          const name = value;
           return name ? this._filter(name as string) : this.options.slice();
         }),
       );
@@ -48,33 +49,29 @@ export class HeaderComponent implements OnInit {
   }
 
   clickedFn(): void{
-    const product: Product = this.myControl.value as Product;
+    let product = {idProduct:0, nameProduct: '', priceProduct: 0, stockProduct: '', quantityProduct: 0, imgProduct: '', ingredients: [], description:''}
+    product.nameProduct= this.myControl.value!
     this.myControl.setValue(' ');
     this.router.navigate(['/product'], {queryParams: {name: product.nameProduct.replace(' ', '-')}});
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => {
-        const name = typeof value === 'string' ? value : value?.nameProduct;
-        return name ? this._filter(name as string) : this.options.slice();
-      }),
-    );
+
   }
 
   logout(): void {
     localStorage.removeItem('token');
     this.loginService.loginState.next(false);
-    setTimeout(() => this.router.navigate(["/home"]), 1000);
+
+    this.router.navigate(["/home"]);
   }
 
   displayFn(item: any): string {
     if (item == undefined) { return '';}
-    return item.nameProduct;
+    return item;
   }
 
-  _filter(myproduct: string): Product[] {
+  _filter(myproduct: string): string[] {
     const filterValue = myproduct.toLowerCase();
 
-    return this.options.filter(option => option.nameProduct.toLowerCase().includes(filterValue));
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
 }

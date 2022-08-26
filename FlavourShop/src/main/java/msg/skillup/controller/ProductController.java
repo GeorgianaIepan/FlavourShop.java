@@ -48,7 +48,7 @@ public class ProductController {
     }
 
     @GetMapping("/products/{name}")
-    public ResponseEntity<ProductDTO> getProduct(@PathVariable String name) throws SQLException {
+    public ResponseEntity<List<ProductDTO>> getProduct(@PathVariable String name) throws SQLException {
         return ResponseEntity.ok(productService.getProduct(name));
     }
 

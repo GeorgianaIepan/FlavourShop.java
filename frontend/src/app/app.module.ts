@@ -21,6 +21,8 @@ import {ProductSearchedComponent} from './features/user/components/product-searc
 import {MatButtonModule} from "@angular/material/button";
 import {MatSelectModule} from "@angular/material/select";
 import { PopUpComponent } from './features/user/components/product-list/pop-up/pop-up/pop-up.component';
+import { StarRatingComponent } from './features/user/components/star-rating/star-rating.component';
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 
 @NgModule({
@@ -32,7 +34,7 @@ import { PopUpComponent } from './features/user/components/product-list/pop-up/p
         OrderComponent,
         OrderContainerComponent,
         ProductSearchedComponent,
-        PopUpComponent,
+        PopUpComponent
             ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ import { PopUpComponent } from './features/user/components/product-list/pop-up/p
     MatInputModule,
     FormsModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTooltipModule
   ],
     providers: [],
   exports: [

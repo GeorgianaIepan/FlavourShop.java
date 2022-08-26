@@ -5,11 +5,16 @@
   margin-left: auto;
 }
 
-.col1 {
-  padding: 50px;
-  height: 400px;
+.main-col{
+  padding-left: 50px;
+}
+
+.col {
+  padding-top: 50px;
+  padding-bottom: 20px;
+  height: 500px;
   background-color: #ffeaf7;
-  opacity: 0.6;
+  opacity: 0.9;
   color: #6e0940;
   margin-top: 20px;
   text-align: center;
@@ -17,32 +22,6 @@
   font-size: 20px;
   float: left;
   width: 35%;
-}
-
-.col2 {
-  padding: 50px;
-  height: 400px;
-  background-color: #ffeaf7;
-  opacity: 0.6;
-  color: #6e0940;
-  margin-top: 20px;
-  text-decoration: none;
-  font-size: 10px;
-  width: 35%;
-}
-
-.col3 {
-  padding: 50px;
-  height: 400px;
-  background-color: #ffeaf7;
-  opacity: 0.6;
-  color: #6e0940;
-  margin-top: 20px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 20px;
-  float: right;
-  width: 30%;
 }
 
 .product-name {
@@ -56,6 +35,7 @@
   color: #6e0940;
   font-size: 14px;
   text-align: center;
+  margin-bottom: 40px;
 }
 
 .product-description {
@@ -63,6 +43,7 @@
   font-size: 12px;
   text-align: left;
   width: 205px;
+  margin-bottom: 40px;
 }
 
 .example-header-image {
@@ -79,12 +60,10 @@
   width: 160px;
   height: 45px;
   font-size: 20px;
-  line-height: 50px;
-  margin: 5px;
+  border: 0;
 }
 
-
-.buttonEdit:hover {
+.buttonEdit:hover{
   background-color: #ef2796;
 }
 
@@ -150,11 +129,11 @@ input {
   margin-right: -540%;
 }
 
-.delete-product-button > button {
-  margin-top: 60%;
+.delete-product-button {
+  margin-top: 40%;
   margin-left: 10%;
   background-color: #6e0940;
-
+  //margin-bottom: 0px;
 }
 
 .buttons {
@@ -163,5 +142,21 @@ input {
 
 .add-product-button{
   float: left;
+  margin-left: 3%;
+}
+
+.ingredient-list{
+  font-size: 15px;
+  margin-left: 10%;
+  width: 85%;
+}
+
+.ingredient-tab{
+  width: 90%;
+}
+
+.stars{
+  display: inline;
+  text-align: left;
 
 }

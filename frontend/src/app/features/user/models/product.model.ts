@@ -9,6 +9,7 @@ export type Product = {
   imgProduct: string;
   ingredients: Ingredient[];
   quantityProduct: number;
+  rating: number;
 }
 
 
