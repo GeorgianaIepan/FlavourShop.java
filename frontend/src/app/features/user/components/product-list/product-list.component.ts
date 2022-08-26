@@ -8,7 +8,6 @@ import {ShoppingCartService} from "../shopping-cart/shopping-cart.service";
 import {environment} from "../../../../../environments/environment";
 import {Router} from "@angular/router";
 import {error} from "@angular/compiler-cli/src/transformers/util";
-import {logDeprecation} from "sweetalert/typings/modules/options/deprecations";
 
 @Component({
   selector: 'app-product-list',

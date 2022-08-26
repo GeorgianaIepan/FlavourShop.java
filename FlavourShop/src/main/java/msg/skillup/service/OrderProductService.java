@@ -53,7 +53,12 @@ public class OrderProductService {
         List<OrderProduct> orders = orderProductRepository.findAllByUserAndOrder(orderId, userId);
         List<ProductDTO> products = new ArrayList<>();
         orders.forEach(el -> {
-            ProductDTO productDTO = ProductConverter.convertFromEntityToDTO(el.getProduct());
+            ProductDTO productDTO = null;
+            try {
+                productDTO = ProductConverter.convertFromEntityToDTO(el.getProduct());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             productDTO.setQuantityProduct(el.getQuantity());
             products.add(productDTO);
         });
@@ -74,7 +79,12 @@ public class OrderProductService {
         for (Long orderId : orderMap.keySet()) {
             List<ProductDTO> products = new ArrayList<>();
             orderMap.get(orderId).forEach(el -> {
-                ProductDTO productDTO = ProductConverter.convertFromEntityToDTO(el.getProduct());
+                ProductDTO productDTO = null;
+                try {
+                    productDTO = ProductConverter.convertFromEntityToDTO(el.getProduct());
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
                 productDTO.setQuantityProduct(el.getQuantity());
                 products.add(productDTO);
             });
