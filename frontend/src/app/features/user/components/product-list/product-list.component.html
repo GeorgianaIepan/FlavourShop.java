@@ -3,7 +3,7 @@
     <button mat-button class="sort-button button" [matMenuTriggerFor]="menu">Sort
       <mat-icon>keyboard_arrow_down</mat-icon>
     </button>
-    <button mat-button class="add-product-button button" (click)="openDialog()">
+    <button mat-button class="add-product-button button" *ngIf="role === 'admin';" (click)="openDialog()">
       Add Product
     </button>
   </div>
@@ -17,12 +17,6 @@
       <button mat-menu-item (click)="sortProduct('asc', 'name')">Ascending by Name</button>
       <button mat-menu-item (click)="sortProduct('desc', 'name')">Descending by Name</button>
     </mat-menu>
-
-    <button class="buttonEdit" *ngIf="role === 'admin';" color="primary" type="submit">
-      <!--(click)="editProduct(product)"-->
-      Edit products
-      <a routerLink="/editProduct"></a>
-    </button>
 
   </div>
 
@@ -62,11 +56,13 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-        <div class="delete-product-button">
-          <button mat-fab color="primary" (click)="onDeleteProduct(product.idProduct)">
+
+<!--        <div class="delete-product-button">-->
+          <button class="delete-product-button" mat-fab color="primary" (click)="onDeleteProduct(product.idProduct)">
             <mat-icon>delete</mat-icon>
           </button>
-        </div>
+<!--        </div>-->
+
         <script>
           document.querySelector('.select-field').addEventListener('click', () => {
             document.querySelector('.list').classList.toggle('show');

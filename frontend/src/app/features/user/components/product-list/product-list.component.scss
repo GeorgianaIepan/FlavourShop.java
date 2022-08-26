@@ -6,11 +6,12 @@
 }
 
 .main-col{
-  padding: 50px;
+  padding-left: 50px;
 }
 
 .col {
   padding-top: 50px;
+  padding-bottom: 20px;
   height: 400px;
   background-color: #ffeaf7;
   opacity: 0.6;
@@ -126,11 +127,11 @@ input {
   margin-right: -540%;
 }
 
-.delete-product-button > button {
-  margin-top: 60%;
+.delete-product-button {
+  margin-top: 40%;
   margin-left: 10%;
   background-color: #6e0940;
-
+  //margin-bottom: 0px;
 }
 
 .buttons {
@@ -139,5 +140,5 @@ input {
 
 .add-product-button{
   float: left;
-
+  margin-left: 3%;
 }
