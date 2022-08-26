@@ -5,10 +5,10 @@ import {Ingredient} from "../../models/ingredient.model";
 import {IngredientService} from "../../services/ingredient/ingredient.service";
 import {PageEvent} from "@angular/material/paginator";
 import {ShoppingCartService} from "../shopping-cart/shopping-cart.service";
-import {environment} from "../../../../../environments/environment";
 import {Router} from "@angular/router";
-import {error} from "@angular/compiler-cli/src/transformers/util";
-import {logDeprecation} from "sweetalert/typings/modules/options/deprecations";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+import {PopUpComponent} from "./pop-up/pop-up/pop-up.component";
+
 
 @Component({
   selector: 'app-product-list',
@@ -28,10 +28,14 @@ export class ProductListComponent implements OnInit {
 
   role: string = '';
 
-  constructor(private shoppingCartService: ShoppingCartService, private productService: ProductService, private ingredientService: IngredientService, private router: Router) {
+  constructor(private shoppingCartService: ShoppingCartService,
+              private productService: ProductService,
+              private ingredientService: IngredientService,
+              private router: Router,
+              private dialog: MatDialog) {
   }
 
-  ngOnInit(): void {
+  getAllProducts(){
     this.productService.getAllProducts().subscribe((result: Product[]) => {
 
       console.log('result', result),
@@ -41,6 +45,11 @@ export class ProductListComponent implements OnInit {
       this.pageSlice = this.products.slice(0, 4);
 
     })
+  }
+
+  ngOnInit(): void {
+
+    this.getAllProducts();
 
     this.ingredientService.getAllIngredients().subscribe((result: Ingredient[]) => {
 
@@ -91,16 +100,14 @@ export class ProductListComponent implements OnInit {
     console.log(this.selectedProductIngredients);
   }
 
-  odSaveProduct(product: Product, image: any) {
-    this.productService.save(product, image).subscribe(result => {
-        console.log(result);
-      },
+  onDeleteProduct(id: number) {
+    this.productService.delete(id).subscribe(result => {console.log(result),
+        this.getAllProducts()},
       error => console.log(error))
   }
 
-  onDeleteProduct(id: number) {
-    this.productService.delete(id).subscribe(result => console.log(result),
-      error => console.log(error))
+  openDialog(){
+    this.dialog.open(PopUpComponent)
   }
 
 }

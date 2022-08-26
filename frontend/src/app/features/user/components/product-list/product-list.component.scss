@@ -80,10 +80,11 @@
   height: 45px;
   font-size: 20px;
   line-height: 50px;
+  margin: 5px;
 }
 
 
-.buttonEdit:hover{
+.buttonEdit:hover {
   background-color: #ef2796;
 }
 
@@ -142,4 +143,25 @@ input {
 
 .show {
   display: block;
+}
+
+.example-button-container {
+  display: inline-block;
+  margin-right: -540%;
+}
+
+.delete-product-button > button {
+  margin-top: 60%;
+  margin-left: 10%;
+  background-color: #6e0940;
+
+}
+
+.buttons {
+  display: inline-flex;
+}
+
+.add-product-button{
+  float: left;
+
 }

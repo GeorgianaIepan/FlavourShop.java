@@ -25,7 +25,7 @@ public class ProductService {
         return ProductConverter.convertEntitiesToDTOs(products);
     }
 
-    public ProductDTO getProduct(String productName){
+    public ProductDTO getProduct(String productName) throws SQLException {
         Product product = productRepository.findByName(productName);
         return ProductConverter.convertFromEntityToDTO(product);
     }
