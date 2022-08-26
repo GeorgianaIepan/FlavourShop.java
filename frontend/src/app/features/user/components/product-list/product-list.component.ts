@@ -1,14 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductService } from "../../services/product/product.service";
 import { Product } from "../../models/product.model";
 import { Ingredient } from "../../models/ingredient.model";
 import { IngredientService } from "../../services/ingredient/ingredient.service";
 import { PageEvent } from "@angular/material/paginator";
 import { ShoppingCartService } from "../shopping-cart/shopping-cart.service";
-import { environment } from "../../../../../environments/environment";
 import { Router } from "@angular/router";
-import { FormArray, FormBuilder, FormControl, FormGroup } from "@angular/forms";
-import { forkJoin } from "rxjs";
 
 @Component({
   selector: 'app-product-list',
@@ -28,11 +25,23 @@ export class ProductListComponent implements OnInit {
 
   quantities: Array<number> = [];
 
-  constructor(private fg: FormBuilder, private shoppingCartService: ShoppingCartService, private productService: ProductService, private ingredientService: IngredientService, private router: Router) {
+  constructor(private fg: FormBuilder, private shoppingCartService: ShoppingCartService, private productService: ProductService, private ingredientService: IngredientService, private router: Router, private dialog: MatDialog) {
+  }
+  getAllProducts(){
+    this.productService.getAllProducts().subscribe((result: Product[]) => {
+
+      console.log('result', result),
+        this.products = result.map(product => {
+          return {...product, quantityProduct: 1}
+        });
+      this.pageSlice = this.products.slice(0, 4);
+
+    })
   }
 
-  ngOnInit(): void {
 
+  ngOnInit(): void {
+    this.getAllProducts();
     forkJoin(this.productService.getAllProducts(), this.ingredientService.getAllIngredients()).subscribe(data => {
       const [products, ingredients] = data;
       this.products = products.map(product => {
@@ -79,6 +88,7 @@ export class ProductListComponent implements OnInit {
     this.pageSlice = this.products.slice(0, 4);
   }
 
+
   onPageChange(event: PageEvent) {
     const start = event.pageIndex * event.pageSize;
     let end = start + event.pageSize;
@@ -99,4 +109,14 @@ export class ProductListComponent implements OnInit {
     this.products.map(() =>  this.quantities.push(1))
     console.log(this.quantities)
   }
+  onDeleteProduct(id: number) {
+    this.productService.delete(id).subscribe(result => {console.log(result),
+        this.getAllProducts()},
+      error => console.log(error))
+  }
+
+  openDialog(){
+    this.dialog.open(PopUpComponent)
+  }
+
 }

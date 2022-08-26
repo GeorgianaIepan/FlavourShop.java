@@ -9,10 +9,16 @@ import java.util.stream.Collectors;
 public class ReviewConverter {
     public static ReviewDTO convertFromEntityToDTO(Review review) {
         ReviewDTO reviewDTO = new ReviewDTO();
-        reviewDTO.setIdReview(review.getIdReview());
-        reviewDTO.setTextReview(review.getTextReview());
         reviewDTO.setRating(review.getRating());
+        reviewDTO.setIdProduct(review.getProduct().getIdProduct());
         return reviewDTO;
+    }
+
+    public static Review convertFromDTOToEntity(ReviewDTO reviewDTO) {
+        Review review = new Review();
+        review.setIdReview(reviewDTO.getIdReview());
+        review.setRating(reviewDTO.getRating());
+        return review;
     }
 
     public static List<ReviewDTO> convertEntitiesToDTOs(List<Review> reviews) {

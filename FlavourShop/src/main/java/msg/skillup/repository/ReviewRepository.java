@@ -11,4 +11,5 @@ import java.util.List;
 public interface ReviewRepository extends JpaRepository<Review, Long> {
     @Query("SELECT rw from Review rw where rw.product.idProduct = :productId")
     List<Review> findAllByProduct(@Param("productId") Long productId);
+
 }

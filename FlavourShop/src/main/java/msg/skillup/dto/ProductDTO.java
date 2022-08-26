@@ -11,7 +11,8 @@ public class ProductDTO {
     private String nameProduct;
     private Integer stock;
     private Integer quantityProduct;
-    private Double rating;
+    private Integer rating;
     private String description;
+    private String imgProduct;
     private List<IngredientDTO> ingredients;
 }
