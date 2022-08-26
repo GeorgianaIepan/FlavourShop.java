@@ -6,6 +6,10 @@ import { IngredientService } from "../../services/ingredient/ingredient.service"
 import { PageEvent } from "@angular/material/paginator";
 import { ShoppingCartService } from "../shopping-cart/shopping-cart.service";
 import { Router } from "@angular/router";
+import { FormBuilder } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
+import { forkJoin } from "rxjs";
+import { PopUpComponent } from "./pop-up/pop-up/pop-up.component";
 
 @Component({
   selector: 'app-product-list',

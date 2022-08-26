@@ -23,8 +23,6 @@ export class ProductService {
   saveProductURL = 'http://localhost:8080/product/save';
   deleteProduct = 'http://localhost:8080/product/delete/';
 
-  constructor(private service: BackendService) {
-  }
 
   getAllProducts(): Observable<Product[]> {
     return this.service.get(this.productsURL);
