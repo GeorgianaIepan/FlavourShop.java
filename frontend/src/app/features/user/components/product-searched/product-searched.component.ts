@@ -14,7 +14,7 @@ import {IngredientService} from "../../services/ingredient/ingredient.service";
 export class ProductSearchedComponent implements OnInit {
 
   private nameProduct: string | null = null;
-  product: Product = {idProduct:0, nameProduct: '', priceProduct: 0, stockProduct: '', quantityProduct: 0, imgProduct: '', ingredients: [], description:''};
+  product: Product = {idProduct:0, nameProduct: '', priceProduct: 0, stockProduct: '', quantityProduct: 0, imgProduct: '', ingredients: [], description:'', rating: 0};
   ingredients: Ingredient[] = [];
 
   constructor(private productService: ProductService, private activatedRoute:ActivatedRoute, private router: Router, private _snackBar: MatSnackBar, private ingredientService: IngredientService) { }

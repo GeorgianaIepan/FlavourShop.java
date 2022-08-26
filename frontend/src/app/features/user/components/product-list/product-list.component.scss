@@ -7,7 +7,7 @@
 
 .col1 {
   padding: 50px;
-  height: 400px;
+  height: 500px;
   background-color: #ffeaf7;
   opacity: 0.6;
   color: #6e0940;
@@ -21,7 +21,7 @@
 
 .col2 {
   padding: 50px;
-  height: 400px;
+  height: 500px;
   background-color: #ffeaf7;
   opacity: 0.6;
   color: #6e0940;
@@ -33,7 +33,7 @@
 
 .col3 {
   padding: 50px;
-  height: 400px;
+  height: 500px;
   background-color: #ffeaf7;
   opacity: 0.6;
   color: #6e0940;
@@ -56,6 +56,7 @@
   color: #6e0940;
   font-size: 14px;
   text-align: center;
+  margin-bottom: 40px;
 }
 
 .product-description {
@@ -63,6 +64,7 @@
   font-size: 12px;
   text-align: left;
   width: 205px;
+  margin-bottom: 40px;
 }
 
 .example-header-image {
@@ -152,7 +154,8 @@ input {
 .rate {
   float: left;
   height: 46px;
-  padding: 0 10px;
+  margin-bottom: 30px;
+  display: block;
 }
 .rate:not(:checked) > input {
   position:absolute;
@@ -167,6 +170,7 @@ input {
   font-size:30px;
   color:#ccc;
 }
+
 .rate:not(:checked) > label:before {
   content: '★ ';
 }
@@ -201,3 +205,52 @@ input {
 .buttonReview:hover {
   background-color: #ef2796;
 }
+
+
+*{
+  margin: 0;
+  padding: 0;
+}
+.review {
+  float: left;
+  height: 46px;
+  padding: 0 15px;
+}
+.review:not(:checked) > input {
+  position:absolute;
+  top:-9999px;
+}
+.review:not(:checked) > label {
+  float:right;
+  width:1em;
+  overflow:hidden;
+  white-space:nowrap;
+  cursor:pointer;
+  font-size:30px;
+  color:#ccc;
+}
+
+.review{
+  margin-bottom: 20px;
+  display: block;
+}
+
+.review:not(:checked) > label:before {
+  content: '★ ';
+}
+.review > input:checked ~ label {
+  color: #ffc700;
+}
+.review:not(:checked) > label:hover,
+.review:not(:checked) > label:hover ~ label {
+  color: #deb217;
+}
+.review > input:checked + label:hover,
+.review > input:checked + label:hover ~ label,
+.review > input:checked ~ label:hover,
+.review > input:checked ~ label:hover ~ label,
+.review > label:hover ~ input:checked ~ label {
+  color: #c59b08;
+}
+
+

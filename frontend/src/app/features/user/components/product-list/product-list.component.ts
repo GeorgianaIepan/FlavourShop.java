@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {ProductService} from "../../services/product/product.service";
 import {Product} from "../../models/product.model";
 import {Ingredient} from "../../models/ingredient.model";
@@ -9,6 +9,9 @@ import {environment} from "../../../../../environments/environment";
 import {Router} from "@angular/router";
 import {error} from "@angular/compiler-cli/src/transformers/util";
 import {logDeprecation} from "sweetalert/typings/modules/options/deprecations";
+import { LoginService } from "../../services/login/login.service";
+import { Order } from "../../models/order.model";
+import { Review } from "../../models/review.model";
 
 @Component({
   selector: 'app-product-list',
@@ -16,7 +19,11 @@ import {logDeprecation} from "sweetalert/typings/modules/options/deprecations";
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
+
+  @Output() submitReview = new EventEmitter<number>()
+
   ingredients: Ingredient[] = [];
+  logedin: boolean = false;
 
   products: Product[] = [];
   // orderProducts: OrderProduct[] = [];
@@ -28,10 +35,11 @@ export class ProductListComponent implements OnInit {
 
   role: string = '';
 
-  constructor(private shoppingCartService: ShoppingCartService, private productService: ProductService, private ingredientService: IngredientService, private router: Router) {
+  constructor(private shoppingCartService: ShoppingCartService, private productService: ProductService, private ingredientService: IngredientService, private router: Router, private loginService: LoginService) {
   }
 
   ngOnInit(): void {
+    this.loginService.currentLoginState.subscribe(result => this.logedin = result);
     this.productService.getAllProducts().subscribe((result: Product[]) => {
 
       console.log('result', result),
@@ -101,6 +109,10 @@ export class ProductListComponent implements OnInit {
   onDeleteProduct(id: number) {
     this.productService.delete(id).subscribe(result => console.log(result),
       error => console.log(error))
+  }
+
+  reviewSubmit(review: Review): void {
+    this.productService.addReview(review);
   }
 
 }

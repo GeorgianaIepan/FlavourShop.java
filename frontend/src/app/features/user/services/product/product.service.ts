@@ -7,6 +7,8 @@ import {logDeprecation} from "sweetalert/typings/modules/options/deprecations";
 import {error} from "@angular/compiler-cli/src/transformers/util";
 
 import { Role } from "../../models/role.model";
+import { Review } from "../../models/review.model";
+import { Order } from "../../models/order.model";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +21,7 @@ export class ProductService {
   oneProductURL = 'http://localhost:8080/products/';
   saveProductURL = 'http://localhost:8080/product/save';
   deleteProduct = 'http://localhost:8080/product/delete/{id}';
+  ratingURL = 'http://localhost:8080/review';
 
   constructor(private service: BackendService) {
   }
@@ -83,5 +86,10 @@ export class ProductService {
   delete(id: number) {
     return this.service.delete(this.deleteProduct, id);
   }
+
+  addReview(review: Review): Observable<any> {
+    return this.service.post(this.ratingURL, review)
+  }
+
 
 }
