@@ -18,7 +18,7 @@ export class ProductSearchedComponent implements OnInit {
   selectedProductIngredients: Array<any[]> = [];
   quantities: Array<number> = [];
   private nameProduct: string = '';
-  products: Product[] = [{idProduct:0, nameProduct: '', priceProduct: 0, stockProduct: '', quantityProduct: 0, imgProduct: '', ingredients: [], description:'', rating: 0}];
+  products: Product[] = [{idProduct:0, nameProduct: '', priceProduct: 0, stockProduct: '', quantityProduct: 0, imgProduct: '', ingredients: [], description:'', rating: 0, noRatings: 0}];
   ingredients: Ingredient[] = [];
 
   constructor(private shoppingCartService: ShoppingCartService, private productService: ProductService, private activatedRoute:ActivatedRoute, private router: Router, private _snackBar: MatSnackBar, private ingredientService: IngredientService) { }
@@ -30,17 +30,19 @@ export class ProductSearchedComponent implements OnInit {
       if (this.nameProduct == '') {
         this.router.navigate(["/products"]);
       } else {
-        console.log(this.nameProduct, this.products);
         this.productService.getProduct(this.nameProduct).subscribe(result => {
           this.products = result.map(product => {
             return {...product, quantityProduct: 1}
           });
           // this.products.quantityProduct = 1;
           this.router.navigate(['/product'], {queryParams: {name: this.nameProduct.replace(' ', '-')}});
-        }), () => this._snackBar.open('Failed to search for this product!', 'OK', {
-          duration: 3000,
-          panelClass: 'fail-snackbar'
-        })
+        }), () => {
+            this._snackBar.open('Failed to search for this product!', 'OK', {
+            duration: 3000,
+            panelClass: 'fail-snackbar'
+            })
+            this.router.navigate(['/home']);
+        }
       }
     });
 

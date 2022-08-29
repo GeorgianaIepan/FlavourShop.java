@@ -5,53 +5,14 @@
   margin-left: auto;
 }
 
-.col1 {
+.col {
   padding: 50px;
   height: 200px;
   background-color: #e8f5e8;
-  opacity: 0.6;
   color: #423e37;
   text-align: center;
   text-decoration: none;
   font-size: 15px;
-  width: 25%;
-}
-
-.col2 {
-  padding-top: 60px;
-  padding-bottom: 40px;
-  height: 200px;
-  background-color: #e8f5e8;
-  opacity: 0.6;
-  color: #423e37;
-  text-align: center;
-  text-decoration: none;
-  font-size: 10px;
-  width: 35%;
-}
-
-.col3 {
-  padding: 50px;
-  height: 200px;
-  background-color: #e8f5e8;
-  opacity: 0.6;
-  color: #423e37;
-  text-align: center;
-  text-decoration: none;
-  font-size: 20px;
-  width: 15%;
-}
-
-.col4 {
-  padding: 50px;
-  height: 200px;
-  background-color: #e8f5e8;
-  opacity: 0.6;
-  color: #423e37;
-  text-align: center;
-  text-decoration: none;
-  font-size: 20px;
-  width: 25%;
 }
 
 mat-card:not([class*=mat-elevation-z]) {
@@ -78,6 +39,10 @@ mat-card:not([class*=mat-elevation-z]) {
   text-align: center;
 }
 
+#deleteIcon {
+  margin-top: 10px;
+}
+
 .shopping-list-price {
   color: #423e37;
   font-size: 17px;
@@ -87,18 +52,22 @@ mat-card:not([class*=mat-elevation-z]) {
 
 .button {
   background-color: #e8f5e8;
-  color: #423e37;
+  color: #78a879;
   border: none;
   text-align: center;
   text-decoration: none;
 }
 
 .button:hover {
-  color: #78a879;
+  color: #423e37;
 }
 
 .order-option {
-  font-size: 15px;
+  font-size: 17px;
+}
+
+#down, #up, #quantity {
+  font-size: 13px;
 }
 
 .total-price {
@@ -124,7 +93,6 @@ mat-card:not([class*=mat-elevation-z]) {
   font-size: 20px;
   line-height: 50px;
   color: #e8f5e8;
-  opacity: 0.6;
   background-color: #423e37;
   margin-top: 20px;
   text-decoration: none;
@@ -145,9 +113,6 @@ a {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  /*margin-right: auto;
-  margin-left: auto;
-  max-width: 1000px;*/
 
   .user-details {
     display: flex;
@@ -174,7 +139,6 @@ a {
 
     button:not(:last-child) {
       margin-right: .5rem;
-      //width: 100%;
     }
   }
 
@@ -197,7 +161,6 @@ a {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    opacity: 0.6;
   }
 
   input[type=submit]:hover {
@@ -212,11 +175,7 @@ a {
     margin-right: auto;
     margin-left: auto;
     width: 1000px;
-    opacity: 0.6;
   }
-
-
-
 }
 
 

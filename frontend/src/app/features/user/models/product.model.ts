@@ -10,6 +10,7 @@ export type Product = {
   ingredients: Ingredient[];
   quantityProduct: number;
   rating: number;
+  noRatings :number;
 }
 
 

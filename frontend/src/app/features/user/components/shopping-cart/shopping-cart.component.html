@@ -2,7 +2,7 @@
   <mat-card class="shopping-cart" *ngFor="let product of productsCart">
     <div class="row">
 
-      <div class="col1">
+      <div class="col">
         <mat-card-title-group>
           <mat-card-title class="shopping-list-name">{{product.nameProduct}}</mat-card-title>
           <mat-card-subtitle class="shopping-list-ingredients"
@@ -10,8 +10,8 @@
         </mat-card-title-group>
       </div>
 
-      <div class="col2">
-        <div class="order-option">Quantity: <span id="quantity-field">
+      <div class="col">
+        <div class="order-option">Quantity: <br><span id="quantity-field">
         <button id="down" *ngIf="product.quantityProduct > 1; " color="primary"
                 type="submit"
                 (click)="decrementQuantity(product)">-</button>
@@ -28,16 +28,16 @@
         </div>
       </div>
 
-      <div class="col3">
+      <div class="col">
         <mat-card-actions>
           <button class="button" color="primary" type="submit"
-                  (click)="deleteProductFromCart(product)">
+                  (click)="deleteProductFromCart(product)" id="deleteIcon">
             <mat-icon>delete</mat-icon>
           </button>
         </mat-card-actions>
       </div>
 
-      <div class="col4">
+      <div class="col">
         <mat-card-content class="shopping-list-price">Price: {{getPrice(product)}}</mat-card-content>
         <mat-card-content class="shopping-list-price">Total
           price: {{product.quantityProduct * getPrice(product)}}</mat-card-content>
@@ -99,7 +99,6 @@
               type="button">Submit
       </button>
 
-
       <div class="total-price">
         <p>Total price: {{getTotal()}} RON</p>
       </div>
@@ -109,7 +108,6 @@
       <button class="buttonSubmit" type="button">
         <a routerLink="/products"> Continue shopping</a>
       </button>
-
 
     </div>
   </div>
