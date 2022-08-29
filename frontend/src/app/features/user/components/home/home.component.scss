@@ -19,12 +19,12 @@ h1 {
 
 h2 {
   font-weight: 300;
-  color: #444;
+  color: #ffffff;
   font-size: 55px;
   text-transform: uppercase;
   text-align: center;
   margin-bottom: 20px;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 h3 {
@@ -88,20 +88,20 @@ header h1 {
 }
 
 header h1 .color {
-  color: #ef81c3;
+  color: #78a879;
 }
 
 #flavour-image {
   height: 580px;
   padding-top: 1px;
-  background: url('../../../../../assets/images/flavourImage.png') no-repeat center;
+  background: url('../../../../../assets/images/flavourImage.jpeg') no-repeat center;
 
 }
 
 .button-1 {
   display: block;
   text-align: center;
-  background: lightpink;
+  background: #423e37;
   border-radius: 3px;
   color: #ffffff;
   width: 180px;
@@ -112,7 +112,7 @@ header h1 .color {
 }
 
 .button-1:hover {
-  background-color: #ef2796;
+  background-color: #78a879;
   color: #ffffff;
 }
 
@@ -141,7 +141,7 @@ header h1 .color {
 
 footer {
   padding: 60px 0;
-  background-color: #ead5d6;
+  background-color: #e8f5e8;
 }
 
 #footer-info p {
@@ -158,7 +158,7 @@ img {
   border-radius: 50%;
   opacity: 0.5;
   filter: alpha(opacity=40);
-  border: 1px solid #6e0940;
+  border: 1px solid #423e37;
   -webkit-transition: all 0.5s linear;
   -moz-transition: all 0.5s linear;
   transition: all 0.5s linear;

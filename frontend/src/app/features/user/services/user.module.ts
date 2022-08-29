@@ -25,7 +25,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { ShoppingCartService } from "../components/shopping-cart/shopping-cart.service";
 import { ForgotPasswordComponent } from "../components/forgot-password/forgot-password.component";
 import { ResetPasswordComponent } from "../containers/reset-password/reset-password.component";
-import { StarRatingComponent } from "../components/star-rating/star-rating.component";
+import { StarRatingComponent } from "../components/product-list/star-rating/star-rating.component";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatDialogModule } from "@angular/material/dialog";
 import { NumberDirective } from "../directives/numbers-only.directive";
@@ -64,10 +64,11 @@ import { NumberDirective } from "../directives/numbers-only.directive";
     MatTooltipModule,
 
   ],
-  exports: [
-    RegistrationFormComponent,
-    ResetPasswordComponent
-  ],
+    exports: [
+        RegistrationFormComponent,
+        ResetPasswordComponent,
+        NumberDirective
+    ],
   providers: [UserService, TokenInterceptor,
     {
       provide: HTTP_INTERCEPTORS,

@@ -12,6 +12,14 @@ import { forkJoin } from "rxjs";
 import { Review } from "../../models/review.model";
 import { PopUpComponent } from "./pop-up/pop-up/pop-up.component";
 import { LoginService } from "../../services/login/login.service";
+import { StarRatingComponent } from "./star-rating/star-rating.component";
+
+
+export interface DialogData {
+  idProduct: number;
+  rating: number;
+}
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -20,11 +28,11 @@ import { LoginService } from "../../services/login/login.service";
 export class ProductListComponent implements OnInit {
 
   @Output() submitReview = new EventEmitter<number>();
-  rating:Array<number> = [];
+  rating: Array<number> = [];
   ingredients: Ingredient[] = [];
   logedin: boolean = false;
   private ratingArr = [];
-  pattern="[0-9]*"
+  pattern = "[0-9]*"
   products: Product[] = [];
 
   selectedProductIngredients: Array<any[]> = [];
@@ -39,12 +47,13 @@ export class ProductListComponent implements OnInit {
 
   constructor(private shoppingCartService: ShoppingCartService, private productService: ProductService, private ingredientService: IngredientService, private router: Router, private dialog: MatDialog, private loginService: LoginService) {
   }
-  getAllProducts(){
+
+  getAllProducts() {
     this.productService.getAllProducts().subscribe((result: Product[]) => {
 
       console.log('result', result),
         this.products = result.map(product => {
-          return {...product, quantityProduct: 1}
+          return { ...product, quantityProduct: 1 }
         });
       this.pageSlice = this.products.slice(0, 4);
 
@@ -78,7 +87,7 @@ export class ProductListComponent implements OnInit {
     if (localStorage.getItem('token') === null) {
       this.router.navigate(["/login"]);
     } else {
-      const productCopy = {...product};
+      const productCopy = { ...product };
       productCopy.quantityProduct = +this.quantities[index];
       productCopy.ingredients = this.selectedProductIngredients[index];
       this.productService.addToCart(productCopy);
@@ -113,31 +122,41 @@ export class ProductListComponent implements OnInit {
 
   resetIngredients() {
     this.selectedProductIngredients = [];
-    this.selectedProductIngredients.map(() =>  this.selectedProductIngredients.push([]))
-  console.log(this.selectedProductIngredients)
+    this.selectedProductIngredients.map(() => this.selectedProductIngredients.push([]))
+    console.log(this.selectedProductIngredients)
   }
 
   resetQuantities() {
     this.quantities = []
-    this.products.map(() =>  this.quantities.push(1))
+    this.products.map(() => this.quantities.push(1))
     console.log(this.quantities)
   }
 
   onDeleteProduct(id: number) {
-    this.productService.delete(id).subscribe(result => {console.log(result),
-        this.getAllProducts()},
+    this.productService.delete(id).subscribe(result => {
+        console.log(result),
+          this.getAllProducts()
+      },
       error => console.log(error))
   }
 
-  openDialog(){
+  openDialog() {
     this.dialog.open(PopUpComponent)
   }
 
-  reviewSubmit(review: Review): void {
-    this.productService.addReview(review);
+  /* openDialogReview(idProduct: number) {
+
+     this.dialog.open(StarRatingComponent, idProduct)
+   }*/
+
+  openDialogReview(idProduct: number): void {
+    const dialogRef = this.dialog.open(StarRatingComponent, {
+      width: '250px',
+      data: { idProduct: idProduct, rating: 0 },
+    });
   }
 
-  onRatingChanged(rating: number, index: number){
+  onRatingChanged(rating: number, index: number) {
     this.rating[index] = rating;
   }
 

@@ -22,7 +22,7 @@
 
 
   <mat-card class="example-card" *ngFor="let product of pageSlice; let index = index">
-        <div class="row">
+    <div class="row">
 
       <div class="col main-col">
         <mat-card-title-group>
@@ -34,10 +34,10 @@
         <div class="rate">
           <p>Rating: {{product.rating}}</p>
 
-          <div class = "stars" *ngFor="let i of [0,1,2,3,4]"><!-- type="radio" id="star5" name="rate" value="5"-->
-          <mat-icon *ngIf="i < product.rating">star</mat-icon>
-          <mat-icon *ngIf="i >= product.rating">star_border</mat-icon>
-        </div>
+          <div class="stars" *ngFor="let i of [0,1,2,3,4]"><!-- type="radio" id="star5" name="rate" value="5"-->
+            <mat-icon *ngIf="i < product.rating">star</mat-icon>
+            <mat-icon *ngIf="i >= product.rating">star_border</mat-icon>
+          </div>
 
         </div>
 
@@ -52,12 +52,13 @@
       </div>
 
       <div class="col">
-        <input numbersOnly placeholder="Enter a Quantity!" [(ngModel)]="quantities[index]" [pattern]="pattern" type="number" min="0">
+        <input numbersOnly placeholder="Enter a Quantity!" [(ngModel)]="quantities[index]" [pattern]="pattern"
+               type="number" min="0">
         <label *ngIf="true" [ngClass]="'error'"> </label>
 
-            <br><br>
+        <br><br>
 
-        <mat-form-field  class="ingredient-tab" appearance="fill">
+        <mat-form-field class="ingredient-tab" appearance="fill">
           <mat-label>Choose ingredients</mat-label>
           <mat-select class="ingredient-list" [(value)]="selectedProductIngredients[index]" multiple>
             <mat-option *ngFor="let ingredient of ingredients" [value]="ingredient">{{ ingredient.nameIngredient}}
@@ -82,8 +83,12 @@
         <img mat-card-sm-image src="{{product.imgProduct}}" alt="image not found">
 
 
-        <div class="review" id="stars" color="stars"  *ngIf="logedin">
-          <mat-star-rating [rating]="rating[index]"  [starCount]="5" (ratingUpdated)="onRatingChanged($event, index)"></mat-star-rating>
+        <!--<div class="review" id="stars" color="stars" *ngIf="logedin">
+          <mat-star-rating [rating]="rating[index]" [starCount]="5"
+                           (ratingUpdated)="onRatingChanged($event, index)"></mat-star-rating>
+        </div>-->
+        <div class="review">
+            <button mat-raised-button (click)="openDialogReview(product.idProduct)">Add review</button>
         </div>
       </div>
     </div>
