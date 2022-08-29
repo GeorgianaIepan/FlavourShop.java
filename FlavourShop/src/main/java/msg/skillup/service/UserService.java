@@ -76,7 +76,7 @@ public class UserService {
                 throw new BusinessException(error);
             }
         } else {
-            throw new BusinessException("user inexistent");
+            throw new BusinessException("This user does not exist");
         }
     }
 
@@ -162,20 +162,19 @@ public class UserService {
         User user = userRepository.matchUser(username);
 
         if(user == null){
-            throw new BusinessException("Userul nu a fost gasit");
+            throw new BusinessException("This user does not exist");
         } else if (!passwordEncoder.matches(password, user.getPassword())) {
-            throw new BusinessException("Parola incorecta");
+            throw new BusinessException("Incorrect password");
         } else if (!user.isEnabled()) {
-            throw new BusinessException("emailul nu a fost verificat!");
+            throw new BusinessException("Your email was not verified");
         }
-        String token = jwTokenCreator.generateToken(user);
-        return token;
+        return jwTokenCreator.generateToken(user);
     }
 
     public User getUserFromUsername(String username) throws BusinessException{
         User user = userRepository.matchUser(username);
         if(user == null){
-            throw new BusinessException("Userul nu a fost gasit");
+            throw new BusinessException("This user does not exist");
         }
         return user;
     }
