@@ -30,9 +30,11 @@ public class PdfCreator {
                 "\n\nClient: " + user.getName() +
                 "\nDelivery Address: " + order.getAddress() + "\n\n";
         int price = 0;
+        int noProduct = 1;
         for(ProductDTO p : orderDTO.getProducts()){
             Product product = productRepository.getById(p.getIdProduct());
-            content += "\n" + p.getNameProduct() + "\n";
+            content += "\n" + noProduct + ". " + p.getNameProduct() + "\n";
+            noProduct++;
             price+=p.getPriceProduct() * p.getQuantityProduct();
             if(p.getIngredients() != null) {
                 for(IngredientDTO i: p.getIngredients()) {
