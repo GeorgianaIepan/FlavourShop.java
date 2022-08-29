@@ -150,10 +150,11 @@ export class ProductListComponent implements OnInit {
    }*/
 
   openDialogReview(idProduct: number): void {
-    const dialogRef = this.dialog.open(StarRatingComponent, {
+    let dialogRef = this.dialog.open(StarRatingComponent, {
       width: '250px',
       data: { idProduct: idProduct, rating: 0 },
     });
+   dialogRef.afterClosed().subscribe(result => this.getAllProducts())
   }
 
   onRatingChanged(rating: number, index: number) {

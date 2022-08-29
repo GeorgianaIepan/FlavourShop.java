@@ -16,5 +16,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("SELECT AVG(r.rating) FROM Review r WHERE r.product.idProduct= :productId")
     Integer findRating(@Param("productId") Long productId);
 
+    @Query("SELECT COUNT(r) FROM Review r WHERE r.product.idProduct= :productId")
+    Integer findNoRatings(@Param("productId") Long productId);
 }
 

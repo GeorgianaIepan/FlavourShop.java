@@ -24,6 +24,7 @@ public class ProductService {
         List<Product> products = productRepository.findAll();
         List<ProductDTO> productDTOs = ProductConverter.convertEntitiesToDTOs(products);
         computeRating(productDTOs);
+        computeNoRatings(productDTOs);
         return productDTOs;
     }
 
@@ -43,6 +44,12 @@ public class ProductService {
     public void computeRating(List<ProductDTO> product){
         product.forEach( p-> {
             p.setRating(productRepository.findRating(p.getIdProduct()));
+        });
+    }
+
+    public void computeNoRatings(List<ProductDTO> product){
+        product.forEach( p-> {
+            p.setNoRatings(productRepository.findNoRatings(p.getIdProduct()));
         });
     }
 
