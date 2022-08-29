@@ -10,7 +10,7 @@ import { FormBuilder } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { forkJoin } from "rxjs";
 import { Review } from "../../models/review.model";
-import { PopUpComponent } from "./pop-up/pop-up/pop-up.component";
+import { PopUpComponent } from "./pop-up/pop-up.component";
 import { LoginService } from "../../services/login/login.service";
 import { StarRatingComponent } from "./star-rating/star-rating.component";
 
@@ -51,11 +51,9 @@ export class ProductListComponent implements OnInit {
   getAllProducts() {
     this.productService.getAllProducts().subscribe((result: Product[]) => {
 
-      console.log('result', result),
         this.products = result.map(product => {
           return { ...product, quantityProduct: 1 }
         });
-      this.pageSlice = this.products.slice(0, 4);
 
     })
   }
@@ -123,7 +121,6 @@ export class ProductListComponent implements OnInit {
   resetIngredients() {
     this.selectedProductIngredients = [];
     this.selectedProductIngredients.map(() => this.selectedProductIngredients.push([]))
-    console.log(this.selectedProductIngredients)
   }
 
   resetQuantities() {
@@ -142,13 +139,7 @@ export class ProductListComponent implements OnInit {
 
   openDialog() {
     this.dialog.open(PopUpComponent);
-
   }
-
-  /* openDialogReview(idProduct: number) {
-
-     this.dialog.open(StarRatingComponent, idProduct)
-   }*/
 
   openDialogReview(idProduct: number): void {
     let dialogRef = this.dialog.open(StarRatingComponent, {

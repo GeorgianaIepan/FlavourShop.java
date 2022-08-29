@@ -13,12 +13,11 @@ import {ShoppingCartService} from "../shopping-cart/shopping-cart.service";
   styleUrls: ['./product-searched.component.scss']
 })
 export class ProductSearchedComponent implements OnInit {
-
-
   selectedProductIngredients: Array<any[]> = [];
   quantities: Array<number> = [];
+  pattern = "[0-9]*"
   private nameProduct: string = '';
-  products: Product[] = [{idProduct:0, nameProduct: '', priceProduct: 0, stockProduct: '', quantityProduct: 0, imgProduct: '', ingredients: [], description:'', rating: 0, noRatings: 0}];
+  products: Product[] = [{idProduct:0, nameProduct: '', priceProduct: 0, stockProduct: '', quantityProduct: 1, imgProduct: '', ingredients: [], description:'', rating: 0, noRatings: 0}];
   ingredients: Ingredient[] = [];
 
   constructor(private shoppingCartService: ShoppingCartService, private productService: ProductService, private activatedRoute:ActivatedRoute, private router: Router, private _snackBar: MatSnackBar, private ingredientService: IngredientService) { }
@@ -34,8 +33,8 @@ export class ProductSearchedComponent implements OnInit {
           this.products = result.map(product => {
             return {...product, quantityProduct: 1}
           });
-          // this.products.quantityProduct = 1;
           this.router.navigate(['/product'], {queryParams: {name: this.nameProduct.replace(' ', '-')}});
+          this.resetQuantities();
         }), () => {
             this._snackBar.open('Failed to search for this product!', 'OK', {
             duration: 3000,
@@ -70,13 +69,11 @@ export class ProductSearchedComponent implements OnInit {
   resetIngredients() {
     this.selectedProductIngredients = [];
     this.selectedProductIngredients.map(() =>  this.selectedProductIngredients.push([]))
-    console.log(this.selectedProductIngredients)
   }
 
   resetQuantities() {
     this.quantities = []
     this.products.map(() =>  this.quantities.push(1))
-    console.log(this.quantities)
   }
 
 }
