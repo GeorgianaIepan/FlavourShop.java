@@ -21,18 +21,18 @@ export class ShoppingCartComponent implements OnInit {
     street: new FormControl('', [Validators.required, Validators.minLength(3)]),
     number: new FormControl('', [Validators.required, Validators.minLength(1)]),
     code: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{6}$')]),
-    state: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    county: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    town: new FormControl('', [Validators.required, Validators.minLength(3)]),
     country: new FormControl('', [Validators.required, Validators.minLength(3)]),
   });
 
   constructor(private productService: ProductService, private formBuilder: FormBuilder, private orderService: OrderService, private shoppingCartService: ShoppingCartService) {
-    /*  this.setupForm();*/
+
   }
 
   ngOnInit(): void {
     this.productsCart = this.productService.products;
   }
-
 
   incrementQuantity(product: Product): void {
     product.quantityProduct++;
@@ -42,16 +42,13 @@ export class ShoppingCartComponent implements OnInit {
   decrementQuantity(product: Product): void {
     product.quantityProduct--;
     this.shoppingCartService.setCartItemsNumber(this.shoppingCartService.cartItemsNumber - 1);
-
   }
-
 
   deleteProductFromCart(product1: Product): void {
     const index: number = this.productsCart.indexOf(product1);
     this.productsCart.splice(index, 1);
 
     this.shoppingCartService.setCartItemsNumber(this.shoppingCartService.cartItemsNumber - Number.parseInt(product1.quantityProduct.toString()));
-
   }
 
   getTotal(): number {
