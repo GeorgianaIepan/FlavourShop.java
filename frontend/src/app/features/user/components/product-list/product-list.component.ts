@@ -154,4 +154,5 @@ export class ProductListComponent implements OnInit {
     this.rating[index] = rating;
   }
 
+
 }

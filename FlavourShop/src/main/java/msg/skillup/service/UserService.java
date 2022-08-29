@@ -72,11 +72,12 @@ public class UserService {
             System.out.println();
             if (error == null) {
                 userRepository.updatePassword(user.getPassword(), user.getIdUser());
+                userRepository.updateCode(null, user.getIdUser());
             } else {
                 throw new BusinessException(error);
             }
         } else {
-            throw new BusinessException("This user does not exist");
+            throw new BusinessException("password already reset");
         }
     }
 

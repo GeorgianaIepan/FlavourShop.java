@@ -22,7 +22,7 @@ export class OrderContainerComponent implements OnInit {
         panelClass: 'success-snackbar'
       });
       setTimeout(() => this.router.navigate(["/order"]), 1000);
-    }, () => this._snackBar.open('Order failed!', 'OK', {
+    }, () => this._snackBar.open('Insufficient stock!', 'OK', {
       duration: 3000,
       panelClass: 'fail-snackbar'
     }))
