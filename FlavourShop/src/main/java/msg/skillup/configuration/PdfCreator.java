@@ -34,7 +34,7 @@ public class PdfCreator {
             Product product = productRepository.getById(p.getIdProduct());
             content += "\n" + p.getNameProduct() + "\n";
             price+=p.getPriceProduct() * p.getQuantityProduct();
-            if(!p.getIngredients().isEmpty()) {
+            if(p.getIngredients() != null) {
                 for(IngredientDTO i: p.getIngredients()) {
                     Ingredient ingredient = ingredientRepository.getById(i.getIdIngredient());
                     content += "    " + i.getNameIngredient() + "\n";

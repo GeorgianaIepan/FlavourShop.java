@@ -18,7 +18,7 @@ export class ProductSearchedComponent implements OnInit {
   selectedProductIngredients: Array<any[]> = [];
   quantities: Array<number> = [];
   private nameProduct: string = '';
-  products: Product[] = [{idProduct:0, nameProduct: '', priceProduct: 0, stockProduct: '', quantityProduct: 0, imgProduct: '', ingredients: [], description:'', rating: 0}];
+  products: Product[] = [{idProduct:0, nameProduct: '', priceProduct: 0, stockProduct: '', quantityProduct: 0, imgProduct: '', ingredients: [], description:'', rating: 0, noRatings: 0}];
   ingredients: Ingredient[] = [];
 
   constructor(private shoppingCartService: ShoppingCartService, private productService: ProductService, private activatedRoute:ActivatedRoute, private router: Router, private _snackBar: MatSnackBar, private ingredientService: IngredientService) { }
