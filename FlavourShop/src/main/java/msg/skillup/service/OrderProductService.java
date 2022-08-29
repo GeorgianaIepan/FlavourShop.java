@@ -102,6 +102,9 @@ public class OrderProductService {
         Order savedOrder = orderRepository.save(order);
         orderDTO.getProducts().forEach(p -> {
             Product product = productRepository.getById(p.getIdProduct());
+            if(product.getStockProduct() <= p.getQuantityProduct()){
+                throw new RuntimeException("product is not in the stock!");
+            }
             OrderProduct orderProduct = new OrderProduct();
             orderProduct.setOrder(savedOrder);
             orderProduct.setProduct(product);

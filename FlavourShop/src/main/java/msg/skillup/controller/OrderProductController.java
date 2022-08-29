@@ -55,8 +55,12 @@ public class OrderProductController {
         String jwtToken= token.substring(17);
         jwtToken = jwtToken.substring(0,jwtToken.length()-2);
         Long idUser = userService.getUserFromUsername(jwTokenCreator.getUsernameFromToken(jwtToken)).getIdUser();
-        orderProductService.saveOrder(orderDTO, idUser);
-        return new ResponseEntity<>(HttpStatus.OK);
+       try{
+           orderProductService.saveOrder(orderDTO, idUser);
+           return new ResponseEntity<>(HttpStatus.OK);
+       } catch (RuntimeException e){
+           return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+       }
     }
 }
 
