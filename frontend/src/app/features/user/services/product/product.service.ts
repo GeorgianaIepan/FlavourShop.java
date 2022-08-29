@@ -40,6 +40,7 @@ export class ProductService {
   }
 
   addToCart(product: Product) {
+    this.products = JSON.parse(localStorage.getItem("products")!)
     const rezFind: undefined | Product = this.products.find(el => {
       let result
       if (!!el.ingredients) {
@@ -68,6 +69,8 @@ export class ProductService {
     } else {
       this.products.push(product);
     }
+    localStorage.setItem("products", JSON.stringify([]))
+    localStorage.setItem("products", JSON.stringify(this.products))
   }
 
   getRole(): Observable<Role> {

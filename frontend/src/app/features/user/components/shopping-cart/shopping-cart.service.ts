@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from "rxjs";
+import {Product} from "../../models/product.model";
 
 @Injectable()
 export class ShoppingCartService {
@@ -10,7 +11,9 @@ export class ShoppingCartService {
     return this._cartItemsNumber.getValue();
   }
 
-  setCartItemsNumber(itemsNumber: number) {
-    this._cartItemsNumber.next(itemsNumber);
+  setCartItemsNumber() {
+    this._cartItemsNumber.next(JSON.parse(localStorage.getItem("products")!).reduce((total : number, product : Product) => {
+      return total+product.quantityProduct;
+    }, 0));
   }
 }

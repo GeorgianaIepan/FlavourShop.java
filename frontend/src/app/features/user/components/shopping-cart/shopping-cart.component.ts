@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import { Product } from "../../models/product.model";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Order } from "../../models/order.model";
@@ -11,8 +11,8 @@ import { ShoppingCartService } from "./shopping-cart.service";
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.scss']
 })
-export class ShoppingCartComponent implements OnInit {
-
+export class ShoppingCartComponent implements OnInit, OnChanges {
+  @Input() reset : boolean = false;
   @Output() submitForm = new EventEmitter<Order>()
   pattern = "[0-9]*"
 
@@ -30,28 +30,56 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productsCart = this.productService.products;
+    this.productsCart = JSON.parse(localStorage.getItem("products")!)
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if(this.reset){
+      this.deleteAllProducts();
+    }
+  }
 
   incrementQuantity(product: Product): void {
+    const products = JSON.parse(localStorage.getItem("products")!)
+    products.forEach((el : Product) => {
+      if(product.idProduct === el.idProduct){
+        el.quantityProduct++;
+      }
+    })
+    localStorage.setItem("products", JSON.stringify(products))
     product.quantityProduct++;
-    this.shoppingCartService.setCartItemsNumber(this.shoppingCartService.cartItemsNumber + 1);
+    this.shoppingCartService.setCartItemsNumber();
   }
 
   decrementQuantity(product: Product): void {
+    const products = JSON.parse(localStorage.getItem("products")!)
+    products.forEach((el : Product) => {
+      if(product.idProduct === el.idProduct){
+        el.quantityProduct--;
+      }
+    })
+    localStorage.setItem("products", JSON.stringify(products))
     product.quantityProduct--;
-    this.shoppingCartService.setCartItemsNumber(this.shoppingCartService.cartItemsNumber - 1);
+    this.shoppingCartService.setCartItemsNumber();
 
   }
 
 
-  deleteProductFromCart(product1: Product): void {
-    const index: number = this.productsCart.indexOf(product1);
+  deleteProductFromCart(product: Product): void {
+    const index: number = this.productsCart.indexOf(product);
     this.productsCart.splice(index, 1);
+    const products = JSON.parse(localStorage.getItem("products")!)
+    const indexP = products.indexOf(product)
+    products.splice(indexP, 1)
+    localStorage.setItem("products", JSON.stringify(products))
 
-    this.shoppingCartService.setCartItemsNumber(this.shoppingCartService.cartItemsNumber - Number.parseInt(product1.quantityProduct.toString()));
+    this.shoppingCartService.setCartItemsNumber();
 
+  }
+
+  deleteAllProducts(): void {
+    this.productsCart.forEach(product=> this.deleteProductFromCart(product))
+    this.reset = false;
   }
 
   getTotal(): number {

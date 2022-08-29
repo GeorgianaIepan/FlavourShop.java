@@ -60,7 +60,7 @@ export class ProductSearchedComponent implements OnInit {
       productCopy.quantityProduct = +this.quantities[index];
       productCopy.ingredients = this.selectedProductIngredients[index];
       this.productService.addToCart(productCopy);
-      this.shoppingCartService.setCartItemsNumber(+this.quantities[index] + this.shoppingCartService.cartItemsNumber);
+      this.shoppingCartService.setCartItemsNumber();
       this.resetQuantities();
       this.resetIngredients();
     }

@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
         }),
       );
     });
-
+    this.shoppingCartService.setCartItemsNumber()
     this.shoppingCartService.cartItemsNumber$.subscribe(itemsNumber => {
       this.shoppingCartItemsNumber = itemsNumber;
     });
@@ -61,7 +61,8 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     this.productService.products = [];
-    this.shoppingCartService.setCartItemsNumber(0);
+    localStorage.setItem("products", JSON.stringify([]))
+    this.shoppingCartService.setCartItemsNumber()
     localStorage.removeItem('token');
     this.loginService.loginState.next(false);
 
