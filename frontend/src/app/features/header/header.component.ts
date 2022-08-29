@@ -52,7 +52,7 @@ export class HeaderComponent implements OnInit {
     let product = {idProduct:0, nameProduct: '', priceProduct: 0, stockProduct: '', quantityProduct: 0, imgProduct: '', ingredients: [], description:''}
     product.nameProduct= this.myControl.value!
     if(product.nameProduct.substring(0, 1) === " ")
-      product.nameProduct.trimStart();
+      product.nameProduct = product.nameProduct.trimStart();
     else
       product.nameProduct.replace(' ', '-');
 
