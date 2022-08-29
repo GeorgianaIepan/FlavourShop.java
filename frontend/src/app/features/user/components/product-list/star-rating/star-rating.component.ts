@@ -37,9 +37,9 @@ export class StarRatingComponent implements OnInit {
 
   onClick(rating: number) {
     console.log(rating)
-    this.snackBar.open('You rated ' + rating + ' / ' + this.starCount, '', {
+   /* this.snackBar.open('You rated ' + rating + ' / ' + this.starCount, '', {
       duration: this.snackBarDuration
-    });
+    });*/
     this.ratingUpdated.emit(rating);
     this.rating = rating;
     return false;
