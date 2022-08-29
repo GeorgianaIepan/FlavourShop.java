@@ -67,7 +67,7 @@
           </mat-select>
         </mat-form-field>
 
-        <button class="delete-product-button" mat-fab color="primary" (click)="onDeleteProduct(product.idProduct)">
+        <button class="delete-product-button" mat-fab color="primary" *ngIf="role === 'admin';" (click)="onDeleteProduct(product.idProduct)">
           <mat-icon>delete</mat-icon>
         </button>
 

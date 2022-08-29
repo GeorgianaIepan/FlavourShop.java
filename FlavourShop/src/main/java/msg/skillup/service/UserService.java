@@ -69,6 +69,7 @@ public class UserService {
             if(!forgotPasswordDTO.getConfirmationPassword().equals(forgotPasswordDTO.getPassword()))
                 throw new BusinessException("passwords do not match");
             String error = userValidator.validatePassword(user, forgotPasswordDTO.getPassword());
+            System.out.println();
             if (error == null) {
                 userRepository.updatePassword(user.getPassword(), user.getIdUser());
             } else {
@@ -128,6 +129,10 @@ public class UserService {
         helper.setFrom(fromAddress, senderName);
         helper.setTo(toAddress);
         helper.setSubject(subject);
+
+        String randomCode = RandomString.make(64);
+        user.setVerificationCode(randomCode);
+        userRepository.updateCode(randomCode, user.getIdUser());
 
         content = content.replace("[[name]]", user.getName());
         String resetURL = "http:/localhost:4200" + "/reset?code=" + user.getVerificationCode();

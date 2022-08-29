@@ -86,8 +86,9 @@ public class UserController {
     }
 
     @PostMapping("/reset")
-    public ResponseEntity<String> updatePassword(@RequestBody ForgotPasswordDTO forgotPasswordDTO){
+    public ResponseEntity<String> updatePassword(@Param("code") String code, @RequestBody ForgotPasswordDTO forgotPasswordDTO){
         try {
+            forgotPasswordDTO.setVerificationCode(code);
             userService.resetPassword(forgotPasswordDTO);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (BusinessException businessException) {

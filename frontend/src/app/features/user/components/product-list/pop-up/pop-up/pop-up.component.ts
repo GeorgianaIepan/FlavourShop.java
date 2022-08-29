@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ReactiveFormsModule, FormGroup, FormControl} from "@angular/forms";
+import {ReactiveFormsModule, FormGroup, FormControl, Validators} from "@angular/forms";
 import {ProductService} from "../../../../services/product/product.service";
 import {Product} from "../../../../models/product.model";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-pop-up',
@@ -10,17 +12,17 @@ import {Product} from "../../../../models/product.model";
 })
 export class PopUpComponent implements OnInit {
 
-  constructor(  private productService: ProductService,) { }
+  constructor(  private productService: ProductService,private dialog: MatDialogRef<PopUpComponent>,private router: Router) { }
 
   ngOnInit(): void {
 
   }
 
   saveProductForm = new FormGroup({
-    priceProduct: new FormControl(''),
-    nameProduct: new FormControl(''),
-    quantityProduct: new FormControl(''),
-    description: new FormControl(''),
+    priceProduct: new FormControl('',[Validators.required]),
+    nameProduct: new FormControl('',[Validators.required, Validators.minLength(3)]),
+    quantityProduct: new FormControl('',[Validators.required]),
+    description: new FormControl('',[Validators.required, Validators.minLength(10)]),
     imgProduct: new FormControl()
   })
 
@@ -40,8 +42,10 @@ export class PopUpComponent implements OnInit {
     formData.append('file', this.saveProductForm.controls['imgProduct'].value);
     this.productService.save(formData).subscribe(result => {
         console.log(result);
+        window.location.reload();
       },
-      error => console.log(error))
+      error => console.log(error));
+      this.dialog.close();
   }
 
 }

@@ -17,7 +17,7 @@ public class Review {
     @JoinColumn(name = "ID_USER")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_PRODUCT")
     private Product product;
 
