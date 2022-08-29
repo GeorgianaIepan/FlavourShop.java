@@ -3,7 +3,7 @@ insert into ROLE(name_role) values ('user');
 
 insert into USER_TABLE(username, name, password, id_role) values ('iepang', 'Georgiana', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 1);
 insert into USER_TABLE(username, name, password, id_role, enabled) values ('Admin123', 'Admin', '$2a$10$Vjiy4OJ4.xVAI3U6h31snuJr0nVHzU1cX4H/SzeEi2E7qr4zBvLBG', 1, 1);
-insert into USER_TABLE(username, PHONE_NUMBER,  name, password, id_role, enabled) values ('User1234', '0712345678',  'User', '$2a$10$O9idl6lRmSF7.41soFyzRejBQQadnrZLL1xwOJUnCIah.cl8c9V1.', 1, 2);
+insert into USER_TABLE(username, PHONE_NUMBER,  name, password, id_role, enabled) values ('User1234', '0712345678',  'User', '$2a$10$O9idl6lRmSF7.41soFyzRejBQQadnrZLL1xwOJUnCIah.cl8c9V1.', 2,1);
 
 insert into PRODUCT(PRICE_PRODUCT, NAME_PRODUCT, STOCK_PRODUCT, DESCRIPTION) values (10, 'Soap', 100, 'Flavor Soap gives sensitive skin that wonderful clean sensation it deserves. It works in harmony with the natural PH of the skin and the level of hydration to remove the sensation of "tight" skin and the discomfort caused by its drying: 100 g');
 insert into PRODUCT(PRICE_PRODUCT, NAME_PRODUCT, STOCK_PRODUCT, DESCRIPTION) values (15, 'Shower gel', 100, 'Suitable for all skin types, the shower gel leaves the skin soft, clean and hydrated, the foam transforming from a light gel texture into a super-fine foam: 500 ml');
