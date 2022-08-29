@@ -20,7 +20,7 @@ import { OrderContainerComponent } from './features/user/containers/order-contai
 import { ProductSearchedComponent } from './features/user/components/product-searched/product-searched.component';
 import { MatButtonModule } from "@angular/material/button";
 import { MatSelectModule } from "@angular/material/select";
-import { PopUpComponent } from './features/user/components/product-list/pop-up/pop-up/pop-up.component';
+import { PopUpComponent } from './features/user/components/product-list/pop-up/pop-up.component';
 import { MatTooltipModule } from "@angular/material/tooltip";
 
 

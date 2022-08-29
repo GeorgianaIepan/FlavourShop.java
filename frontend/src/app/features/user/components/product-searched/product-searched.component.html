@@ -19,7 +19,7 @@
         </mat-card-actions>
       </div>
       <div class="col">
-        <input placeholder="Enter a Quantity!" [(ngModel)]="product.quantityProduct">
+        <input placeholder="Enter a Quantity!"  [(ngModel)]="quantities[index]" [pattern]="pattern" type="number" min="0">
         <label *ngIf="true" [ngClass]="'error'"> </label>
 
         <br><br>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ReactiveFormsModule, FormGroup, FormControl, Validators} from "@angular/forms";
-import {ProductService} from "../../../../services/product/product.service";
-import {Product} from "../../../../models/product.model";
+import {ProductService} from "../../../services/product/product.service";
+import {Product} from "../../../models/product.model";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {Router} from "@angular/router";
 

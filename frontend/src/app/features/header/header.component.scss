@@ -102,7 +102,7 @@ a:hover {
   right: -10px;
   width: 23px;
   height: 23px;
-  background: red;
+  //background: red;
   color: white;
   display: flex;
   align-items: center;
@@ -110,7 +110,7 @@ a:hover {
   border-radius: 50%;
 }
 
-.icon-button:hover {
+.icon-button:hover, .searchButton:hover {
   color: #e8f5e8;
 }
 
@@ -142,3 +142,4 @@ input{
   display: inline-flex;
   width: 100%;
 }
+
