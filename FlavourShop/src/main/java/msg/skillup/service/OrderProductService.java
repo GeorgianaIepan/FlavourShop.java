@@ -110,6 +110,8 @@ public class OrderProductService {
             orderProduct.setProduct(product);
             orderProduct.setQuantity(p.getQuantityProduct());
             orderProductRepository.save(orderProduct);
+            product.setStockProduct(product.getStockProduct()- p.getQuantityProduct());
+            productRepository.updateProduct(product.getIdProduct(), product.getStockProduct());
             if(p.getIngredients() != null) {
                 p.getIngredients().forEach(i -> {
                     Ingredient ingredient = ingredientRepository.getById(i.getIdIngredient());
