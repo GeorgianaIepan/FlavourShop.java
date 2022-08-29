@@ -13,9 +13,9 @@
   padding-top: 50px;
   padding-bottom: 20px;
   height: 400px;
-  background-color: #ffeaf7;
+  background-color: #e8f5e8;
   opacity: 0.9;
-  color: #6e0940;
+  color: #423e37;
   margin-top: 20px;
   text-align: center;
   text-decoration: none;
@@ -25,20 +25,20 @@
 }
 
 .product-name {
-  color: #ef2796;
+  color: #78a879;
   font-weight: bold;
   font-size: 30px;
   text-align: center;
 }
 
 .product-price {
-  color: #6e0940;
+  color: #423e37;
   font-size: 14px;
   text-align: center;
 }
 
 .product-description {
-  color: #6e0940;
+  color: #423e37;
   font-size: 12px;
   text-align: left;
   width: 205px;
@@ -52,7 +52,7 @@
 .button, .buttonEdit {
   display: block;
   text-align: center;
-  background: #6e0940;
+  background: #423e37;
   color: white;
   border-radius: 3px;
   width: 160px;
@@ -62,11 +62,11 @@
 }
 
 .buttonEdit:hover{
-  background-color: #ef2796;
+  background-color: #78a879;
 }
 
 .button:hover {
-  background-color: #ef2796;
+  background-color: #78a879;
 }
 
 mat-card:not([class*=mat-elevation-z]) {
@@ -89,7 +89,7 @@ input {
 }
 
 .list {
-  box-shadow: 0 30px 60px #e293b3;
+  box-shadow: 0 30px 60px #e8f5e8;
 }
 
 .down-arrow {
@@ -130,7 +130,7 @@ input {
 .delete-product-button {
   margin-top: 40%;
   margin-left: 10%;
-  background-color: #6e0940;
+  background-color: #423e37;
   //margin-bottom: 0px;
 }
 

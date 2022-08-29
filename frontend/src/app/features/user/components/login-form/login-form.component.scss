@@ -3,16 +3,16 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color: #ffeaf7;
+  background-color: #e8f5e8;
   opacity: 0.9;
   max-width: 100%;
 }
 
 form {
-  outline: 3px solid #6e0940;
+  outline: 3px solid #423e37;
   padding: 4.5%;
   text-align: center;
-  background: url('../../../../../assets/images/flavourImage.png') no-repeat center;
+  //background-color: #78a879;
 }
 
 .row:last-child {
@@ -27,15 +27,15 @@ form {
 }
 
 mat-label, mat-icon, mat-error {
-  color: #6e0940;
+  color: #423e37;
 }
 
 .button {
-  background-color: #6e0940;
+  background-color: #423e37;
 }
 
 .forgot-password:hover{
-  color: #6e0940;
+  color: #423e37;
 }
 
 .forgot-password{
