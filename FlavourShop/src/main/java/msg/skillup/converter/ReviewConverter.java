@@ -1,6 +1,7 @@
 package msg.skillup.converter;
 
 import msg.skillup.dto.ReviewDTO;
+import msg.skillup.model.Product;
 import msg.skillup.model.Review;
 
 import java.util.List;
@@ -14,10 +15,11 @@ public class ReviewConverter {
         return reviewDTO;
     }
 
-    public static Review convertFromDTOToEntity(ReviewDTO reviewDTO) {
+    public static Review convertFromDTOToEntity(ReviewDTO reviewDTO, Product product) {
         Review review = new Review();
         review.setIdReview(reviewDTO.getIdReview());
         review.setRating(reviewDTO.getRating());
+        review.setProduct(product);
         return review;
     }
 

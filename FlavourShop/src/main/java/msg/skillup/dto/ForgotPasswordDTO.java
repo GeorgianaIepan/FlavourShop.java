@@ -6,5 +6,5 @@ import lombok.Data;
 public class ForgotPasswordDTO {
     private String password;
     private String confirmationPassword;
-    private Long id;
+    private String verificationCode;
 }
