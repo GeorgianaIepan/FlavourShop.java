@@ -38,6 +38,9 @@ public class Product {
     @Lob
     private Blob imgProduct;
 
+    @Column(name = "ACTIVE_PRODUCT" )
+    private boolean active = true;
+
     public Product(String imageName, String contentType, byte[] bytes) {
     }
 }

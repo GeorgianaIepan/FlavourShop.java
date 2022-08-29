@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -18,7 +19,7 @@ public class ProductService {
 
     public List<ProductDTO> getAllProducts() {
         List<Product> products = productRepository.findAll();
-        List<ProductDTO> productDTOs = ProductConverter.convertEntitiesToDTOs(products);
+        List<ProductDTO> productDTOs = ProductConverter.convertEntitiesToDTOs(products.stream().filter(x->x.isActive()).collect(Collectors.toList()));
         computeRating(productDTOs);
         computeNoRatings(productDTOs);
         return productDTOs;
@@ -69,7 +70,8 @@ public class ProductService {
     }
 
     public void delete(Long id) {
-        productRepository.deleteById(id);
+        productRepository.updateProduct(id);
+
     }
 
 
