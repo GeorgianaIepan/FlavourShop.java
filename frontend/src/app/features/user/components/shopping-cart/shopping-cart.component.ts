@@ -74,11 +74,13 @@ export class ShoppingCartComponent implements OnInit, OnChanges {
     localStorage.setItem("products", JSON.stringify(products))
 
     this.shoppingCartService.setCartItemsNumber();
-
   }
 
   deleteAllProducts(): void {
-    this.productsCart.forEach(product=> this.deleteProductFromCart(product))
+    while(this.productsCart.length != 0){
+      this.deleteProductFromCart(this.productsCart[0])
+      this.productsCart = JSON.parse(localStorage.getItem("products")!)
+    }
     this.reset = false;
   }
 
