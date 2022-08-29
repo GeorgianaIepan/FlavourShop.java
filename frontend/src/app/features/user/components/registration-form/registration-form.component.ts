@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, FormGroupDirective, Validators } from "@angular/forms";
+import { Component, EventEmitter, Output } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, FormGroupDirective, Validators } from "@angular/forms";
 import { User } from "../../models/user.model";
 
 @Component({
@@ -7,31 +7,38 @@ import { User } from "../../models/user.model";
   templateUrl: './registration-form.component.html',
   styleUrls: ['./registration-form.component.scss']
 })
-export class RegistrationFormComponent implements OnInit {
+export class RegistrationFormComponent {
   @Output() submitForm = new EventEmitter<User>()
+  registrationForm: FormGroup;
 
-  constructor() {
+  constructor(private formBuilder: FormBuilder) {
+    this.registrationForm = this.setupForm();
   }
 
-  ngOnInit(): void {
+  get passwordFormControl(): AbstractControl {
+    return this.registrationForm.get('password') as AbstractControl;
   }
 
-  matchPasswordValidator(password: string, passwordConfirmation: string) {
-    return passwordConfirmation === password;
+  get confirmPasswordFormControl(): AbstractControl {
+    return this.registrationForm.get('confirmationPassword') as AbstractControl;
   }
-
-  registrationForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    username: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$')]),
-    confirmationPassword: new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$')]),
-    phoneNumber: new FormControl('', [Validators.required, Validators.pattern('^[0][7][0-9]{8}$')]),
-  })
 
   onSubmit(formDirective: FormGroupDirective) {
     this.submitForm.emit(this.registrationForm.value as User)
-    this.registrationForm.reset()
-    formDirective.resetForm()
+    this.registrationForm.reset();
+    formDirective.resetForm();
+  }
+
+  private setupForm(): FormGroup {
+    const emailRegex = /^[a-zA-Z\d_.-]*@msg\.group$/
+    const passwordRegex = /^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/
+    return this.formBuilder.group({
+      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      username: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      email: new FormControl('', [Validators.required, Validators.pattern(emailRegex)]),
+      password: new FormControl('', [Validators.required, Validators.pattern(passwordRegex)]),
+      confirmationPassword: new FormControl('', [Validators.required, Validators.pattern(passwordRegex)]),
+      phoneNumber: new FormControl('', [Validators.required, Validators.pattern('^[0][7][0-9]{8}$')]),
+    })
   }
 }

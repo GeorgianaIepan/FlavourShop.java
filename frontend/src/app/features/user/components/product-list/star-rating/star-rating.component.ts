@@ -37,9 +37,9 @@ export class StarRatingComponent implements OnInit {
 
   onClick(rating: number) {
     console.log(rating)
-    this.snackBar.open('You rated ' + rating + ' / ' + this.starCount, '', {
+   /* this.snackBar.open('You rated ' + rating + ' / ' + this.starCount, '', {
       duration: this.snackBarDuration
-    });
+    });*/
     this.ratingUpdated.emit(rating);
     this.rating = rating;
     return false;
@@ -64,7 +64,7 @@ export class StarRatingComponent implements OnInit {
   reviewSubmit(): void {
     this.productService.addReview({ idProduct: this.data.idProduct, rating: this.rating }).subscribe(result => console.log(result));
     this.dialogRef.close();
-
+    window.location.reload();
   }
 }
 

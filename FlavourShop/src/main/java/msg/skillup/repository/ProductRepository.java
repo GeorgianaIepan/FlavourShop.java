@@ -25,5 +25,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Transactional
     @Query("UPDATE Product pr SET pr.active=false  WHERE pr.idProduct= :idProduct")
     void updateProduct(@Param("idProduct") Long idProduct);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Product pr SET pr.stockProduct= :stock  WHERE pr.idProduct= :idProduct")
+    void updateProduct(@Param("idProduct") Long idProduct,@Param("stock") Integer stock);
 }
 

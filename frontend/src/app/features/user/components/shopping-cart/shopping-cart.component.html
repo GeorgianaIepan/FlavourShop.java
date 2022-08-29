@@ -77,9 +77,17 @@
 
           <div class="row">
             <mat-form-field>
-              <mat-label>State</mat-label>
-              <input matInput placeholder="State" formControlName="state">
-              <mat-error *ngIf="addressForm.controls['state'].invalid">Not a valid state</mat-error>
+              <mat-label>County</mat-label>
+              <input matInput placeholder="County" formControlName="county">
+              <mat-error *ngIf="addressForm.controls['county'].invalid">Not a valid county</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field>
+              <mat-label>Town</mat-label>
+              <input matInput placeholder="Town" formControlName="town">
+              <mat-error *ngIf="addressForm.controls['town'].invalid">Not a valid town</mat-error>
             </mat-form-field>
           </div>
 
@@ -93,19 +101,22 @@
 
         </div>
       </form>
+
+      <div class="total-price">
+        <p>Total price: {{getTotal()}} RON</p>
+      </div>
+
+      <div class="actions-footer">
       <button color="primary"
               [disabled]="addressForm.invalid"
               (click)="onSubmit()" class="buttonSubmit"
               type="button">Submit
       </button>
-
-      <div class="total-price">
-        <p>Total price: {{getTotal()}} RON</p>
       </div>
     </div>
 
     <div class="actions-footer">
-      <button class="buttonSubmit" type="button">
+      <button class="buttonContinue" type="button">
         <a routerLink="/products"> Continue shopping</a>
       </button>
 

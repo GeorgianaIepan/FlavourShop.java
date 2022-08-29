@@ -27,7 +27,7 @@ export class ResetPasswordComponent implements OnInit {
           console.log(result);
       if (result.confirmed) {
         this.router.navigate(["/login"])
-      } else this.router.navigate(["/verify-failed"])
+      } else this.router.navigate(["/verify-failed-pass"])
     });
 
 

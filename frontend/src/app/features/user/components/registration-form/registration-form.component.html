@@ -57,7 +57,7 @@
     </div>
 
     <div class="password-not-match"
-         *ngIf="!matchPasswordValidator(registrationForm.controls.password.value!, registrationForm.controls.confirmationPassword.value!) && (registrationForm.touched || registrationForm.dirty)">
+         *ngIf="registrationForm.dirty && passwordFormControl.value !== confirmPasswordFormControl.value">
       Passwords do not match
     </div>
 

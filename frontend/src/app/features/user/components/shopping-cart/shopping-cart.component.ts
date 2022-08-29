@@ -21,12 +21,13 @@ export class ShoppingCartComponent implements OnInit, OnChanges {
     street: new FormControl('', [Validators.required, Validators.minLength(3)]),
     number: new FormControl('', [Validators.required, Validators.minLength(1)]),
     code: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{6}$')]),
-    state: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    county: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    town: new FormControl('', [Validators.required, Validators.minLength(3)]),
     country: new FormControl('', [Validators.required, Validators.minLength(3)]),
   });
 
   constructor(private productService: ProductService, private formBuilder: FormBuilder, private orderService: OrderService, private shoppingCartService: ShoppingCartService) {
-    /*  this.setupForm();*/
+
   }
 
   ngOnInit(): void {
@@ -63,7 +64,6 @@ export class ShoppingCartComponent implements OnInit, OnChanges {
     this.shoppingCartService.setCartItemsNumber();
 
   }
-
 
   deleteProductFromCart(product: Product): void {
     const index: number = this.productsCart.indexOf(product);
@@ -103,16 +103,6 @@ export class ShoppingCartComponent implements OnInit, OnChanges {
     const formData = this.addressForm.getRawValue()
     this.submitForm.emit({ products: this.productsCart, address: Object.values(formData).toString() })
   }
-
-  /*private setupForm() : void {
-    this.addressForm = this.formBuilder.group({
-      street: new FormControl('', [Validators.required]),
-      number: new FormControl('', [Validators.required]),
-      code: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{6}$')]),
-      state: new FormControl('', [Validators.required]),
-      country: new FormControl('', [Validators.required]),
-    });
-  }*/
 
   itemsInCart(): number {
     let total: number = 0;
