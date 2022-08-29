@@ -12,7 +12,7 @@ nav img {
   display: inline-flex;
   position: fixed;
   top: 0;
-  background-color: #ffeaf7;
+  background-color: #78a879;
   //opacity: 0.8;
   margin: auto;
   width: 100%;
@@ -20,8 +20,8 @@ nav img {
 }
 
 .button {
-  background-color: #ffeaf7;
-  color: #6e0940;
+  background-color: #78a879;
+  color: #423e37;
   border: none;
   padding: 10px 25px;
   text-align: center;
@@ -31,20 +31,20 @@ nav img {
   cursor: pointer;
   //float: right;
   line-height: 70px;
-  margin-right: 10px;
+  //margin-right: 1px;
 }
 
 .button:hover {
-  color: #ef2796;
+  color: #e8f5e8;
 }
 
 a {
   text-decoration: none;
-  color: #6e0940;
+  color: #423e37;
 }
 
 a:hover {
-  color: #ef2796;
+  color: #e8f5e8;
 }
 
 .badge:after{
@@ -88,8 +88,8 @@ a:hover {
   justify-content: center;
   width: 50px;
   height: 50px;
-  color: #6e0940;
-  background: #ffeaf7;
+  color: #423e37;
+  background: #78a879;
   border: none;
   outline: none;
   border-radius: 50%;
@@ -111,16 +111,16 @@ a:hover {
 }
 
 .icon-button:hover {
-  color: #ef2796;
+  color: #e8f5e8;
 }
 
 a {
   text-decoration: none;
-  color: #6e0940;
+  color: #423e37;
 }
 
 a:hover {
-  color: #ef2796;
+  color: #e8f5e8;
 }
 
 input{

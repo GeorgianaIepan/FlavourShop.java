@@ -14,6 +14,7 @@ import { ShoppingCartService } from "./shopping-cart.service";
 export class ShoppingCartComponent implements OnInit {
 
   @Output() submitForm = new EventEmitter<Order>()
+  pattern = "[0-9]*"
 
   productsCart: Product[] = [];
   addressForm: FormGroup = new FormGroup({
@@ -25,7 +26,7 @@ export class ShoppingCartComponent implements OnInit {
   });
 
   constructor(private productService: ProductService, private formBuilder: FormBuilder, private orderService: OrderService, private shoppingCartService: ShoppingCartService) {
-  /*  this.setupForm();*/
+    /*  this.setupForm();*/
   }
 
   ngOnInit(): void {
@@ -72,7 +73,7 @@ export class ShoppingCartComponent implements OnInit {
 
   onSubmit(): void {
     const formData = this.addressForm.getRawValue()
-    this.submitForm.emit({products: this.productsCart, address: Object.values(formData).toString() })
+    this.submitForm.emit({ products: this.productsCart, address: Object.values(formData).toString() })
   }
 
   /*private setupForm() : void {
@@ -85,9 +86,9 @@ export class ShoppingCartComponent implements OnInit {
     });
   }*/
 
-  itemsInCart(): number{
+  itemsInCart(): number {
     let total: number = 0;
-    for(let index in this.productsCart){
+    for (let index in this.productsCart) {
       total += this.productsCart[index].quantityProduct;
     }
     return total;

@@ -12,14 +12,19 @@
 
       <div class="col2">
         <div class="order-option">Quantity: <span id="quantity-field">
-        <button id="up" (click)="incrementQuantity(product)">+</button>
-        <input type="number" id="quantity" [(ngModel)]="product.quantityProduct"
-               [value]="product.quantityProduct"
-               [min]="0"
-               [max]="50">
         <button id="down" *ngIf="product.quantityProduct > 1; " color="primary"
                 type="submit"
-                (click)="decrementQuantity(product)">-</button></span>
+                (click)="decrementQuantity(product)">-</button>
+        <input numbersOnly placeholder="Enter a Quantity!" type="number" id="quantity"
+               [(ngModel)]="product.quantityProduct"
+               ng-reflect-model
+               [pattern]="pattern"
+               [value]="product.quantityProduct"
+               [min]="1"
+               [max]="50"
+               min="0">
+
+        <button id="up" (click)="incrementQuantity(product)">+</button></span>
         </div>
       </div>
 

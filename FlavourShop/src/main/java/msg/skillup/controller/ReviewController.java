@@ -33,6 +33,7 @@ public class ReviewController {
 
     @PostMapping("/review")
     public ResponseEntity<String> addReview(@RequestBody ReviewDTO reviewDTO, @RequestHeader("Authorization") String token) throws BusinessException {
+        System.out.println("Reveu "+reviewDTO.getIdProduct()+" "+reviewDTO.getRating());
         String jwtToken= token.substring(17);
         jwtToken = jwtToken.substring(0,jwtToken.length()-2);
         Long idUser = userService.getUserFromUsername(jwTokenCreator.getUsernameFromToken(jwtToken)).getIdUser();

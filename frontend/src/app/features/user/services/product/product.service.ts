@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {BackendService} from "../../../../core/backend/backend.service";
-import {User} from "../../models/user.model";
-import {Observable} from "rxjs";
-import {Product} from "../../models/product.model";
-import {error} from "@angular/compiler-cli/src/transformers/util";
+import { Injectable } from '@angular/core';
+import { BackendService } from "../../../../core/backend/backend.service";
+import { User } from "../../models/user.model";
+import { Observable } from "rxjs";
+import { Product } from "../../models/product.model";
+import { error } from "@angular/compiler-cli/src/transformers/util";
 
 import { Role } from "../../models/role.model";
 import { Review } from "../../models/review.model";
@@ -42,15 +42,15 @@ export class ProductService {
   addToCart(product: Product) {
     const rezFind: undefined | Product = this.products.find(el => {
       let result
-      if(!!el.ingredients) {
-         result = el.ingredients.every(function (element) {
-           if(!!product.ingredients) {
-             let ingredientsNames = product.ingredients.map(el => el.nameIngredient);
-             return ingredientsNames.includes(element.nameIngredient);
-           }
-           return false
+      if (!!el.ingredients) {
+        result = el.ingredients.every(function (element) {
+          if (!!product.ingredients) {
+            let ingredientsNames = product.ingredients.map(el => el.nameIngredient);
+            return ingredientsNames.includes(element.nameIngredient);
+          }
+          return false
         });
-      }else{
+      } else {
         result = el.ingredients === product.ingredients
       }
       return product.idProduct === el.idProduct && result;
@@ -74,13 +74,18 @@ export class ProductService {
     console.log(this.service.get(this.roleURL))
     return this.service.get(this.roleURL);
   }
+
   delete(id: number) {
     return this.service.delete(this.deleteProduct + id);
   }
 
   addReview(review: Review): Observable<any> {
+    console.log("ok1");
     return this.service.post(this.ratingURL, review)
+
   }
+
+
 
 
 }
