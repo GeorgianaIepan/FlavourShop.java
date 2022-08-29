@@ -132,7 +132,8 @@ export class ProductListComponent implements OnInit {
   onDeleteProduct(id: number) {
     this.productService.delete(id).subscribe(result => {
         console.log(result),
-          this.getAllProducts()
+          this.getAllProducts();
+        window.location.reload();
       },
       error => console.log(error))
   }
