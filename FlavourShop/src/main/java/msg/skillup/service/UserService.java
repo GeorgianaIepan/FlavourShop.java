@@ -64,16 +64,19 @@ public class UserService {
     }
 
     public void resetPassword(ForgotPasswordDTO forgotPasswordDTO) throws BusinessException{
-        User user = userRepository.getById(forgotPasswordDTO.getId());
-        if(!forgotPasswordDTO.getConfirmationPassword().equals(forgotPasswordDTO.getPassword()))
-            throw new BusinessException("passwords do not match");
-        String error = userValidator.validatePassword(user, forgotPasswordDTO.getPassword());
-        if (error == null) {
-            userRepository.updatePassword(user.getPassword(), user.getIdUser());
+        User user = userRepository.findByVerificationCode(forgotPasswordDTO.getVerificationCode());
+        if(user != null){
+            if(!forgotPasswordDTO.getConfirmationPassword().equals(forgotPasswordDTO.getPassword()))
+                throw new BusinessException("passwords do not match");
+            String error = userValidator.validatePassword(user, forgotPasswordDTO.getPassword());
+            if (error == null) {
+                userRepository.updatePassword(user.getPassword(), user.getIdUser());
+            } else {
+                throw new BusinessException(error);
+            }
         } else {
-            throw new BusinessException(error);
+            throw new BusinessException("user inexistent");
         }
-
     }
 
     private void sendVerificationEmail(User user)
@@ -127,7 +130,7 @@ public class UserService {
         helper.setSubject(subject);
 
         content = content.replace("[[name]]", user.getName());
-        String resetURL = "http:/localhost:4200" + "/reset?user=" + user.getIdUser();
+        String resetURL = "http:/localhost:4200" + "/reset?code=" + user.getVerificationCode();
 
         content = content.replace("[[URL]]", resetURL);
 
