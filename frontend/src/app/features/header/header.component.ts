@@ -7,7 +7,7 @@ import { Product } from "../user/models/product.model";
 import { ProductService } from "../user/services/product/product.service";
 import { ShoppingCartService } from "../user/components/shopping-cart/shopping-cart.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
-
+import jwt_decode from 'jwt-decode';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -30,13 +30,12 @@ export class HeaderComponent implements OnInit {
     this.productService.getAllProducts().subscribe((result: Product[]) => {
 
       this.options = result.map(product => {
-          return product.nameProduct
-        });
+        return product.nameProduct
+      });
 
       this.filteredOptions = this.myControl.valueChanges.pipe(
         startWith(''),
         map(value => {
-          // const name = typeof value === 'string' ? value : value?.nameProduct;
           const name = value;
           return name ? this._filter(name as string) : this.options.slice();
         }),
@@ -51,9 +50,13 @@ export class HeaderComponent implements OnInit {
   clickedFn(): void{
     let product = {idProduct:0, nameProduct: '', priceProduct: 0, stockProduct: '', quantityProduct: 0, imgProduct: '', ingredients: [], description:''}
     product.nameProduct= this.myControl.value!
-    this.myControl.setValue(' ');
-    this.router.navigate(['/product'], {queryParams: {name: product.nameProduct.replace(' ', '-')}});
+    if(product.nameProduct.substring(0, 1) === " ")
+      product.nameProduct.trimStart();
+    else
+      product.nameProduct.replace(' ', '-');
 
+    this.myControl.setValue(' ');
+    this.router.navigate(['/product'], {queryParams: {name: product.nameProduct}});
   }
 
   logout(): void {
@@ -66,7 +69,9 @@ export class HeaderComponent implements OnInit {
   }
 
   displayFn(item: any): string {
-    if (item == undefined) { return '';}
+    if (item == undefined) {
+      return '';
+    }
     return item;
   }
 

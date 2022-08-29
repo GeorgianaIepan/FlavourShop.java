@@ -94,6 +94,7 @@ header h1 .color {
 #flavour-image {
   height: 580px;
   padding-top: 1px;
+  margin-top: 70px;
   background: url('../../../../../assets/images/flavourImage.jpeg') no-repeat center;
 
 }
@@ -163,4 +164,19 @@ img {
   -moz-transition: all 0.5s linear;
   transition: all 0.5s linear;
   width: 275px;
+}
+
+.contact {
+  font-size: 20px;
+  color: #444;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#account {
+  text-align: center;
+  color: #423e37;
+  font: bold 25px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 }

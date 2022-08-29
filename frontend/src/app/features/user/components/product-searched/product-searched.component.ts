@@ -30,17 +30,19 @@ export class ProductSearchedComponent implements OnInit {
       if (this.nameProduct == '') {
         this.router.navigate(["/products"]);
       } else {
-        console.log(this.nameProduct, this.products);
         this.productService.getProduct(this.nameProduct).subscribe(result => {
           this.products = result.map(product => {
             return {...product, quantityProduct: 1}
           });
           // this.products.quantityProduct = 1;
           this.router.navigate(['/product'], {queryParams: {name: this.nameProduct.replace(' ', '-')}});
-        }), () => this._snackBar.open('Failed to search for this product!', 'OK', {
-          duration: 3000,
-          panelClass: 'fail-snackbar'
-        })
+        }), () => {
+            this._snackBar.open('Failed to search for this product!', 'OK', {
+            duration: 3000,
+            panelClass: 'fail-snackbar'
+            })
+            this.router.navigate(['/home']);
+        }
       }
     });
 
