@@ -30,13 +30,12 @@ export class HeaderComponent implements OnInit {
     this.productService.getAllProducts().subscribe((result: Product[]) => {
 
       this.options = result.map(product => {
-          return product.nameProduct
-        });
+        return product.nameProduct
+      });
 
       this.filteredOptions = this.myControl.valueChanges.pipe(
         startWith(''),
         map(value => {
-          // const name = typeof value === 'string' ? value : value?.nameProduct;
           const name = value;
           return name ? this._filter(name as string) : this.options.slice();
         }),
@@ -48,11 +47,20 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  clickedFn(): void{
-    let product = {idProduct:0, nameProduct: '', priceProduct: 0, stockProduct: '', quantityProduct: 0, imgProduct: '', ingredients: [], description:''}
-    product.nameProduct= this.myControl.value!
+  clickedFn(): void {
+    let product = {
+      idProduct: 0,
+      nameProduct: '',
+      priceProduct: 0,
+      stockProduct: '',
+      quantityProduct: 0,
+      imgProduct: '',
+      ingredients: [],
+      description: ''
+    }
+    product.nameProduct = this.myControl.value!
     this.myControl.setValue(' ');
-    this.router.navigate(['/product'], {queryParams: {name: product.nameProduct.replace(' ', '-')}});
+    this.router.navigate(['/product'], { queryParams: { name: product.nameProduct.replace(' ', '-') } });
 
   }
 
@@ -66,7 +74,9 @@ export class HeaderComponent implements OnInit {
   }
 
   displayFn(item: any): string {
-    if (item == undefined) { return '';}
+    if (item == undefined) {
+      return '';
+    }
     return item;
   }
 
