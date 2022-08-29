@@ -93,19 +93,22 @@
 
         </div>
       </form>
+
+      <div class="total-price">
+        <p>Total price: {{getTotal()}} RON</p>
+      </div>
+
+      <div class="actions-footer">
       <button color="primary"
               [disabled]="addressForm.invalid"
               (click)="onSubmit()" class="buttonSubmit"
               type="button">Submit
       </button>
-
-      <div class="total-price">
-        <p>Total price: {{getTotal()}} RON</p>
       </div>
     </div>
 
     <div class="actions-footer">
-      <button class="buttonSubmit" type="button">
+      <button class="buttonContinue" type="button">
         <a routerLink="/products"> Continue shopping</a>
       </button>
 

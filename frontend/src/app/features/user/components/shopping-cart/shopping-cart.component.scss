@@ -96,11 +96,29 @@ mat-card:not([class*=mat-elevation-z]) {
   background-color: #423e37;
   margin-top: 20px;
   text-decoration: none;
+  float: right;
+  width: 23.5%;
+}
+
+.buttonContinue{
+  display: block;
+  text-align: center;
+  border-radius: 3px;
+  font-size: 20px;
+  line-height: 50px;
+  color: #e8f5e8;
+  background-color: #423e37;
+  margin-top: 20px;
+  text-decoration: none;
   float: left;
   width: 23.5%;
 }
 
 .buttonSubmit:hover {
+  background-color: #78a879;
+}
+
+.buttonContinue:hover {
   background-color: #78a879;
 }
 
@@ -134,7 +152,7 @@ a {
 
   .actions-footer {
     width: 100%;
-    display: flex;
+    //display: flex;
     justify-content: flex-end;
 
     button:not(:last-child) {
@@ -181,5 +199,6 @@ a {
 #quantity {
   width: 50px;
 }
+
 
 

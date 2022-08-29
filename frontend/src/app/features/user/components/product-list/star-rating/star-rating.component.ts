@@ -64,7 +64,7 @@ export class StarRatingComponent implements OnInit {
   reviewSubmit(): void {
     this.productService.addReview({ idProduct: this.data.idProduct, rating: this.rating }).subscribe(result => console.log(result));
     this.dialogRef.close();
-
+    window.location.reload();
   }
 }
 
