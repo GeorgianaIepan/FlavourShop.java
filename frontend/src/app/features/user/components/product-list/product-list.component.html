@@ -80,7 +80,7 @@
       </div>
 
       <div class="col">
-        <img class="image"src="{{product.imgProduct}}" alt="image not found">
+        <img class="image"  src="{{product.imgProduct}}"  onerror="this.src='https://www.inkling.com/wp-content/uploads/2021/06/SD-default-image.png'">
 
         <div>
             <button  class="button" id="buttonReview" *ngIf="logedin" (click)="openDialogReview(product.idProduct)">Add review</button>
