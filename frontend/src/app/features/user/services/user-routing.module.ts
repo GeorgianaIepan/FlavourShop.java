@@ -13,6 +13,7 @@ import { OrderComponent } from "../components/order/order.component";
 import {ForgotPasswordComponent} from "../components/forgot-password/forgot-password.component";
 import {ResetPasswordComponent} from "../containers/reset-password/reset-password.component";
 import { OrderContainerComponent } from "../containers/order-container/order-container.component";
+import { VerifyFailedPassComponent } from "../components/verify-failed-pass/verify-failed-pass.component";
 
 const routes: Routes = [
   {
@@ -58,6 +59,10 @@ const routes: Routes = [
   },{
     path: 'reset',
     component: ResetPasswordComponent,
+    pathMatch: 'full'
+  },{
+    path: 'verify-failed-pass',
+    component: VerifyFailedPassComponent,
     pathMatch: 'full'
   }
 ];

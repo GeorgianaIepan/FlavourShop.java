@@ -22,6 +22,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatSelectModule } from "@angular/material/select";
 import { PopUpComponent } from './features/user/components/product-list/pop-up/pop-up.component';
 import { MatTooltipModule } from "@angular/material/tooltip";
+import { VerifyFailedPassComponent } from './features/user/components/verify-failed-pass/verify-failed-pass.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { MatTooltipModule } from "@angular/material/tooltip";
         OrderComponent,
         OrderContainerComponent,
         ProductSearchedComponent,
-        PopUpComponent
+        PopUpComponent,
+        VerifyFailedPassComponent
             ],
   imports: [
     BrowserModule,

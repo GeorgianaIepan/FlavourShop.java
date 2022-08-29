@@ -76,16 +76,6 @@ export class ShoppingCartComponent implements OnInit {
     this.submitForm.emit({ products: this.productsCart, address: Object.values(formData).toString() })
   }
 
-  /*private setupForm() : void {
-    this.addressForm = this.formBuilder.group({
-      street: new FormControl('', [Validators.required]),
-      number: new FormControl('', [Validators.required]),
-      code: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{6}$')]),
-      state: new FormControl('', [Validators.required]),
-      country: new FormControl('', [Validators.required]),
-    });
-  }*/
-
   itemsInCart(): number {
     let total: number = 0;
     for (let index in this.productsCart) {
