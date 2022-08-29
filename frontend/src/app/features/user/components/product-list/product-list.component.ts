@@ -141,7 +141,8 @@ export class ProductListComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(PopUpComponent)
+    this.dialog.open(PopUpComponent);
+
   }
 
   /* openDialogReview(idProduct: number) {

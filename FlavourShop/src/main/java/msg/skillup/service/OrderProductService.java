@@ -107,7 +107,7 @@ public class OrderProductService {
             orderProduct.setProduct(product);
             orderProduct.setQuantity(p.getQuantityProduct());
             orderProductRepository.save(orderProduct);
-            if(!p.getIngredients().isEmpty()) {
+            if(p.getIngredients() != null) {
                 p.getIngredients().forEach(i -> {
                     Ingredient ingredient = ingredientRepository.getById(i.getIdIngredient());
                     ProductIngredient productIngredient = new ProductIngredient();
