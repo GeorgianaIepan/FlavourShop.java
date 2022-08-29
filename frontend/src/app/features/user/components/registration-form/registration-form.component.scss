@@ -1,5 +1,4 @@
 .container {
-  margin-top: 1%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,6 +7,7 @@
   opacity: 0.9;
   max-width: 100%;
   overflow: hidden;
+  padding-top: 8%;
 }
 
 form {
@@ -15,6 +15,7 @@ form {
   padding-inline: 4.5%;
   padding-block: 2%;
   text-align: center;
+
 }
 
 .row:last-child {
@@ -35,8 +36,3 @@ mat-label, mat-icon, mat-error {
 .button {
   background-color: #423e37;
 }
-
-
-
-
-
