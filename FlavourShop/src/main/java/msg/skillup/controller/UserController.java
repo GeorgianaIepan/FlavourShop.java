@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import javax.mail.MessagingException;
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import java.io.UnsupportedEncodingException;
 
 @RestController
@@ -86,15 +87,17 @@ public class UserController {
     }
 
     @PostMapping("/reset")
-    public ResponseEntity<String> updatePassword(@Param("code") String code, @RequestBody ForgotPasswordDTO forgotPasswordDTO){
+    public ResponseEntity<EmailConfirmationDTO> updatePassword(@Param("code") String code, @RequestBody ForgotPasswordDTO forgotPasswordDTO){
+        EmailConfirmationDTO emailConfirmationDTO = new EmailConfirmationDTO();
         try {
             forgotPasswordDTO.setVerificationCode(code);
             userService.resetPassword(forgotPasswordDTO);
-            return new ResponseEntity<>(HttpStatus.OK);
+            emailConfirmationDTO.setConfirmed(true);
+            return ResponseEntity.ok(emailConfirmationDTO);
         } catch (BusinessException businessException) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, businessException.getMessage());
+            emailConfirmationDTO.setConfirmed(false);
+            return ResponseEntity.ok(emailConfirmationDTO);
         }
-
     }
 
 }

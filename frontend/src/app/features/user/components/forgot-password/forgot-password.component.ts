@@ -27,7 +27,6 @@ export class ForgotPasswordComponent implements OnInit {
   onSubmit(formDirective: FormGroupDirective) {
     let user = formDirective.value as User
     this.resetForm.emit(user);
-    this.router.navigate(['/login'])
   }
 
   ngOnInit(): void {
